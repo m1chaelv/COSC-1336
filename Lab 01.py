@@ -36,12 +36,27 @@ def main():
     developerInfo()
 
     # Printing Some Text
-    print("   (\(\      INTRO")
+    print("   (\_/)      HI")
+    print("   ('x')")
+    print("   o_(\")(\")")
+
+    print()
+
+    # Printing Some Text
+    print("   (\(\      BYE")
     print("   (-.-)")
     print("   o_(\")(\")")
 
     print()
 
+
+    # Printing Some Text
+    print("        \"WELCOME\"")
+    print("   (\_/) /")
+    print("   ('x')")
+    print("   o_(\")(\")")
+
+    print()
 
 
     # End of the main function
