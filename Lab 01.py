@@ -31,7 +31,7 @@
 #
 #**************************************************************
 def main():
-    clear()
+#    clear()
 
     developerInfo()
 
@@ -39,11 +39,11 @@ def main():
     from time import sleep
 
     # Printing Some Text
-    print(1)
-    print(2)
-    print(3)
-    print(4)
-    print(5)
+    print(":")
+    print(":")
+    print(":")
+    print(":")
+    print("*")
 
     print("Screen will now be cleared in 5 Seconds")
 
