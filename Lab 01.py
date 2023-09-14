@@ -35,26 +35,13 @@ def main():
 
     developerInfo()
 
-    import os
-    from time import sleep
-
     # Printing Some Text
-    print(":")
-    print(":")
-    print(":")
-    print(":")
-    print("*")
+    print("   (\(\      INTRO")
+    print("   (-.-)")
+    print("   o_(\")(\")")
 
-    print("Screen will now be cleared in 5 Seconds")
+    print()
 
-    # Waiting for 5 seconds to clear the screen
-    sleep(5)
-
-    # Clearing the Screen
-    os.system('clear')
-
-    print("Hello my name is Michael Villarreal")
-    print("and this is my first Python program at ACC")
 
 
     # End of the main function
