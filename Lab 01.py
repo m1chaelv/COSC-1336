@@ -12,10 +12,17 @@
 #
 #  Instructor:        Onabajo
 #
-#  Chapter:           <Chapter #>
+#  Chapter:           <Chapter 2>
 #
 #  Description:
-#     <An explanation of what the program is designed to do>
+#   A movie theater only keeps a percentage of the revenue earned from ticket
+#   sales. The remainder goes to the movie company. Write a program that
+#   calculates a theater's gross and net box office profit for a night. The program
+#   should ask for the name of the movie, and how many adult and children
+#   tickets were sold. (The price of an adult ticket is $6.00 and a child's ticket is
+#   $3.00). It should display a report similar to the one below:
+#
+#   Note: Assume that the theatre keeps 20% of the gross box profit.
 #
 #***************************************************************
 
@@ -31,32 +38,70 @@
 #
 #**************************************************************
 def main():
-#    clear()
 
     developerInfo()
 
-    # Printing Some Text
-    print("   (\_/)      HI")
-    print("   ('x')")
-    print("   o_(\")(\")")
+    # Bunny Ears
+    ImgE1 = ("(\_/)   ")
+    ImgE2 = ("(\(\    ")
+    ImgE3 = (" /)/)   ")
+    ImgE4 = ("()_()   ")
 
-    print()
+    # Bunny Face
+    ImgF1 = ("('x')   ")
+    ImgF2 = ("(-.-)   ")
+    ImgF3 = ("(oxo)   ")
+    ImgF4 = ("('.')   ")
+    ImgF5 = ("(^.^)   ")
 
-    # Printing Some Text
-    print("   (\(\      BYE")
-    print("   (-.-)")
-    print("   o_(\")(\")")
-
-    print()
+    # Bunny Feet
+    ImgFT1 = ("o_(\")(\")")
 
 
-    # Printing Some Text
-    print("        \"WELCOME\"")
-    print("   (\_/) /")
-    print("   ('x')")
-    print("   o_(\")(\")")
+    # Initialize variables
+    MovieName = ""
+    AdultTix = 0
+    ChildTix = 0
+    Gross = 0.0
+    Net = 0.0
+    Amt = 0.0
+    Adult = 6.0
+    Child = 3.0
+    Keep = .2
+    Paid = (1 - Keep)
+    X = "\""
 
-    print()
+    # Request Inputs
+    spaces()
+    
+    print(f"{ImgE1:>10}" + "  HI!")
+    print(f"{ImgF1:>10}" + "  Enter the")
+    MovieName = input(f"{ImgFT1:>10}" + "  Movie Title: ")
+    spaces()
+
+    print(f"{ImgE2:>10}")
+    print(f"{ImgF4:>10}" + "  Enter the")
+    AdultTix = int(input(f"{ImgFT1:>10}" + "  Adult tickets sold: "))
+    spaces()
+
+    print(f"{ImgE4:>10}")
+    print(f"{ImgF5:>10}" + "  Enter the")
+    ChildTix = int(input(f"{ImgFT1:>10}" + "  Child tickets sold: "))
+    spaces()
+    
+    # Calculations
+    Gross = (AdultTix * Adult) + (ChildTix * Child)
+    Net = (Keep * Gross)
+    Amt = (Paid * Gross)
+
+    # Output
+    print(f"Movie Name {X + MovieName + X:>24}")
+    print(f"Adult Tickets Sold:        {AdultTix}")
+    print(f"Child Tickets Sold:        {ChildTix}")
+    print(f"Gross Box Office Profit:   ${Gross:>7.2f}")    
+    print(f"Net Box Office Profit:     ${Net:>7.2f}")    
+    print(f"Amount Paid to Movie Co:   ${Amt:>7.2f}")
+    
 
 
     # End of the main function
@@ -79,7 +124,15 @@ def developerInfo():
     print()
     # End of the developerInfo function
 
+def spaces():
+    print ()
+    print ()
+    print ()
+    print ()
+    print ()
+    
+
 # Call the main function
 main()
 
-# End of Program zero
+# End of Lab 01
