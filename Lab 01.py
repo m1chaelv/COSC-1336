@@ -32,7 +32,7 @@
 #
 #  Description:  The main function of the program
 #
-#  Parameters:   None
+#  Parameters:   Nonex
 #
 #  Returns:      Nothing
 #
