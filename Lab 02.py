@@ -41,21 +41,21 @@ def main():
 
     developerInfo()
 
-    # Bunny Ears
-    ImgE1 = ("(\_/)   ")
-    ImgE2 = ("(\(\    ")
-    ImgE3 = (" /)/)   ")
-    ImgE4 = ("()_()   ")
+    # Cat Ears
+    ImgE1 = ("  (\_/)   ")
+    ImgE2 = ("  (\_(\   ")
+    ImgE3 = ("  /)_/)   ")
+    ImgE4 = ("  /\_/\   ")
 
-    # Bunny Face
-    ImgF1 = ("('x')   ")
-    ImgF2 = ("(-.-)   ")
-    ImgF3 = ("(oxo)   ")
-    ImgF4 = ("('.')   ")
-    ImgF5 = ("(^.^)   ")
+    # Cat Face
+    ImgF1 = (" (='x'=)  ")
+    ImgF2 = (" (=-.-=)  ")
+    ImgF3 = (" (=oxo=)  ")
+    ImgF4 = (" (='.'=)  ")
+    ImgF5 = (" (=^.^=)  ")
 
-    # Bunny Feet
-    ImgFT1 = ("o_(\")(\")")
+    # Cat Feet
+    ImgFT1 = ("(\") (\")_/")
 
 
     # Initialize variables
@@ -72,25 +72,8 @@ def main():
     X = "\""
 
     # Request Inputs
-    spaces()
-    # ASCII Art Source: http://example.com/ascii-art-house
-    # Description: ASCII representation of a house
-    # Note: No author specified on the source website.
 
-    house_art = """
-T  +----+
-|  |HHHH|
-|  |HHHH|
-|  | _ _|
-|  |    |
-|  +----+
-|   ----
-|  ^^^^^
-|  ^^^^^
-|  ^^^^^
-"""
-
-    print(house_art)
+    house()
 
 
   
@@ -150,7 +133,26 @@ def spaces():
     print ()
     print ()
     print ()
+
+def house():
+    spaces()
     
+    # ASCII Art Source: https://www.asciiart.eu/buildings-and-places/houses
+    # Description: ASCII representation of a house
+    # Note: No author specified on the source website.
+
+    house_art = """
+          ':.
+             []_____
+            /\      \ 
+        ___/  \__/\__\__
+    ---/\___\ |''''''|__\-- ---
+       ||'''| |''||''|''|
+       ``\"\"\"`\"`\"\"))\"\"`\"\"`
+    """
+
+    print(house_art)
+
 
 # Call the main function
 main()
