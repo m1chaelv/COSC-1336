@@ -55,7 +55,7 @@ def main():
     ImgF5 = ("(^.^)   ")
 
     # Bunny Feet
-    ImgFT1 = ("o_(\")(\")")
+    ImgFT1 = ('o_(")(")')
 
 
     # Initialize variables
