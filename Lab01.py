@@ -74,22 +74,22 @@ def main():
     X = "\""
 
     # Request Inputs
-    spaces()
+    next()
     
     print(f"{ImgE1:>10}" + "  HI!")
     print(f"{ImgF1:>10}" + "  Enter the")
     MovieName = input(f"{ImgFT1:>10}" + "  Movie Title: ")
-    spaces()
+    next()
 
     print(f"{ImgE2:>10}")
     print(f"{ImgF4:>10}" + "  Enter the")
     AdultTix = int(input(f"{ImgFT1:>10}" + "  Adult tickets sold: "))
-    spaces()
+    next()
 
     print(f"{ImgE4:>10}")
     print(f"{ImgF5:>10}" + "  Enter the")
     ChildTix = int(input(f"{ImgFT1:>10}" + "  Child tickets sold: "))
-    spaces()
+    next()
     
     # Calculations
     Gross = (AdultTix * ADULT) + (ChildTix * CHILD)
@@ -103,6 +103,10 @@ def main():
     print(f"Gross Box Office Profit:   ${Gross:>7.2f}")    
     print(f"Net Box Office Profit:     ${Net:>7.2f}")    
     print(f"Amount Paid to Movie Co:   ${Amt:>7.2f}")
+
+    # Hold Screen
+    next()
+    dummy=input('Please enter any key to continue...')
     
 
 
@@ -126,9 +130,7 @@ def developerInfo():
     print()
     # End of the developerInfo function
 
-def spaces():
-    print ()
-    print ()
+def next():
     print ()
     print ()
     print ()
