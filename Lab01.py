@@ -59,16 +59,18 @@ def main():
 
 
     # Initialize variables
+    ADULT = 6.0
+    CHILD = 3.0
+    KEEP = .2
+    PAID = (1 - KEEP)
+
+
     MovieName = ""
     AdultTix = 0
     ChildTix = 0
     Gross = 0.0
     Net = 0.0
     Amt = 0.0
-    Adult = 6.0
-    Child = 3.0
-    Keep = .2
-    Paid = (1 - Keep)
     X = "\""
 
     # Request Inputs
@@ -90,9 +92,9 @@ def main():
     spaces()
     
     # Calculations
-    Gross = (AdultTix * Adult) + (ChildTix * Child)
-    Net = (Keep * Gross)
-    Amt = (Paid * Gross)
+    Gross = (AdultTix * ADULT) + (ChildTix * CHILD)
+    Net = (KEEP * Gross)
+    Amt = (PAID * Gross)
 
     # Output
     print(f"Movie Name {X + MovieName + X:>24}")
