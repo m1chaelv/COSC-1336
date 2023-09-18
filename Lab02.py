@@ -52,7 +52,7 @@ def main():
     # Request Inputs
     # To expedite testing pre-populated data will bypass user prompts.
     # set USE_TEST to True to use test data. Set to False before promoting to prod.
-    USE_TEST = False
+    USE_TEST = True
 
     house()
 
@@ -116,6 +116,9 @@ def main():
     print(f'{"Annual Fuel Cost":<20}{House1_annual_fuel:^20,.2f}{House2_annual_fuel:^20,.2f}{House3_annual_fuel:^20,.2f}')
     print(f'{"Tax Rate":<20}{House1_tax_rate:^20%}{House2_tax_rate:^20%}'f'{House3_tax_rate:^20%}')
 
+    # Hold Screen
+    next()
+    dummy=input('Please enter any key to continue...')
 
     # End of the main function
 
@@ -206,9 +209,12 @@ def cat(ears,face,feet,message):
 
     # Cat Feet
     ImgFT1 = ('(") (")_/')
-    
+
+    # Hold Screen
+    next()
+    dummy=input('Please enter any key to continue...')    
 
 # Call the main function
 main()
 
-# End of Lab 01
+# End of Lab 02
