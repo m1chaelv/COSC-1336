@@ -32,79 +32,89 @@
 #
 #  Description:  The main function of the program
 #
-#  Parameters:   Nonex
+#  Parameters:   None
 #
 #  Returns:      Nothing
 #
 #**************************************************************
 def main():
 
-    developerInfo()
+    developerInfo() # Signature
 
-    # Cat Ears
-    ImgE1 = ("  (\_/)   ")
-    ImgE2 = ("  (\_(\   ")
-    ImgE3 = ("  /)_/)   ")
-    ImgE4 = ("  /\_/\   ")
 
-    # Cat Face
-    ImgF1 = (" (='x'=)  ")
-    ImgF2 = (" (=-.-=)  ")
-    ImgF3 = (" (=oxo=)  ")
-    ImgF4 = (" (='.'=)  ")
-    ImgF5 = (" (=^.^=)  ")
-
-    # Cat Feet
-    ImgFT1 = ('(") (")_/')
 
 
     # Initialize variables
-    MovieName = ""
-    AdultTix = 0
-    ChildTix = 0
-    Gross = 0.0
-    Net = 0.0
-    Amt = 0.0
-    Adult = 6.0
-    Child = 3.0
-    Keep = .2
-    Paid = (1 - Keep)
-    X = "\""
+    H1 = 'House 1'
+    H2 = 'House 2'
+    H3 = 'House 3'
 
     # Request Inputs
+    # To expedite testing pre-populated data will bypass user prompts.
+    # set USE_TEST to True to use test data. Set to False before promoting to prod.
+    USE_TEST = False
 
     house()
 
+    if USE_TEST:
+        House1_init_cost = 167000
+        House1_annual_fuel = 2300
+        House1_tax_rate = .025
 
-  
-    print(f"{ImgE1:>10}" + "  HI!")
-    print(f"{ImgF1:>10}" + "  Enter the")
-    MovieName = input(f"{ImgFT1:>10}" + "  Movie Title: ")
-    spaces()
+        House2_init_cost = 162000
+        House2_annual_fuel = 2500
+        House2_tax_rate = .025
 
-    print(f"{ImgE2:>10}")
-    print(f"{ImgF4:>10}" + "  Enter the")
-    AdultTix = int(input(f"{ImgFT1:>10}" + "  Adult tickets sold: "))
-    spaces()
+        House3_init_cost = 175000
+        House3_annual_fuel = 1850
+        House3_tax_rate = .02
+        cat(1,1,1,"Test Data")
+    else:
+        print('Enter the following information for House 1.')
+        House1_init_cost = float(input('Initial cost: '))
+        House1_annual_fuel = float(input('Annual fuel cost: '))
+        House1_tax_rate = float(input('Tax rate: '))
+        if House1_tax_rate >= 1:
+            House1_tax_rate = House1_tax_rate/100
+        next()
 
-    print(f"{ImgE4:>10}")
-    print(f"{ImgF5:>10}" + "  Enter the")
-    ChildTix = int(input(f"{ImgFT1:>10}" + "  Child tickets sold: "))
-    spaces()
-    
-    # Calculations
-    Gross = (AdultTix * Adult) + (ChildTix * Child)
-    Net = (Keep * Gross)
-    Amt = (Paid * Gross)
+        print('Enter the following information for House 2.')
+        House2_init_cost = float(input('Initial cost: '))
+        House2_annual_fuel = float(input('Annual fuel cost: '))
+        House2_tax_rate = float(input('Tax rate: '))
+        if House2_tax_rate >= 1:
+            House2_tax_rate = House2_tax_rate/100
+        next()
+
+        print('Enter the following information for House 3.')
+        House3_init_cost = float(input('Initial cost: '))
+        House3_annual_fuel = float(input('Annual fuel cost: '))
+        House3_tax_rate = float(input('Tax rate: '))
+        if House3_tax_rate >= 1:
+            House3_tax_rate = House3_tax_rate/100
+        next()
+
+        cat(4,5,1,"Thank You")
+
+    next()
 
     # Output
-    print(f"Movie Name {X + MovieName + X:>24}")
-    print(f"Adult Tickets Sold:        {AdultTix}")
-    print(f"Child Tickets Sold:        {ChildTix}")
-    print(f"Gross Box Office Profit:   ${Gross:>7.2f}")    
-    print(f"Net Box Office Profit:     ${Net:>7.2f}")    
-    print(f"Amount Paid to Movie Co:   ${Amt:>7.2f}")
-    
+    print('Summary:')
+    print('House\tInitial Cost\t5-Year Costs')
+    print(f'{H1}\t${House1_init_cost:,.2f}\t${House1_init_cost+(House1_tax_rate*House1_init_cost+House1_annual_fuel)*5:,.2f}')
+    print(f'{H2}\t${House2_init_cost:,.2f}\t${House2_init_cost+(House2_tax_rate*House2_init_cost+House2_annual_fuel)*5:,.2f}')
+    print(f'{H3}\t${House3_init_cost:,.2f}\t${House3_init_cost+(House3_tax_rate*House3_init_cost+House3_annual_fuel)*5:,.2f}')
+    next()
+    print('Details:')
+    print(f'{"":^20}{H1:^20}{H2:^20}{H3:^20}')
+    print(f'{"Init Cost":<20}{House1_init_cost:^20,.2f}{House2_init_cost:^20,.2f}{House3_init_cost:^20,.2f}')
+    print(f'{"5Y Fuel Cost":<20}{House1_annual_fuel*5:^20,.2f}{House2_annual_fuel*5:^20,.2f}{House3_annual_fuel*5:^20,.2f}')
+    print(f'{"5Y Tax Cost":<20}{(House1_tax_rate*House1_init_cost)*5:^20,.2f}{(House2_tax_rate*House2_init_cost)*5:^20,.2f}{(House3_tax_rate*House3_init_cost)*5:^20,.2f}')
+    print(f'{"Overall Cost":<20}{House1_init_cost+(House1_tax_rate*House1_init_cost+House1_annual_fuel)*5:^20,.2f}{House2_init_cost+(House2_tax_rate*House2_init_cost+House2_annual_fuel)*5:^20,.2f}{House3_init_cost+(House3_tax_rate*House3_init_cost+House3_annual_fuel)*5:^20,.2f}')
+    next()
+    print('Notes:')
+    print(f'{"Annual Fuel Cost":<20}{House1_annual_fuel:^20,.2f}{House2_annual_fuel:^20,.2f}{House3_annual_fuel:^20,.2f}')
+    print(f'{"Tax Rate":<20}{House1_tax_rate:^20%}{House2_tax_rate:^20%}'f'{House3_tax_rate:^20%}')
 
 
     # End of the main function
@@ -127,15 +137,13 @@ def developerInfo():
     print()
     # End of the developerInfo function
 
-def spaces():
-    print ()
-    print ()
+def next():
     print ()
     print ()
     print ()
 
 def house():
-    spaces()
+    next()
     
     # ASCII Art Source: https://www.asciiart.eu/buildings-and-places/houses
     # Description: ASCII representation of a house
@@ -153,6 +161,52 @@ def house():
 
     print(house_art)
 
+# Cat graphic print with message
+
+def cat(ears,face,feet,message):
+    # Cat Ears
+    earsx = ("  /\_/\   ")
+    if ears == 1:
+        earsx = ("  (\_/)   ")
+    if ears == 2:
+        earsx = ("  (\_(\   ")
+    if ears == 3:
+        earsx = ("  /)_/)   ")
+        
+
+    # Cat Face
+    facex = (" (=^.^=)  ")
+    if face == 1:
+        facex = (" (='x'=)  ")
+    if face == 2:
+        facex = (" (=-.-=)  ")
+    if face == 3:
+        facex = (" (=oxo=)  ")
+    if face == 4:
+        facex = (" (='.'=)  ")
+
+    # Cat Feet
+    feetx = ('(") (")_/')
+    if feet == 1:
+        feetx = ('(") (")_/')
+
+    print(earsx+message+"\n"+facex+"\n"+feetx)
+
+    ImgE1 = ("  (\_/)   ")
+    ImgE2 = ("  (\_(\   ")
+    ImgE3 = ("  /)_/)   ")
+    ImgE4 = ("  /\_/\   ")
+
+    # Cat Face
+    ImgF1 = (" (='x'=)  ")
+    ImgF2 = (" (=-.-=)  ")
+    ImgF3 = (" (=oxo=)  ")
+    ImgF4 = (" (='.'=)  ")
+    ImgF5 = (" (=^.^=)  ")
+
+    # Cat Feet
+    ImgFT1 = ('(") (")_/')
+    
 
 # Call the main function
 main()
