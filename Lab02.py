@@ -52,7 +52,7 @@ def main():
     # Request Inputs
     # To expedite testing pre-populated data will bypass user prompts.
     # set USE_TEST to True to use test data. Set to False before promoting to prod.
-    USE_TEST = False
+    USE_TEST = True
 
     house()
 
