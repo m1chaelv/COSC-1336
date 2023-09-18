@@ -4,7 +4,7 @@
 #
 #  Program #:         Lab 1
 #
-#  File Name:         Lab1.py
+#  File Name:         Lab01.py
 #
 #  Course:            COSC 1336 Programming Fundamentals I
 #
@@ -41,6 +41,7 @@ def main():
 
     developerInfo()
 
+    # Set Variables for graphic
     # Bunny Ears
     ImgE1 = ("(\_/)   ")
     ImgE2 = ("(\(\    ")
