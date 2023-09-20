@@ -21,11 +21,6 @@
 #
 #***************************************************************
 
-def next():
-    print()
-    print()
-    print()
-
 # Day of the Week
 # Write a program that asks the user for a number in the range of
 # 1 through 7. The program should display the corresponding day of
@@ -132,21 +127,38 @@ def exercise03():
 # 10	X
 
 def exercise04():
-    Numb_2convert=int(input('Enter a number from 1-10; '))
+    Numb_2convert=int(input('Enter a number from 1-10: '))
     
+    if(Numb_2convert==1):
+        print('I')
+    elif(Numb_2convert==2):
+        print('II')
+    elif(Numb_2convert==3):
+        print('III')
+    elif(Numb_2convert==4):
+        print('IV')
+    elif(Numb_2convert==5):
+        print('V')
+    elif(Numb_2convert==6):
+        print('VI')
+    elif(Numb_2convert==7):
+        print('VII')
+    elif(Numb_2convert==8):
+        print('VIII')
+    elif(Numb_2convert==9):
+        print('IX')
+    elif(Numb_2convert==10):
+        print('X')
+    else:
+        print('Error: Number entered is out of range.')
+    
+    next()
+    hold()
 
-# Distance Traveled
-# Assuming there are no accidents or delays, the distance that a car travels
-# down the interstate can be calculated with the following formula:
-#
-# A car is traveling at 70 miles per hour. Write a program that displays
-# the following:
-#
-# The distance the car will travel in 6 hours
-#
-# The distance the car will travel in 10 hours
-#
-# The distance the car will travel in 15 hours
+# Mass and Weight
+# Scientists measure an object’s mass in kilograms and its weight in newtons. If you know the amount of mass of an object in kilograms, you can calculate its weight in newtons with the following formula:
+
+# Write a program that asks the user to enter an object’s mass, then calculates its weight. If the object weighs more than 500 newtons, display a message indicating that it is too heavy. If the object weighs less than 100 newtons, display a message indicating that it is too light.
 
 def exercise05():
     #Traveling SPEED miles per hour
@@ -404,4 +416,30 @@ def main():
 #    next()
 #    exercise15()
 
+#***************************************************************
+#
+#  Function:     hold
+#  Description:  Prompt to pause the screen until ready
+#  Parameters:   None
+#  Returns:      Nothing
+#
+#**************************************************************
+def hold():
+    dummy=input('Please enter any key to continue...')
+
+#***************************************************************
+#
+#  Function:     next
+#  Description:  Create a multi-line space to between input/output
+#                to keep screen uncluttered
+#  Parameters:   None
+#  Returns:      3 blank lines
+#
+#**************************************************************
+def next():
+    print ()
+    print ()
+    print ()
+
 main()
+
