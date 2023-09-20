@@ -112,42 +112,28 @@ def exercise03():
     else:
         print('adult')
 
-# Age Classifier
-# Write a program that asks the user to enter a person’s age.
-# The program should display a message indicating whether the person
-# is an infant, a child, a teenager, or an adult. Following are the
-# guidelines:
+# Roman Numerals
+# Write a program that prompts the user to enter a number within
+# the range of 1 through 10. The program should display the Roman
+# numeral version of that number. If the number is outside the range
+# of 1 through 10, the program should display an error message. The
+# following table shows the Roman numerals for the numbers 1 through 10:
 #
-# If the person is 1 year old or less, he or she is an infant.
-#
-# If the person is older than 1 year, but younger than 13 years,
-# he or she is a child.
-#
-# If the person is at least 13 years old, but less than 20 years old,
-# he or she is a teenager.
-#
-# If the person is at least 20 years old, he or she is an adult.
+# Number	Roman Numeral
+#  1	I
+#  2	II
+#  3	III
+#  4	IV
+#  5	V
+#  6	VI
+#  7	VII
+#  8	VIII
+#  9	IX
+# 10	X
 
 def exercise04():
-    SALES_TAX = .07
-    subtotal = 0
-    price = 0
-
-    price = float(input('Enter price number 1: '))
-    subtotal = subtotal + price
-    price = float(input('Enter price number 2: '))
-    subtotal = subtotal + price
-    price = float(input('Enter price number 3: '))
-    subtotal = subtotal + price
-    price = float(input('Enter price number 4: '))
-    subtotal = subtotal + price
-    price = float(input('Enter price number 5: '))
-    subtotal = subtotal + price
-
-    next()
-    print(f'subtotal: ${subtotal:10,.2f}')
-    print(f'tax:      ${subtotal * SALES_TAX:10,.2f}')
-    print(f'total:    ${subtotal * (1 + SALES_TAX):10,.2f}')
+    Numb_2convert=int(input('Enter a number from 1-10; '))
+    
 
 # Distance Traveled
 # Assuming there are no accidents or delays, the distance that a car travels
@@ -390,9 +376,9 @@ def main():
 #    next()
 #    exercise02()
 #    next()
-    exercise03()
+#    exercise03()
 #    next()
-#    exercise04()
+    exercise04()
 #    next()
 #    exercise05()
 #    next()
