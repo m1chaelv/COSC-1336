@@ -201,27 +201,37 @@ def exercise05():
     hold()
 
 
-# Sales Tax
-# Write a program that will ask the user to enter the amount of a purchase.
-# The program should then compute the state and county sales tax. Assume
-# the state sales tax is 5 percent and the county sales tax is 2.5 percent.
-# The program should display the amount of the purchase, the state sales tax,
-# the county sales tax, the total sales tax, and the total of the sale
-# (which is the sum of the amount of purchase plus the total sales tax).
-#
-# Hint: Use the value 0.025 to represent 2.5 percent, and 0.05 to
-# represent 5 percent.
+# Magic Dates
+# The date June 10, 1960, is special because when it is written in 
+# the following format, the month times the day equals the year:
+
+# 6/10/60
+
+# Design a program that asks the user to enter a month (in numeric 
+# form), a day, and a two-digit year. The program should then determine 
+# whether the month times the day equals the year. If so, it should 
+# display a message saying the date is magic. Otherwise, it should 
+# display a message saying the date is not magic.
 
 def exercise06():
-    STATE_TAX = .05
-    COUNTY_TAX = .025
+    # Initialize
+    xmonth=0
+    xday=0
+    xyear=0
+    border='------------------------------'
 
-    purchase_amt=float(input('Enter purchase amount: '))
-    next()
-    print(f'${purchase_amt:10,.2f}',' :Total')
-    print(f'${purchase_amt * STATE_TAX:10,.2f}',' :State Tax')
-    print(f'${purchase_amt * COUNTY_TAX:10,.2f}',' :County Tax')
-    print(f'${purchase_amt * (1 + STATE_TAX + COUNTY_TAX):10,.2f}',' :Grand Total')
+    # input
+    xmonth=int(input('month 1-12: '))
+    xday=int(input('enter day 1-31: '))
+    xyear=int(input('enter year up to 2 digits: '))
+
+    # calculations
+    if xmonth * xday == xyear:
+        print(f'{border:^60}\n{str(xmonth)+"/"+str(xday)+"/"+str(xyear)+" is MAGIC!":^60}\n{border:^60}')
+    else:
+        print(f'{"Sorry, "+str(xmonth)+"/"+str(xday)+"/"+str(xmonth)+" is not magic."}')
+
+
 
 # Miles-per-Gallon
 # A car’s miles-per-gallon (MPG) can be calculated with the following formula:
@@ -421,9 +431,9 @@ def main():
 #    next()
 #    exercise04()
 #    next()
-    exercise05()
+#    exercise05()
 #    next()
-#    exercise06()
+    exercise06()
 #    next()
 #    exercise07()
 #    next()
