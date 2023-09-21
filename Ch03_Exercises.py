@@ -128,7 +128,7 @@ def exercise03():
 
 def exercise04():
     Numb_2convert=int(input('Enter a number from 1-10: '))
-    
+
     if(Numb_2convert==1):
         print('I')
     elif(Numb_2convert==2):
@@ -151,26 +151,55 @@ def exercise04():
         print('X')
     else:
         print('Error: Number entered is out of range.')
-    
+
     next()
     hold()
 
 # Mass and Weight
-# Scientists measure an object’s mass in kilograms and its weight in newtons. If you know the amount of mass of an object in kilograms, you can calculate its weight in newtons with the following formula:
+# Scientists measure an object’s mass in kilograms and its weight in
+# newtons. If you know the amount of mass of an object in kilograms,
+# you can calculate its weight in newtons with the following formula:
 
-# Write a program that asks the user to enter an object’s mass, then calculates its weight. If the object weighs more than 500 newtons, display a message indicating that it is too heavy. If the object weighs less than 100 newtons, display a message indicating that it is too light.
+# weight = mass × 9.8
+
+# Write a program that asks the user to enter an object’s mass, then
+# calculates its weight. If the object weighs more than 500 newtons,
+# display a message indicating that it is too heavy. If the object
+# weighs less than 100 newtons, display a message indicating that
+# it is too light.
 
 def exercise05():
-    #Traveling SPEED miles per hour
-    SPEED = 70
-    CHECKPOINT1 = 6
-    CHECKPOINT2 = 10
-    CHECKPOINT3 = 15
+    #initialize variables
+    obj_mass = 0.0
+    obj_weight = 0.0
+    message=''
+    msg_2_heavy = 'The object is too heavy.'    # > 500 newtons
+    msg_2_light = 'The object is too light.'    # < 100 newtons
 
-    print('Given a speed of '+str(SPEED)+'MPH, distance traveled in:')
-    print(str(CHECKPOINT1)+' hours is '+str(SPEED*CHECKPOINT1)+' miles.')
-    print(str(CHECKPOINT2)+' hours is '+str(SPEED*CHECKPOINT2)+' miles.')
-    print(str(CHECKPOINT3)+' hours is '+str(SPEED*CHECKPOINT3)+' miles.')
+    # Input: request the mass of an object.
+    border="----------------------------"
+    print(border+'\n MASS AND WEIGHT CONVERSION \n'+border)
+    obj_mass=float(input('Enter the mass of an object in kilograms: '))
+
+    # Calculations
+    obj_weight=obj_mass*9.8
+    if obj_weight > 500:
+        message=(f'At {obj_weight:.2f} newtons, this object is too heavy.')
+    elif obj_weight < 100:
+        message=(f'At {obj_weight:.2f} newtons, this object is too light.')
+    else:
+        message=(f'This object at {obj_weight:.2f} newtons, is just right.')
+
+
+    # Output: conversion and evaluation
+
+    print()
+    print(f'Object with mass of {obj_mass:.2f} kilograms, weights {obj_weight:.2f} newtons,')
+    print()
+    print(f'{border+border:^50}\n{message:^50}\n{border+border:^50}')
+    next()
+    hold()
+
 
 # Sales Tax
 # Write a program that will ask the user to enter the amount of a purchase.
@@ -390,9 +419,9 @@ def main():
 #    next()
 #    exercise03()
 #    next()
-    exercise04()
+#    exercise04()
 #    next()
-#    exercise05()
+    exercise05()
 #    next()
 #    exercise06()
 #    next()
@@ -442,4 +471,3 @@ def next():
     print ()
 
 main()
-
