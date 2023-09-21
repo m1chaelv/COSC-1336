@@ -233,17 +233,108 @@ def exercise06():
 
 
 
-# Miles-per-Gallon
-# A car’s miles-per-gallon (MPG) can be calculated with the following formula:
-# MPG = Milesdriven ÷ Gallonsofgasused
-# Write a program that asks the user for the number of miles driven and the
-# gallons of gas used. It should calculate the car's MPG and display the result.
+# Color Mixer
+# The colors red, blue, and yellow are known as the primary colors because they cannot be made by mixing other 
+# colors. When you mix two primary colors, you get a secondary color, as shown here:
+# 
+# When you mix red and blue, you get purple.
+# 
+# When you mix red and yellow, you get orange.
+# 
+# When you mix blue and yellow, you get green.
+# 
+# Design a program that prompts the user to enter the names of two primary colors to mix. If the user enters 
+# anything other than “red,” “blue,” or “yellow,” the program should display an error message. Otherwise, 
+# the program should display the name of the secondary color that results.
+# 
+# PDL
+# Start
+#   color1=''
+#   color1_true=''
+#   color2=''
+#   color2_true=''
+#   k=0
+#   while k<2 do
+#       get color0
+#       if color0 == 'blue' or 'red' or 'yellow'
+#           then
+#               color0_true=True
+#           else
+#               color0_true=False
+#       endif
+#       color2 = color1
+#       color2_true = color1_true
+#       color1 = color0
+#       color1_true = color0_true
+#       color0 = ''
+#       color0_true = ''
+#       k = k+1
+#   endwhile
+#   if color1_true and color2_true
+#       then
+#           if red blue
+#               then
+#                   purple
+#           elif red yellow
+#               then
+#                   orange
+#           elif blue yellow
+#               then
+#                   green
+#           else
+#               both are color1
+#       else
+#           print(1 or both are not primary colors)
+#if color1 =
 
 def exercise07():
-    miles = int(input('How many miles have been driven: '))
-    gallons = int(input('How many gallons of gas have been consumed: '))
+    # Initialize
+    color0=''
+    color1=''
+    color2=''
+    color0_true=''
+    color1_true=''
+    color2_true=''
+    border='-------------------------'
+    title='COLOR MIXER'
+    print(f'{border:^50}\n{title:^50}\n{border:^50}')
+    next()
 
-    print(f'Your vehicle is averaging {miles / gallons} MPG')
+    # Input
+    k=0
+    while k<2:
+        color0=input('Enter a primary color [blue, red, yellow]: ')
+        if (color0=='blue') or (color0=='red') or (color0=='yellow'):
+            color0_true=True
+        else:
+            color0_true=False
+        color2=color1
+        color1=color0
+        color2_true=color1_true
+        color1_true=color0_true
+        k=k+1
+        next()
+    if color1_true and color2_true:
+        if (color1+color2=='redblue') or (color2+color1=='redblue'):
+            print(f'{color1} & {color2} make purple')
+        elif (color1+color2=='redyellow') or (color2+color1=='redyellow'):
+            print(f'{color1} & {color2} make orange')
+        elif (color1+color2=='blueyellow') or (color2+color1=='blueyellow'):
+            print(f'{color1} & {color2} make green')
+        else:
+            print(f'both are {color1}')
+    else:
+        if (color1_true and color2_true):
+            print(f'both {color1} and {color2} are',end=" ")
+        elif not(color1_true):
+            print(f'{color1} is',end=" ")
+        else:
+            print(f'{color2} is',end=" ")
+        print('not a primary color')
+    next()
+    hold()
+
+
 
 # Tip, Tax, and Total
 # Write a program that calculates the total amount of a meal purchased at a
@@ -433,9 +524,9 @@ def main():
 #    next()
 #    exercise05()
 #    next()
-    exercise06()
+#    exercise06()
 #    next()
-#    exercise07()
+    exercise07()
 #    next()
 #    exercise08()
 #    next()
