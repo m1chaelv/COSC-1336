@@ -248,7 +248,7 @@ def exercise06():
 # the program should display the name of the secondary color that results.
 # 
 # PDL
-# Start
+# start
 #   color1=''
 #   color1_true=''
 #   color2=''
@@ -285,7 +285,7 @@ def exercise06():
 #               both are color1
 #       else
 #           print(1 or both are not primary colors)
-#if color1 =
+#stop
 
 def exercise07():
     # Initialize
@@ -336,22 +336,93 @@ def exercise07():
 
 
 
-# Tip, Tax, and Total
-# Write a program that calculates the total amount of a meal purchased at a
-# restaurant. The program should ask the user to enter the charge for the
-# food, then calculate the amounts of a 18 percent tip and 7 percent sales
-# tax. Display each of these amounts and the total.
+# Hot Dog Cookout Calculator
+# Assume hot dogs come in packages of 10, and hot dog buns come in packages 
+# of 8. Write a program that calculates the number of packages of hot dogs 
+# and the number of packages of hot dog buns needed for a cookout, with the 
+# minimum amount of leftovers. The program should ask the user for the number 
+# of people attending the cookout and the number of hot dogs each person will 
+# be given. The program should display the following details:
+# 
+# The minimum number of packages of hot dogs required
+# 
+# The minimum number of packages of hot dog buns required
+# 
+# The number of hot dogs that will be left over
+# 
+# The number of hot dog buns that will be left over
+
+# start:
+#     initialize
+#     dog_in_pack = 10
+#     bun_in_pack = 8
+#     attending = 0
+#     per_attending = 0
+#     servings = 0
+#     dog_packs = 0
+#     bun_packs = 0
+# 
+#     get attending
+#     get per_attending
+# 
+#     servings = attending * per_attending
+#     if servings % dog_in_pack != 0
+#         then
+#             dog_packs = 1 + servings / dog_in_pack
+#         else
+#             dog_packs = servings / dog_in_pack
+#     if servings % bun_in_packs != 0
+#         then
+#             bun_packs = 1 + servings / bun_in_pack
+#         else
+#             bun_packs = servings / bun_in_pack
+#     print(dog_packs, servings % dog_in_pack)
+#     print(bun_packs, servings % bun_in_pack)
+# stop
 
 def exercise08():
-    TAX = .07
-    TIP = .18
+    # initialize GLOBAL
+    DOG_IN_PACK = 10
+    BUN_IN_PACK = 8
+    BORDER = '-------------------------'
+    TITLE='Hot Dog Cookout Calculator'
+    # initialize COUNTERS
+    attending = 0
+    per_attending = 0
+    # initialize CALCULATIONS
+    servings = 0
+    dog_packs = 0
+    bun_packs = 0
+    dog_remain = 0
+    bun_remain = 0
 
-    food = float(input('Enter cost of meal: '))
+    #Input
+    print(f'{BORDER:^50}\n{TITLE:^50}\n{BORDER:^50}')
     next()
-    print(f'${food:15,.2f}'+' : Meal Total')
-    print(f'${food * TAX:15,.2f}'+' : Tax')
-    print(f'${food * TIP:15,.2f}'+' : Tip')
-    print(f'${food * (1 + TAX + TIP):15,.2f}'+' : Grand Total')
+    attending=int(input('How many people will be attending the cookout? '))
+    per_attending=int(input('How many hot dog will each attendee be given? '))
+
+    #Calculations
+    servings=attending * per_attending
+    if servings % DOG_IN_PACK != 0:
+        dog_packs=1
+        dog_remain=servings % DOG_IN_PACK
+    if servings % BUN_IN_PACK !=0:
+        bun_packs=1
+        bun_remain=servings % BUN_IN_PACK
+    dog_packs=dog_packs + int(servings / DOG_IN_PACK)
+    bun_packs=bun_packs + int(servings / BUN_IN_PACK)
+
+    #Output
+
+    next()
+    print(f'{dog_packs} hot dog packs are needed and {dog_remain} will remain.')
+    print(f'{bun_packs} hot dog bun packages are needed and {bun_remain} will remain.')
+    next()
+    hold()      
+
+
+
 
 # Celsius to Fahrenheit Temperature Converter
 # Write a program that converts Celsius temperatures to Fahrenheit temperatures.
@@ -526,9 +597,9 @@ def main():
 #    next()
 #    exercise06()
 #    next()
-    exercise07()
+#    exercise07()
 #    next()
-#    exercise08()
+    exercise08()
 #    next()
 #    exercise09()
 #    next()
