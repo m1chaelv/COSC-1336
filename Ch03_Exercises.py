@@ -774,46 +774,73 @@ def exercise12():
     next()
     hold()
 
-# Planting Grapevines
-# A vineyard owner is planting several new rows of grapevines, and needs to
-# know how many grapevines to plant in each row. She has determined that
-# after measuring the length of a future row, she can use the following
-# formula to calculate the number of vines that will fit in the row,
-# along with the trellis end-post assemblies that will need to be
-# constructed at each end of the row:
-# V = (R - 2 * E)/S
-#
-# The terms in the formula are:
-#
-# V is the number of grapevines that will fit in the row.
-#
-# R is the length of the row, in feet.
-#
-# E is the amount of space, in feet, used by an end-post assembly.
-#
-# S is the space between vines, in feet.
-#
-# Write a program that makes the calculation for the vineyard owner. The
-# program should ask the user to input the following:
-#
-# The length of the row, in feet
-#
-# The amount of space used by an end-post assembly, in feet
-#
-# The amount of space between the vines, in feet
-#
-# Once the input data has been entered, the program should calculate and
-# display the number of grapevines that will fit in the row.
+# Shipping Charges
+# The Fast Freight Shipping Company charges the following rates:
+# 
+# Weight of Package	Rate per Pound
+# 2 pounds or less	$1.50
+# Over 2 pounds but not more than 6 pounds	$3.00
+# Over 6 pounds but not more than 10 pounds	$4.00
+# Over 10 pounds	$4.75
+# 
+# Write a program that asks the user to enter the weight of a 
+# package then displays the shipping charges.
+
+# start
+#     initialize
+#     weight=0.0
+#     charges=0.0
+# 
+#     input
+#     weight
+# 
+#     calculation
+#     if weight>10.0
+#         charges=4.75
+#     elif weight>6.0
+#         charges=4.0
+#     elif weight>2.0
+#         charges=3.0
+#     else
+#         charges=1.5
+# 
+#     output
+#     print charges
+# stop
 
 def exercise13():
-    R = int(input('length of th row in feet: ')) # Length
-    E = int(input('amount of space used by an end-post assembly in feet: ')) # End-Post
-    S = int(input('amount of space between vines in feet: ')) # Space
+    # initialize CONSTANT
+    TITLE='Shipping Charges'
+    BORDER='---------------------'
+
+    # initialize variables
+    weight=0.0
+    charges=0.0
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
-    print(f'Number of grapevines that will fit: {int((R - 2 * E)/S):,}')
+    print('Instructions:')
+    print('Enter the weight of the package.')
+    print('The related costs will be provided.')
+    next()
+    weight=float(input('Enter the weight of the package: '))
 
+    # calculations
+    if weight>10:
+        charges=4.75
+    elif weight>6:
+        charges=4.0
+    elif weight>2:
+        charges=3.0
+    else:
+        charges=1.5
 
-#
+    # output
+    next()
+    print(f'Cost ${charges:,.2f}.')
+    next()
+    hold()
 
 def exercise14():
     next()
@@ -852,9 +879,9 @@ def main():
 #    next()
 #    exercise11()
 #    next()
-    exercise12()
+#    exercise12()
 #    next()
-#    exercise13()
+    exercise13()
 #    next()
 #    exercise14()
 #    next()
