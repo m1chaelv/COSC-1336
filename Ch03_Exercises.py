@@ -526,30 +526,91 @@ def exercise09():
     next()
     hold()
 
-# Ingredient Adjuster
-# A cookie recipe calls for the following ingredients:
-#
-# 1.5 cups of sugar
-# 1 cup of butter
-# 2.75 cups of flour
-#
-# The recipe produces 48 cookies with this amount of the ingredients.
-# Write a program that asks the user how many cookies he or she wants to make,
-# then displays the number of cups of each ingredient needed for the
-# specified number of cookies.
+# Money Counting Game
+# Create a change-counting game that gets the user to enter the number 
+# of coins required to make exactly one dollar. The program should prompt 
+# the user to enter the number of pennies, nickels, dimes, and quarters. 
+# If the total value of the coins entered is equal to one dollar, the 
+# program should congratulate the user for winning the game. Otherwise, 
+# the program should display a message indicating whether the amount 
+# entered was more than or less than one dollar.
+
+# start
+#     initialize
+#     GOAL=100
+#     PENNY_V=1
+#     NICKLE_V=5
+#     DIME_V=10
+#     QUARTER_V=25
+#     penny=0
+#     nickle=0
+#     dime=0
+#     quarter=0
+#     total=0
+# 
+#     input
+#     pennies
+#     nickles
+#     dimes
+#     quarters
+# 
+#     calculation
+#     total=(penny*PENNY_V)+(nickle*NICKLE_V)+(dime*DIME_V)+(quarter*QUARTER_V)
+# 
+#     output
+#    if total==100
+#         then
+#             'winner!'
+#     elif total>100
+#         then
+#             'too high'
+#     else
+#         'too low'
+# stop
 
 def exercise10():
-    BASE_COUNT = 48
-    SUGAR = 1.5
-    BUTTER = 1
-    FLOUR = 2.75
+    # initialize CONSTANTS
+    TITLE='Money Counting Game'
+    BORDER='--------------------'
+    GOAL=1
+    PENNY_V=.01
+    NICKLE_V=.05
+    DIME_V=.10
+    QUARTER_V=.25
 
-    target_count = int(input('Enter the number of cookies desired: '))
+    # initialize variables
+    penny=0
+    nickle=0
+    dime=0
+    quarter=0
+    total=0
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
-    print(str(target_count)+' cookie ingredients needed')
-    print(f'sugar {SUGAR * target_count / BASE_COUNT:<,.2f} cups')
-    print(f'butter {BUTTER * target_count / BASE_COUNT:<,.2f} cups')
-    print(f'flour {FLOUR * target_count / BASE_COUNT:<,.2f} cups')
+    print('Instructions:')
+    print('Enter the number of coins required to total $1.00')
+    print('Enter quantity of each coin when prompted.')
+    next()
+    print('coin     \tvalue\tqty')
+    penny=int(input('[PENNY]  \t$.01\t'))
+    nickle=int(input('[NICKLE] \t$.05\t'))
+    dime=int(input('[DIME]   \t$.10\t'))
+    quarter=int(input('[QUARTER]\t$.25\t'))
+
+    # calculation
+    total=(penny*PENNY_V)+(nickle*NICKLE_V)+(dime*DIME_V)+(quarter*QUARTER_V)
+
+    # output
+    next()
+    if total==1.0:
+        print('WINNER! Exactly $1.00')
+    elif total>1.0:
+        print(f'Too high at ${total:,.2f}.')
+    else:
+        print(f'Too low at ${total:,.2f}.')
+    next()
+    hold()
 
 # Male and Female Percentages
 # Write a program that asks the user for the number of males and the number
@@ -691,9 +752,9 @@ def main():
 #    next()
 #    exercise08()
 #    next()
-    exercise09()
+#    exercise09()
 #    next()
-#    exercise10()
+    exercise10()
 #    next()
 #    exercise11()
 #    next()
