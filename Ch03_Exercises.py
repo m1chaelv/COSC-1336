@@ -612,25 +612,80 @@ def exercise10():
     next()
     hold()
 
-# Male and Female Percentages
-# Write a program that asks the user for the number of males and the number
-# of females registered in a class. The program should display the percentage
-# of males and females in the class.
-#
-# Hint: Suppose there are 8 males and 12 females in a class. There are
-# 20 students in the class. The percentage of males can be calculated as
-# 8÷20=0.4, or 40%. The percentage of females can be calculated as
-# 12÷20=0.6, or 60%.
+# Book Club Points
+# Serendipity Booksellers has a book club that awards points 
+# to its customers based on the number of books purchased 
+# each month. The points are awarded as follows:
+# 
+# If a customer purchases 0 books, he or she earns 0 points.
+# If a customer purchases 2 books, he or she earns 5 points.
+# If a customer purchases 4 books, he or she earns 15 points.
+# If a customer purchases 6 books, he or she earns 30 points.
+# If a customer purchases 8 or more books, he or she earns 60 points.
+# 
+# Write a program that asks the user to enter the number of 
+# books that he or she has purchased this month, then displays 
+# the number of points awarded.
+
+# start
+#     initialize
+#     books=0
+#     points=0
+# 
+#     input
+#     books
+# 
+#     calculation
+#     if books>=8
+#         60 points
+#     elif books>=6
+#         30 points
+#     elif books>=4
+#         15 points
+#     elif books>=2
+#         5 points
+#     else
+#         0 points
+# 
+#     output
+#     points
+# stop
 
 def exercise11():
-    males = 0
-    females = 0
+    # initialize CONSTANT
+    TITLE='Book Club Points'
+    BORDER='---------------------'
+    
+    # initialize variables
+    books=0
+    points=0
 
-    males=int(input('how many males in class: '))
-    females=int(input('how many females in class: '))
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
-    print(f'Males: {100 * (males / (males + females)):.1f}%')
-    print(f'Females: {100 * (females / (males + females)):.1f}%')
+    print('Instructions:')
+    print('Enter the number of books purchased in a month.')
+    print('The earned Book Club points will be returned.')
+    next()
+    books=int(input('How many books were purchased in a month? '))
+
+    # calculations
+    if books>=8:
+        points=60
+    elif books>=6:
+        points=30
+    elif books>=4:
+        points=15
+    elif books>=2:
+        points=5
+    else:
+        points=0
+    
+    # output
+    next()
+    print(f'Customer has earned {points} points.')
+    next()
+    hold()
 
 # Stock Transaction Program
 # Last month, Joe purchased some stock in Acme Software, Inc. Here are the
@@ -754,9 +809,9 @@ def main():
 #    next()
 #    exercise09()
 #    next()
-    exercise10()
+#    exercise10()
 #    next()
-#    exercise11()
+    exercise11()
 #    next()
 #    exercise11()
 #    next()
