@@ -925,7 +925,109 @@ def exercise14():
     next()
     hold()
 
+# Time Calculator
+# Write a program that asks the user to enter a number of seconds and works as follows:
+# 
+# There are 60 seconds in a minute. If the number of seconds entered by the user is 
+# greater than or equal to 60, the program should convert the number of seconds to minutes and seconds.
+# 
+# There are 3,600 seconds in an hour. If the number of seconds entered by the user is greater 
+# than or equal to 3,600, the program should convert the number of seconds to hours, minutes, and seconds.
+# 
+# There are 86,400 seconds in a day. If the number of seconds entered by the user is greater 
+# than or equal to 86,400, the program should convert the number of seconds to days, hours, minutes, and seconds.
+
+# start
+#     init
+#     SECONDS_IN_MINUTE=60
+#     SECONDS_IN_HOUR=3600
+#     SECONDS_IN_DAY=86400
+#     seconds=0
+#     seconds_remain=0
+#     minutes=0
+#     hours=0
+#     days0
+# 
+#     input
+#     seconds
+#     seconds_remain=seconds
+# 
+#     calc
+#     days=int(seconds_remain/SECONDS_IN_DAY)
+#     seconds_remain=seconds_remain%SECONDS_IN_DAY
+#     hours=int(seconds_remain/SECONDS_IN_HOUR)
+#     seconds_remain=seconds_remain%SECONDS_IN_HOUR
+#     minutes=int(seconds_remain/SECONDS_IN_MINUTE)
+#     seconds_remain=seconds_remain%SECONDS_IN_MINUTE# 
+# 
+#     output
+#     print(days, mintes,seconds_remain)
+# stop
+
 def exercise15():
+    # initialize CONSTANT
+    TITLE='Time Calculator'
+    BORDER='---------------------'
+    D='[Days]'
+    H='[Hours]'
+    M='[Minutes]'
+    S='[Seconds]'
+    U='-------'
+
+    # initialize variables     
+    SECONDS_IN_MINUTE=60
+    SECONDS_IN_HOUR=3600
+    SECONDS_IN_DAY=86400
+    seconds=0
+    seconds_remain=0
+    minutes=0
+    hours=0
+    days=0
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
+    next()
+    print('Instructions:')
+    print('Enter a whole number to represents seconds.')
+    print('The number will be divided in days, hours, minutes, seconds.')
+    next()
+    seconds=int(input("Seconds: "))
+    seconds_remain=seconds
+
+    # calculations
+    days=int(seconds_remain/SECONDS_IN_DAY)
+    seconds_remain=seconds_remain%SECONDS_IN_DAY
+    hours=int(seconds_remain/SECONDS_IN_HOUR)
+    seconds_remain=seconds_remain%SECONDS_IN_HOUR
+    minutes=int(seconds_remain/SECONDS_IN_MINUTE)
+    seconds_remain=seconds_remain%SECONDS_IN_MINUTE
+
+    # output
+    next()
+    print(f'{D:^10}{H:^10}{M:^10}{S:^10}')
+    print(f'{U:^10}{U:^10}{U:^10}{U:^10}')
+    print(f'{days:^10}{hours:^10}{minutes:^10}{seconds_remain:^10}')
+    next()
+    hold()
+
+
+
+# PDL
+def exercise16():
+    next()
+
+
+# PDL
+def exercise17():
+    next()
+
+
+# PDL
+def exercise18():
+    next()
+
+# PDL
+def exercise19():
     import turtle
     turtle.goto(50,0)
     turtle.goto(0,50)
@@ -963,9 +1065,9 @@ def main():
 #    next()
 #    exercise13()
 #    next()
-    exercise14()
+#    exercise14()
 #    next()
-#    exercise15()
+    exercise15()
 
 #***************************************************************
 #
