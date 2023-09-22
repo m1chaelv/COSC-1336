@@ -424,17 +424,107 @@ def exercise08():
 
 
 
-# Celsius to Fahrenheit Temperature Converter
-# Write a program that converts Celsius temperatures to Fahrenheit temperatures.
-# The formula is as follows:
-# F = ((9/5) * C) + 32)
-# The program should ask the user to enter a temperature in Celsius, then
-# display the temperature converted to Fahrenheit.
+# Roulette Wheel Colors
+# On a roulette wheel, the pockets are numbered from 0 to 36. The colors of the pockets are as follows:
+# 
+# Pocket 0 is green.
+# 
+# For pockets 1 through 10, the odd-numbered pockets are red and the even-numbered pockets are black.
+# 
+# For pockets 11 through 18, the odd-numbered pockets are black and the even-numbered pockets are red.
+# 
+# For pockets 19 through 28, the odd-numbered pockets are red and the even-numbered pockets are black.
+# 
+# For pockets 29 through 36, the odd-numbered pockets are black and the even-numbered pockets are red.
+
+# Write a program that asks the user to enter a pocket number and displays whether the pocket is green, 
+# red, or black. The program should display an error message if the user enters a number that is outside 
+# the range of 0 through 36.
+
+# start
+#     initialize
+#     pattern=0
+#     pocket_color=''
+# 
+#     input
+#     get pocket_number
+# 
+#     calculations
+#     if pocket_number <0 or >36
+#         print(error)
+#     else
+#         if pocket_number == 0
+#             pattern = 1
+#         elif pocket_number <=10
+#             pattern = 2
+#         elif pocket_number <= 18
+#             pattern = 3
+#         elif pocket_number <= 28
+#             pattern = 2
+#         else:
+#             pattern = 3
+#     
+#         if pattern==1
+#             if pocket_number%2 ==0
+#                 pocket_color='black'
+#             else pocket_color='red'
+#         elif pattern==2
+#             if pocket_number%2 ==0
+#                 pocket_color='red'
+#             else pocket_color='black'
+#         else pocket_color='green'
+# 
+#     output
+#     print(pocket_color)
+# stop
 
 def exercise09():
-    C_temp = int(input('Enter a tempurture in degree Celcius: '))
+    # initialize CONSTANTS
+    BORDER='-------------------------'
+    TITLE='Roulette Wheel Colors'
+    #initialize variables
+    pattern=0   # 1=green 2=black(even)/red(odd) 3=red(even)/black(odd)
+    pocket_number=0
+    pocket_color=''
+
+    # input
+    print(f'{BORDER:^25}\n{TITLE:^25}\n{BORDER:^25}')
     next()
-    print(((9/5) * C_temp) + 32)
+    pocket_number=int(input('Enter a number between [0-36]: '))
+
+    # calculations
+    if (pocket_number<0) or (pocket_number>36):
+        print('Error: The number entered is outside the range of [0-36].')
+    else:
+        if pocket_number==0:
+            pattern=1
+        elif pocket_number<=10:
+            pattern=2
+        elif pocket_number<=18:
+            pattern=3
+        elif pocket_number<=28:
+            pattern=2
+        else:
+            pattern=3
+        
+        if pattern==2:
+            if pocket_number%2==0:  # even
+                pocket_color='black'
+            else:
+                pocket_color='red'
+        elif pattern==3:
+            if pocket_number%2==0:  # even
+                pocket_color='red'
+            else:
+                pocket_color='black'
+        else:   # pocket_number=0
+            pocket_color='green'
+    
+    # output
+    next()
+    print(f'The pocket number {pocket_number} is {pocket_color}.')
+    next()
+    hold()
 
 # Ingredient Adjuster
 # A cookie recipe calls for the following ingredients:
@@ -599,9 +689,9 @@ def main():
 #    next()
 #    exercise07()
 #    next()
-    exercise08()
+#    exercise08()
 #    next()
-#    exercise09()
+    exercise09()
 #    next()
 #    exercise10()
 #    next()
