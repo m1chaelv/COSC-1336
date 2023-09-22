@@ -849,6 +849,8 @@ def exercise13():
 # person is overweight or underweight for his or her height. A 
 # person’s BMI is calculated with the following formula:
 # 
+# BMI = weight * 703 / (height**2)
+#
 # where weight is measured in pounds and height is measured in inches. 
 # The program should ask the user to enter his or her weight and height, 
 # then display the user’s BMI. The program should also display a message 
@@ -857,9 +859,71 @@ def exercise13():
 # or her BMI is between 18.5 and 25. If the BMI is less than 18.5, the 
 # person is considered to be underweight. If the BMI value is greater 
 # than 25, the person is considered to be overweight.
+# 
+# start
+#     init
+#     weight=0.0
+#     height=0.0
+#     bmi=0.0
+#     state='' (optimal=18.5-25, overweight>25, underweight<18.5)
+# 
+#     input
+#     weight
+#     height
+# 
+#     calc
+#     bmi = weight * 703 / (height**2)
+#     if bmi<18.5
+#         then
+#             state='underweight'
+#     elif bmi<=25
+#         then
+#             state='optimal'
+#     else
+#         state='overweight'
+# 
+#     output
+#     print(bmi)
+#     print(state)
+# stop
 
 def exercise14():
+    # initialize CONSTANT
+    TITLE='Body Mass Index'
+    BORDER='---------------------'
+
+    # initialize variables
+    weight=0.0
+    height=0.0
+    bmi=0.0
+    state=''    #optimal=18.5-25, overweight>25, underweight<18.5)
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
+    print('Instructions:')
+    print('Enter the patients weight in pounds (lbs) and')
+    print('height in inches (in.) to calculate their BMI')
+    print('and report on their current state [Underweight, Optimal, Overweight].')
+    next()
+    weight=float(input("Patient's weight in pounds: "))
+    height=float(input("Patient's height in inches: "))
+
+    # calculations
+    bmi=weight*703/(height**2)
+    if bmi>25:
+        state='overweight'
+    elif bmi<18.5:
+        state='underweight'
+    else:
+        state='optimal'
+
+    # output
+    next()
+    print(f"The patient's bmi is:           {bmi:>15,.1f}")
+    print(f"The patient's is classified as: {state:>15}")
+    next()
+    hold()
 
 def exercise15():
     import turtle
