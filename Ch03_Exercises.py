@@ -687,53 +687,92 @@ def exercise11():
     next()
     hold()
 
-# Stock Transaction Program
-# Last month, Joe purchased some stock in Acme Software, Inc. Here are the
-# details of the purchase:
-#
-# The number of shares that Joe purchased was 2,000.
-#
-# When Joe purchased the stock, he paid $40.00 per share.
-#
-# Joe paid his stockbroker a commission that amounted to 3 percent of the
-# amount he paid for the stock.
-#
-# Two weeks later, Joe sold the stock. Here are the details of the sale:
-#
-# The number of shares that Joe sold was 2,000.
-#
-# He sold the stock for $42.75 per share.
-#
-# He paid his stockbroker another commission that amounted to 3 percent of
-# the amount he received for the stock.
-#
-# Write a program that displays the following information:
-#
-# The amount of money Joe paid for the stock.
-#
-# The amount of commission Joe paid his broker when he bought the stock.
-#
-# The amount for which Joe sold the stock.
-#
-# The amount of commission Joe paid his broker when he sold the stock.
-#
-# Display the amount of money that Joe had left when he sold the stock and
-# paid his broker (both times). If this amount is positive, then Joe made
-# a profit. If the amount is negative, then Joe lost money.
+# Software Sales
+# A software company sells a package that retails for $99. 
+# Quantity discounts are given according to the following table:
+# 
+# Quantity	    Discount
+# 10–19	        10%
+# 20–49	        20%
+# 50–99	        30%
+# 100 or more	40%
+# 
+# Write a program that asks the user to enter the number of 
+# packages purchased. The program should then display the 
+# amount of the discount (if any) and the total amount 
+# of the purchase after the discount.
+# 
+# start
+#     initialize
+#     COST=0.0
+#     quantity=0
+#     discount=0.0
+# 
+#     input
+#     quantity
+# 
+#     calculation
+#     if quantity>=100
+#         discount=.4
+#     elif quantity>=50
+#         discount=.3
+#     elif quantity>=20
+#         discount=.2
+#     elif quantity>=10
+#         discount=.1
+#     else
+#         discount=0.0
+# 
+#     output
+#     print cost*quantity*discount
+# stop
 
 def exercise12():
-    SB_COMMISSION = .03
-    BOUGHT = 2000
-    BOUGHT_RATE = 40
-    SOLD = 2000
-    SOLD_RATE = 42.75
+    # initialize CONSTANT
+    TITLE='Software Sales'
+    BORDER='---------------------'
 
-    print(f'Stock purchased ({BOUGHT}) for ${BOUGHT * BOUGHT_RATE:,.2f}')
-    print(f'Commission paid ${BOUGHT * BOUGHT_RATE * SB_COMMISSION:,.2f}')
-    print(f'Stock sold ({SOLD}) for ${SOLD * SOLD_RATE:,.2f}')
-    print(f'Commission paid ${SOLD * SOLD_RATE * SB_COMMISSION:,.2f}')
+    # initialize variables
+    COST=99.0
+    quantity=0
+    discount=0.0
+    total=0.0
+    savings=0.0
+    grand_total=0.0
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
-    print(f'Profit/Loss: ${(SOLD * SOLD_RATE)-(SOLD * SOLD_RATE * SB_COMMISSION) - (BOUGHT * BOUGHT_RATE * SB_COMMISSION)-(BOUGHT * BOUGHT_RATE):,.2f}')
+    print('Instructions:')
+    print('Enter the number of packages purchased.')
+    print('The cost and related discounts will be provided.')
+    next()
+    quantity=int(input('Software Packages:\t'))
+
+    # calculations
+    if quantity>=100:
+        discount=.4
+    elif quantity>=50:
+        discount=.3
+    elif quantity>=20:
+        discount=.2
+    elif quantity>=10:
+        discount=.2
+    else:
+        discount=0.0
+    total=COST*quantity
+    savings=COST*quantity*discount
+    grand_total=total-savings
+
+    # output
+    next()
+    print('Description     \tQty\tAmount')
+    print(f'Software Package\t{quantity}\t${total:,.2f}')
+    if discount>0.0:
+        print(f'Discount        \t{discount:.0%}\t${savings:,.2f}')
+    print(f'TOTAL           \t\t${grand_total:,.2f}')
+    next()
+    hold()
 
 # Planting Grapevines
 # A vineyard owner is planting several new rows of grapevines, and needs to
@@ -811,11 +850,9 @@ def main():
 #    next()
 #    exercise10()
 #    next()
-    exercise11()
-#    next()
 #    exercise11()
 #    next()
-#    exercise12()
+    exercise12()
 #    next()
 #    exercise13()
 #    next()
