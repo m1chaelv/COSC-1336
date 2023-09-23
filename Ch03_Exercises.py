@@ -1197,9 +1197,131 @@ def exercise17():
     hold()
 
 
-# PDL
+# Restaurant Selector
+# You have a group of friends coming to visit for your high school reunion, 
+# and you want to take them out to eat at a local restaurant. You aren’t sure 
+# if any of them have dietary restrictions, but your restaurant choices are as follows:
+# 
+# Joe’s Gourmet Burgers—Vegetarian: No, Vegan: No, Gluten-Free: No
+# 
+# Main Street Pizza Company—Vegetarian: Yes, Vegan: No, Gluten-Free: Yes
+# 
+# Corner Café—Vegetarian: Yes, Vegan: Yes, Gluten-Free: Yes
+# 
+# Mama’s Fine Italian—Vegetarian: Yes, Vegan: No, Gluten-Free: No
+# 
+# The Chef’s Kitchen—Vegetarian: Yes, Vegan: Yes, Gluten-Free: Yes
+# 
+# Write a program that asks whether any members of your party are vegetarian, 
+# vegan, or gluten-free, to which then displays only the restaurants to which 
+# you may take the group. Here is an example of the program’s output:
+# 
+# Is anyone in your party a vegetarian? yes  [Enter]
+#  Is anyone in your party a vegan? no  [Enter]
+#  Is anyone in your party gluten-free? yes  [Enter]
+#  Here are your restaurant choices:
+#     Main Street Pizza Company
+#     Corner Cafe
+#     The Chef's Kitchen
+# Here is another example of the program’s output:
+# 
+# Is anyone in your party a vegetarian? yes  [Enter]
+#  Is anyone in your party a vegan? yes [Enter]
+#  Is anyone in your party gluten-free? yes  [Enter]
+#  Here are your restaurant choices:
+#     Corner Cafe
+#     The Chef's Kitchen
+
+# start
+#     init
+#     vegetarian=''
+#     vegan=''
+#     gluten_free=''
+#     a=False #vegetarian
+#     b=False #vegan
+#     c=False #gluten-free
+# 
+#     input
+#     vegetarian
+#     vegan
+#     gluten_free
+# 
+#     calc_output
+#     if ('n'==vegetarian) and ('n'==vegan) and ('n'==gluten_free)
+#         then
+#             print ('Joe’s Gourmet Burgers')
+#     if (True or vegetarian) and ('n'==vegan) and (True or gluten_free)
+#         then
+#             print('Main Street Pizza Company')
+#     if (True or vegetarian) and (True or vegan) and (True or gluten_free) 
+#         then
+#             print('Corner Café')
+#     if (True or vegetarian) and ('n'==vegan) and ('n'==gluten_free) 
+#         then
+#             print('Mama’s Fine Italian')
+#     if (True or vegetarian) and (True or vegan) and (True or gluten_free) 
+#         then
+#             print('The Chef’s Kitchen')
+# stop
+
 def exercise18():
+    # initialize CONSTANT
+    TITLE='Restaurant Selector'
+    BORDER='---------------------'
+
+    # initialize variables     
+    vegetarian=''
+    vegan=''
+    gluten_free=''
+    a=False #vegetarian
+    b=False #vegan
+    c=False #gluten-free
+    get_restrictions=0
+    restrictions=''
+
+    # input
+    # header and intro
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
+    print('Instructions:')
+    print('Answer a few questions and a list of')
+    print('appropriate restaurants will be listed.')
+    next()
+
+    # loop to collect 3 answers.
+    while get_restrictions<3:
+        print('Is anyone in your party',end=' ')
+        if get_restrictions==0:
+            restrictions=input('a vegetarian? [y/n] ')
+        elif get_restrictions==1:
+            restrictions=input('a vegan? [y/n] ')
+        else:
+            restrictions=input('gluten-free? [y/n] ')
+        # validate input will repeat the loop until a match is made
+        if restrictions=='y' or restrictions=='n':
+            vegetarian=vegan
+            vegan=gluten_free
+            gluten_free=restrictions
+            restrictions=''
+            get_restrictions=get_restrictions+1
+
+    # output
+    next()
+    # If restaurant does not meet a restriction the inputs will be analized
+    if ('n'==vegetarian) and ('n'==vegan) and ('n'==gluten_free):
+        print ("Joe’s Gourmet Burgers")
+    if (True or vegetarian) and ('n'==vegan) and (True or gluten_free):
+        print('Main Street Pizza Company')
+    if (True or vegetarian) and (True or vegan) and (True or gluten_free):
+        print('Corner Café')
+    if (True or vegetarian) and ('n'==vegan) and ('n'==gluten_free):
+        print("Mama’s Fine Italian")
+    if (True or vegetarian) and (True or vegan) and (True or gluten_free):
+        print("The Chef’s Kitchen")
+
+    # output
+    next()
+    hold()
 
 # PDL
 def exercise19():
@@ -1246,7 +1368,10 @@ def main():
 #    next()
 #    exercise16()
 #    next()
-    exercise17()
+#    exercise17()
+#    next()
+    exercise18()
+
 
 
 #***************************************************************
