@@ -1091,9 +1091,110 @@ def exercise16():
     next()
     hold()
 
-# PDL
+# Wi-Fi Diagnostic Tree
+# Figure 3-19 shows a simplified flowchart for troubleshooting a bad Wi-Fi 
+# connection. Use the flowchart to create a program that leads a person 
+# through the steps of fixing a bad Wi-Fi connection. Here is an example of the 
+# program’s output:
+# 
+# Reboot the computer and try to connect.
+#  Did that fix the problem? no [Enter]
+#  Reboot the router and try to connect.
+#  Did that fix the problem? yes [Enter]
+# Notice the program ends as soon as a solution is found to the problem. Here is another example of the program’s output:
+# 
+# Reboot the computer and try to connect.
+#  Did that fix the problem? no  [Enter]
+#  Reboot the router and try to connect.
+#  Did that fix the problem? no  [Enter]
+#  Make sure the cables between the router and modem are plugged in firmly.
+#  Did that fix the problem? no  [Enter]
+#  Move the router to a new location.
+#  Did that fix the problem? no  [Enter]
+#  Get a new router.
+
+# start
+#     init
+#     repair_step=0
+#     fixed=''
+#     message=''
+# 
+#     input_calc_output
+#     while repair_step<4 and fixed=='':
+#         if repair_step==0
+#             then
+#                 message='Reboot comp'
+#         elif repair_step==1
+#             then
+#                 message='Reboot router'
+#         elif repair_step==2
+#             then
+#                 message='check cable'
+#         elif repair_step==3
+#             then
+#                 message='move router'
+#         print(message)
+#         fixed=input('Did that fix the problem? [y/n]')
+#         if fixed=='n'
+#             then
+#                 repair_step=repair_step+1
+#         if fixed!='y'
+#             then
+#                 fixed=''
+#     endwhile
+#     if fixed!='y'
+#         then
+#             print('get new router')
+# stop
+
 def exercise17():
+    # initialize CONSTANT
+    TITLE='Wi-Fi Diagnostic Tree'
+    BORDER='---------------------'
+
+    # initialize variables     
+    repair_step=0
+    fixed=''
+    message='Reboot the computer and try to connect.'
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
+    print('Instructions:')
+    print('Follow the steps to troubleshooting a bad Wi-Fi.')
+    print('After each step answer with y or n.')
+    next()
+    
+    # calculations
+    # 1st step is required
+    print(message)
+    while repair_step<4 and fixed=='':
+        # input answer to repair step
+        fixed=input(' Did that fix the problem? [y/n] ')
+        # repair instructions passed as variable
+        if repair_step==0:
+            message=' Reboot the router and try to connect.'
+        elif repair_step==1:
+            message=' Make sure the cables between the router and modem are plugged in firmly.'
+        elif repair_step==2:
+            message=' Move the router to a new location.'
+        else:
+            message=' Get a new router.'
+        # filter out when repaired
+        if fixed=='y':
+            print()
+        # if not successful then sequence to next step and reset answer
+        elif fixed=='n':
+            print(message)
+            repair_step=repair_step+1
+            fixed=''
+        # rest answer assume bad data entry
+        else:
+            fixed=''
+
+    # output
+    next()
+    hold()
 
 
 # PDL
@@ -1143,7 +1244,9 @@ def main():
 #    next()
 #    exercise15()
 #    next()
-    exercise16()
+#    exercise16()
+#    next()
+    exercise17()
 
 
 #***************************************************************
