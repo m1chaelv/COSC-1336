@@ -1323,15 +1323,100 @@ def exercise18():
     next()
     hold()
 
-# PDL
+# Turtle Graphics: Hit the Target Modification
+# Enhance the hit_the_target.py program that you saw in Program 3-9 so that, 
+# when the projectile misses the target, it displays hints to the user indicating 
+# whether the angle and/or the force value should be increased or decreased. 
+# For example, the program should display messages such as 'Try a greater angle' 
+# and 'Use less force.'
+
 def exercise19():
+    # Hit the Target Game 
     import turtle
-    turtle.goto(50,0)
-    turtle.goto(0,50)
-    turtle.goto(-50,0)
-    turtle.goto(50,0)
-    turtle.goto(0,100)
-    turtle.goto(-50,0)
+
+    # Named constants
+    SCREEN_WIDTH = 600     # Screen width
+    SCREEN_HEIGHT = 600    # Screen height
+    TARGET_LLEFT_X = 75   # Target's lower-left X
+    TARGET_LLEFT_Y = -200   # Target's lower-left Y
+    TARGET_WIDTH = 25      # Width of the target
+    FORCE_FACTOR = 30      # Arbitrary force factor
+    PROJECTILE_SPEED = 1   # Projectile's animation speed
+    NORTH = 90             # Angle of north direction
+    SOUTH = 270            # Angle of south direction
+    EAST = 0               # Angle of east direction
+    WEST = 180             # Angle of west direction
+
+    # Setup the window.
+    turtle.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+    # Draw the target.
+    turtle.hideturtle()
+    turtle.speed(0)
+    turtle.penup()
+    turtle.goto(TARGET_LLEFT_X, TARGET_LLEFT_Y)
+    turtle.pendown()
+    turtle.setheading(EAST)
+    turtle.forward(TARGET_WIDTH)
+    turtle.setheading(NORTH)
+    turtle.forward(TARGET_WIDTH)
+    turtle.setheading(WEST)
+    turtle.forward(TARGET_WIDTH)
+    turtle.setheading(SOUTH)
+    turtle.forward(TARGET_WIDTH)
+    turtle.penup()
+
+    # Center the turtle.
+    turtle.goto(0, 0)
+    turtle.setheading(EAST)
+    turtle.showturtle()
+    turtle.speed(PROJECTILE_SPEED)
+
+    # Get the angle and force from the user.
+    import math
+    TARGET_X = TARGET_LLEFT_X+(TARGET_WIDTH/2)
+    TARGET_Y = TARGET_LLEFT_Y+(TARGET_WIDTH/2)
+    TARGET_DISTANCE = ((TARGET_Y**2 + TARGET_X**2)**.5)/FORCE_FACTOR
+    TARGET_ANGLE = math.atan2(TARGET_Y,TARGET_X)*180/math.pi
+
+    print(f'{TARGET_DISTANCE*.9}\t{TARGET_DISTANCE}\t{TARGET_DISTANCE*1.05}')
+    print(f'{TARGET_ANGLE*.95}\t{TARGET_ANGLE}\t{TARGET_ANGLE*1.05}')
+
+    angle = float(input("Enter the projectile's angle: "))
+    force = float(input("Enter the launch force (1−10): "))
+
+    # Calculate the distance.
+    distance = force * FORCE_FACTOR
+
+    # Set the heading.
+    turtle.setheading(angle)
+
+    # Launch the projectile.
+    turtle.pendown()
+    turtle.forward(distance)
+
+    # Did it hit the target?
+    if (turtle.xcor() >= TARGET_LLEFT_X and
+        turtle.xcor() <= (TARGET_LLEFT_X + TARGET_WIDTH) and
+        turtle.ycor() >= TARGET_LLEFT_Y and
+        turtle.ycor() <= (TARGET_LLEFT_Y + TARGET_WIDTH)):
+            print('Target hit!')
+    else:
+        print('You missed the target.')
+        VARIANCE=.05
+
+        if distance<TARGET_DISTANCE*(1-VARIANCE):
+            print('Try more force.')
+        elif distance>TARGET_DISTANCE*(1+VARIANCE):
+            print('Try less force.')
+
+        if abs(angle)<abs(TARGET_ANGLE*(1-VARIANCE)):
+            print('Try more angle.')
+        elif abs(angle)>abs(TARGET_ANGLE*(1+VARIANCE)):
+            print('Try less angle.')
+
+    next()
+    hold()
 
 
 def main():
@@ -1370,7 +1455,9 @@ def main():
 #    next()
 #    exercise17()
 #    next()
-    exercise18()
+#    exercise18()
+#    next()
+    exercise19()
 
 
 
@@ -1395,8 +1482,6 @@ def hold():
 #
 #**************************************************************
 def next():
-    print ()
-    print ()
-    print ()
+    print ('\n\n\n')
 
 main()
