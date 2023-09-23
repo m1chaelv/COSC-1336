@@ -1379,8 +1379,9 @@ def exercise19():
     TARGET_DISTANCE = ((TARGET_Y**2 + TARGET_X**2)**.5)/FORCE_FACTOR
     TARGET_ANGLE = math.atan2(TARGET_Y,TARGET_X)*180/math.pi
 
-    print(f'{TARGET_DISTANCE*.9}\t{TARGET_DISTANCE}\t{TARGET_DISTANCE*1.05}')
-    print(f'{TARGET_ANGLE*.95}\t{TARGET_ANGLE}\t{TARGET_ANGLE*1.05}')
+    # Test output
+    # print(f'{TARGET_DISTANCE*.9}\t{TARGET_DISTANCE}\t{TARGET_DISTANCE*1.05}')
+    # print(f'{TARGET_ANGLE*.95}\t{TARGET_ANGLE}\t{TARGET_ANGLE*1.05}')
 
     angle = float(input("Enter the projectile's angle: "))
     force = float(input("Enter the launch force (1−10): "))
