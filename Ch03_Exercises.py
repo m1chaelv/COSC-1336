@@ -1348,7 +1348,7 @@ def exercise19():
     WEST = 180             # Angle of west direction
 
     # Setup the window.
-    turtle.resetscreen()
+    # turtle.resetscreen()
     turtle.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     # Draw the target.
