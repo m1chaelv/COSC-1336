@@ -1338,7 +1338,7 @@ def exercise19():
     SCREEN_WIDTH = 600     # Screen width
     SCREEN_HEIGHT = 600    # Screen height
     TARGET_LLEFT_X = 75   # Target's lower-left X
-    TARGET_LLEFT_Y = -200   # Target's lower-left Y
+    TARGET_LLEFT_Y = 200   # Target's lower-left Y
     TARGET_WIDTH = 25      # Width of the target
     FORCE_FACTOR = 30      # Arbitrary force factor
     PROJECTILE_SPEED = 1   # Projectile's animation speed
@@ -1377,7 +1377,7 @@ def exercise19():
     import math
     TARGET_X = TARGET_LLEFT_X+(TARGET_WIDTH/2)
     TARGET_Y = TARGET_LLEFT_Y+(TARGET_WIDTH/2)
-    TARGET_DISTANCE = ((TARGET_Y**2 + TARGET_X**2)**.5)/FORCE_FACTOR
+    TARGET_DISTANCE = ((abs(TARGET_Y)**2 + abs(TARGET_X)**2)**.5)/FORCE_FACTOR
     TARGET_ANGLE = math.atan2(TARGET_Y,TARGET_X)*180/math.pi
 
     # Test output
@@ -1412,6 +1412,7 @@ def exercise19():
         elif distance>TARGET_DISTANCE*(1+VARIANCE):
             print('Try less force.')
         print(distance, TARGET_DISTANCE)
+        print ((math.sqrt(abs(TARGET_X)**2+abs(TARGET_Y)**2))/FORCE_FACTOR)
 
         if abs(angle)<abs(TARGET_ANGLE*(1-VARIANCE)):
             print('Try more angle.')
