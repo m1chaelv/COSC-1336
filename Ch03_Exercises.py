@@ -229,7 +229,7 @@ def exercise06():
     if xmonth * xday == xyear:
         print(f'{border:^60}\n{str(xmonth)+"/"+str(xday)+"/"+str(xyear)+" is MAGIC!":^60}\n{border:^60}')
     else:
-        print(f'{"Sorry, "+str(xmonth)+"/"+str(xday)+"/"+str(xmonth)+" is not magic."}')
+        print(f'{"Sorry, "+str(xmonth)+"/"+str(xday)+"/"+str(xyear)+" is not magic."}')
 
 
 
