@@ -1411,6 +1411,7 @@ def exercise19():
             print('Try more force.')
         elif distance>TARGET_DISTANCE*(1+VARIANCE):
             print('Try less force.')
+        print(distance, TARGET_DISTANCE)
 
         if abs(angle)<abs(TARGET_ANGLE*(1-VARIANCE)):
             print('Try more angle.')
