@@ -1421,46 +1421,64 @@ def exercise19():
 
 
 def main():
+    # initialize CONSTANT
+    TITLE='Chapter 2 - Exercises'
+    BORDER='---------------------'
+    EXERCISE=0
+
+    # input
+    print(f'{BORDER:^30}\n{TITLE:^30}\n{BORDER:^30}')
     next()
-#    exercise01()
-#    next()
-#    exercise02()
-#    next()
-#    exercise03()
-#    next()
-#    exercise04()
-#    next()
-#    exercise05()
-#    next()
-#    exercise06()
-#    next()
-#    exercise07()
-#    next()
-#    exercise08()
-#    next()
-#    exercise09()
-#    next()
-#    exercise10()
-#    next()
-#    exercise11()
-#    next()
-#    exercise12()
-#    next()
-#    exercise13()
-#    next()
-#    exercise14()
-#    next()
-#    exercise15()
-#    next()
-#    exercise16()
-#    next()
-#    exercise17()
-#    next()
-#    exercise18()
-#    next()
-    exercise19()
+    print('Chapter 2:')
+    print('Inputs, Processing, and Output (pg 31-118)')
+    print('Programming Exercises')
+    next()
 
+    while EXERCISE!='0':
+        next()
+        EXERCISE=int(input('Chapter 2 includes 19 exercises. Select [1-19 or 0=quit]: '))
+        next()
 
+        if EXERCISE==1:
+            exercise01()
+        elif EXERCISE==2:
+            exercise02()
+        elif EXERCISE==3:
+            exercise03()
+        elif EXERCISE==4:
+            exercise04()
+        elif EXERCISE==5:
+            exercise05()
+        elif EXERCISE==6:
+            exercise06()
+        elif EXERCISE==7:
+            exercise07()
+        elif EXERCISE==8:
+            exercise08()
+        elif EXERCISE==9:
+            exercise09()
+        elif EXERCISE==10:
+            exercise10()
+        elif EXERCISE==11:
+            exercise11()
+        elif EXERCISE==12:
+            exercise12()
+        elif EXERCISE==13:
+            exercise13()
+        elif EXERCISE==14:
+            exercise14()
+        elif EXERCISE==15:
+            exercise15()
+        elif EXERCISE==16:
+            exercise16()
+        elif EXERCISE==17:
+            exercise17()
+        elif EXERCISE==18:
+            exercise18()
+        elif EXERCISE==19:
+            exercise19()
+        else:
+            EXERCISE='0'
 
 #***************************************************************
 #
