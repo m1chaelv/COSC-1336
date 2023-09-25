@@ -24,8 +24,8 @@ def main():
     #print to the screen
     print(a,b,c,d,e,f)
     #print to an output file
-    outfile.write(str(a)+str(b)+str(c)+str(d)+str(e)+str(f)+'\n')
+    outfile.write(str(a)+str(b)+str(c)+str(d)+str(e)+str(f)+"\n")
     #close files
     infile.close()
     outfile.close()
-
+main()
