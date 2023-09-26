@@ -261,6 +261,12 @@ def main():
     tax_rate=0.0
     total_costs=0.0
     final_report=''
+    final_report_title='          Final Report          \n------------------------------'
+    best_value=''
+    best_value_costs=0
+    best_value_title='          Best Value          \n------------------------------'
+    temp_value=''
+    home='Property '
 
     #prompt user for input using a loop
     k=0
@@ -272,12 +278,27 @@ def main():
 
         #compute the total
         total_costs=init_cost+(YEAR*(fuel_cost+(tax_rate*init_cost)))
+        temp_value=(f'{home+str(k+1):^12}\n${init_cost:12,.2f}\tInitial Cost\n${fuel_cost*YEAR:12,.2f}\tFuel Costs (5y)\n${tax_rate*init_cost*YEAR:12,.2f}\tTax Costs (5y)\n${total_costs:12,.2f}\t5y Total Costs\n\n')
+
+        if best_value_costs==0:
+            best_value_costs=total_costs
+            best_value=temp_value
+        elif total_costs<best_value_costs:
+            best_value_costs=total_costs
+            best_value=temp_value
+
+        final_report=(f'{final_report}\n{temp_value}')
         print(total_costs)
-        final_report=(f'Home {k+1}\n${init_cost:12,.2}\n${fuel_cost*YEAR:12,.2}\n${tax_rate*init_cost*YEAR:12,.2}\n${total_costs:12,.2}\n')
+        print(final_report)
+        
 
         #increment K
         k=k+1
 
+    next()
+    print(f'{final_report_title:^30}\n{final_report:^30}')
+    next()
+    print(f'{best_value_title:^30}\n{best_value:^30}')
     hold()
 
 # Call the main function
