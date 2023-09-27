@@ -6,8 +6,7 @@
 E1=3
 def main():
     #variable declaration
-    a=b=c=b=d=e=f=0.0
-    g=0.0
+    a=b=c=b=d=e=f=g=0.0
     #file delcaration
     infile=open("warm3c.txt",'r')
     outfile=open("warm3c.out",'w')
