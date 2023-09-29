@@ -96,10 +96,12 @@ def main():
     tax_rate=0.0
     total_costs=0.0
     final_report=''
-    final_report_title='          Final Report          \n------------------------------'
+    final_report_title='          Final Report          \
+        \n------------------------------'
     best_value=''
     best_value_costs=0
-    best_value_title='          Best Value          \n------------------------------'
+    best_value_title='          Best Value          \
+        \n------------------------------'
     temp_value=''
     home='Property '
 
@@ -112,8 +114,15 @@ def main():
         tax_rate=float(input('Please enter the annual tax rate: '))
 
         #compute the total
-        total_costs=init_cost+(YEAR*(fuel_cost+(tax_rate*init_cost)))
-        temp_value=(f'{home+str(k+1):^12}\n${init_cost:12,.2f}\tInitial Cost\n${fuel_cost*YEAR:12,.2f}\tFuel Costs (5y)\n${tax_rate*init_cost*YEAR:12,.2f}\tTax Costs (5y)\n${total_costs:12,.2f}\tTotal Costs (5y)\n\n')
+        total_costs=init_cost+\
+            (YEAR*\
+             (fuel_cost+\
+              (tax_rate*init_cost)))
+        temp_value=(f'{home+str(k+1):^12}\n'
+                    f'${init_cost:12,.2f}\tInitial Cost\n'
+                    f'${fuel_cost*YEAR:12,.2f}\tFuel Costs (5y)\n'
+                    f'${tax_rate*init_cost*YEAR:12,.2f}\tTax Costs (5y)\n'
+                    f'${total_costs:12,.2f}\tTotal Costs (5y)\n\n')
 
         if best_value_costs==0:
             best_value_costs=total_costs
