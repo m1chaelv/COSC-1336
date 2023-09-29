@@ -4,7 +4,7 @@
 #
 #  Program #:         Lab 2
 #
-#  File Name:         Lab02.py
+#  File Name:         Lab02 simple.py
 #
 #  Course:            COSC 1336 Programming Fundamentals I
 #
