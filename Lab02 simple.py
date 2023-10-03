@@ -36,6 +36,48 @@
 #***************************************************************
 
 #***************************************************************
+# Program Design Language (PDL)
+# 
+# start
+#     #initialize
+#     initial_cost=0.0
+#     annual_fuel=0.0
+#     tax_rate=0.0
+#     total_cost=0.0
+#     best_value=999999999999.0
+#     homes=3
+#     years=5
+#     k=0
+# 
+#     #input
+#     while k < homes do
+#         get initial_cost
+#         get annual_fuel
+#         get tax_rate
+#         k = k + 1
+# 
+#         #calculate x year costs
+#         total_cost=(initial_cost * (1 + tax_rate) + annual_fuel * years)
+# 
+#         #best value
+#         if total_cost < best_value
+#             then
+#                 best_value = total_cost
+#         endif
+#     endwhile
+# 
+#     #output
+#     print best_value
+# stop
+# 
+#***************************************************************
+
+
+
+
+
+
+#***************************************************************
 #
 #  Function:     developerInfo
 #  Description:  Prints Programmer's information
