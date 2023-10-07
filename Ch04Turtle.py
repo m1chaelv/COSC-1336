@@ -1,6 +1,6 @@
-# This program draws a design using repeated lines.
 import turtle
 
+# This program draws a design using repeated lines.
 def spiral_lines():
 # Named constants
     START_X = -200       # Starting X coordinate
@@ -55,5 +55,25 @@ def oct_1():
         turtle.forward(100)
         turtle.right(45)
 
-oct_1()
-hold=input('pause')
+def main():
+    menu=0
+    print('')
+    while menu >= 0 and menu <= 4:
+        print('[1]\tTurtle: Spiral Lines')
+        print('[2]\tTurtle: Spiral Circles')
+        print('[3]\tTurtle: Square')
+        print('[4]\tTurtle: Octagon')
+        print('...\tanything else to exit\n')
+        menu=int(input('Make a selection to continue: '))
+        turtle.reset()
+        if menu==1:
+            spiral_lines()
+        elif menu==2:
+            spiral_circles()
+        elif menu==3:
+            sqr_1()
+        elif menu==4:
+            oct_1()
+        else:
+            menu=-1
+main()
