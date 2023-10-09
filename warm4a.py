@@ -10,13 +10,13 @@
 # 
 
 # GLOBAL VARIABLES
-N=10
+N=10    # rows needed
 M=3
 
 # Define main()
 def main():
     # list declaration
-    x=[0]*N
+    x=[0]*N     #[0] integer w/ N entries
     y=[0]*N
     # file declaration
     infile=open('warm4a.txt','r')
