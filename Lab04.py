@@ -63,11 +63,15 @@ def loaddata(infile,x):
         # load x
         x[k]=int(templist[k].strip('\n'))
 
-def deviation(x,dev,dev1,xbar):
-    # dev, dev1, xbar
+def deviation1(x,dev,xbar):
+    # dev, xbar
     for k in range(N):
-        dev[k]=xbar-x[k]
-        dev1[k]=sqr(dev[k])
+        dev[k]=trunk(xbar-x[k])
+
+def deviation2(dev,dev1):
+    # dev, dev1
+    for k in range(N):
+        dev1[k]=trunk(sqr(dev[k]))
 
 def sum_of(list):
     # given an array, return sum of all numbers
@@ -91,16 +95,46 @@ def standard(dev,std,sd1):
     y=0
     for y in range(N):
         sd1[y]=dev[y]/std
-        print(sd1[y])
+        # print(sd1[y])
 
-def outdata():
-    pass
+def outdata(outfile,x,dev,dev1,dev2,sd1,sd2,xbar,sumx,std):
+    # set variables
+    k=0
+    header=''
+    body=''
+    footer=''
+    # build up report header
+    header+=(f'{"STATISTICAL ANALYSIS":-^38}\n\n')
+    # build up report body
+    body+=(f'{"SCORES":<8}{"DEV":>6}{"DEV1":>12}{"SD1":>12}\n')
+    for k in range(N):
+        body+=(f'{x[k]:<8}{dev[k]:>6}{dev1[k]:>12}{sd1[k]:>12.5f}\n')
+    # build up report footer
+    footer+=(f'{"Sum:":-<23}{sumx:->15}\n')
+    footer+=(f'{"Average:":-<23}{xbar:->15}\n')
+    footer+=(f'{"Sum Standard Deviation:":-<23}{dev2:->15}\n')
+    footer+=(f'{"Sum of Standard Score:":-<23}{sd2:->15}\n')
+    footer+=(f'{"Standard Deviation:":-<23}{std:->15}\n')
+    # output to screen
+    print(header)
+    print(body)
+    print(footer)
+    # output to file
+    outfile.write(header)
+    outfile.write(body)
+    outfile.write(footer)
 
 def trunk(number):
     # remove the extra zeros and decimal point
-    y=0.0
-    y=(number).strip(0)
-    pass
+    if number%1 == 0:
+        return (int(number))
+    test=f'{number:.5f}'
+    test2=(test.rstrip('0').rstrip('.'))
+
+    if float(test2)%1 == 0:
+        return (int(test2))
+    else:
+        return(float(test2))
 
 def main():
     import math
@@ -124,38 +158,22 @@ def main():
     loaddata(infile,x)
     sumx=sum_of(x)
     # compute the mean
-    xbar=float(sumx/N)
-    deviation(x,dev,dev1,xbar)
-    dev2=sum_of(dev1)
+    xbar=trunk(float(sumx/N))
+    deviation1(x,dev,xbar)
+    deviation2(dev,dev1)
+    dev2=trunk(sum_of(dev1))
     # compute standard deviation
-    std=math.sqrt(dev2/N)
+    std=trunk(math.sqrt(dev2/N))
     # call standard
     standard(dev,std,sd1)
-    sd2=sum_of(sd1)
-
-    print(x)
-    print(xbar)
-    print(sumx)
-    print(dev)
-    print(dev1)
-    print(dev2)
-    print(std)
-    print(sd1)
-    print(int(sd2))
-    hold()
+    sd2=trunk(sum_of(sd1))
 
     # call outdata(outfile,x,dev,dev1,sd1)
-    k=0
-    print(f'{"STATISTICAL ANALYSIS":^80}')
-    print(f'{"SCORES"}\t{"DEV":^10}{"DEV1":^12}{"SD1":^12}')
-    for k in range(N):
-        print(f'{x[k]}\t{dev[k]:>10.5f}{dev1[k]:>12.5f}{sd1[k]:>12.5f}')
-    print(f'{sumx}\t{xbar:>10.5f}{dev2:>12.5f}{sd2:>12.5f}')
-    # output the rest
-    # print the rest to output file
-    outfile.write('SUM :'+ str(sumx)+'\n')
-    outfile.write('AVERAGE :'+ str(xbar)+'\n')
-    outfile.write('SUM OF STANDARAD SCORES: '+str(sd2)+'\n')
+    outdata(outfile,x,dev,dev1,dev2,sd1,sd2,xbar,sumx,std)
+
+    #close files
+    infile.close()
+    outfile.close()
     # hold
     hold()
 
