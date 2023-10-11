@@ -31,6 +31,9 @@ def main():
     outdata(outfile,x,y)
     #write sum
     print('Sum  =   ',sumx)
+    print(sum(y))
+    print(y)
+    input('press enter')
     #close files
     infile.close()
     outfile.close()
