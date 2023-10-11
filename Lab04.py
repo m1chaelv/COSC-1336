@@ -71,7 +71,7 @@ def deviation1(x,dev,xbar):
 def deviation2(dev,dev1):
     # dev, dev1
     for k in range(N):
-        dev1[k]=trunk(sqr(dev[k]))
+        dev1[k]=trunk((dev[k])**2)
 
 def sum_of(list):
     # given an array, return sum of all numbers
@@ -83,11 +83,6 @@ def sum_of(list):
         return(int(s))
     else:
         return(float(s))
-
-def sqr(number):
-    # accept a number and return it's square
-    number*=number
-    return(number)
 
 def standard(dev,std,sd1):
     # calculate standard score for a series of numbers
@@ -137,9 +132,8 @@ def trunk(number):
         return(float(test2))
 
 def main():
-    import math
     # list declaration
-    x=[0]*N
+    x=[0.0]*N
     dev=[0.0]*N
     dev1=[0.0]*N
     sd1=[0.0]*N
@@ -147,12 +141,7 @@ def main():
     infile=open('lab04.txt','r')
     outfile=open('lab04.out','w')
     # other variable declaration
-    xbar=0.0    #mean
-    std=0.0
-    sumx=0.0
-    dev2=0.0
-    sd2=0.0
-
+    xbar=std=sumx=dev2=sd2=0.0
 
     # call functions
     loaddata(infile,x)
@@ -163,7 +152,7 @@ def main():
     deviation2(dev,dev1)
     dev2=trunk(sum_of(dev1))
     # compute standard deviation
-    std=trunk(math.sqrt(dev2/N))
+    std=trunk((dev2/N)**.5)
     # call standard
     standard(dev,std,sd1)
     sd2=trunk(sum_of(sd1))
@@ -174,6 +163,7 @@ def main():
     #close files
     infile.close()
     outfile.close()
+    developerInfo()
     # hold
     hold()
 
