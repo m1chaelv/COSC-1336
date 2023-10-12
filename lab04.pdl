@@ -1,0 +1,28 @@
+start
+    initialize.global
+        N=20    # number of records
+    initialize.lists
+        scores(x)=[0.0]*N
+        deviation(dev)=[0.0]*N
+        deviation1(dev1)=[0.0]*N
+        standard scores(sd1)=[0.0]*N
+    initialize.vars
+        score sum(sumx)=0
+        score average(xbar)=0
+        deviation sum(dev2)=0
+        standard deviation(std)=0
+        standard scores sum(sd2)=0
+    # get test score records
+    loaddata
+        open file .txt
+        k=0
+        while k < N do:
+            read record
+            store record(x)
+        close file .txt
+        return sum of x
+    
+
+
+    
+    
