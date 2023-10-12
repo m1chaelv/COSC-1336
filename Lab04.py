@@ -67,7 +67,7 @@ def loaddata(infile,x):
     return(sum_of(x))
 
 def deviation1(x,dev,dev1,xbar):
-    # dev, xbar
+    # x, dev, dev1, xbar
     for k in range(N):
         dev[k]=trunk(xbar-x[k])
         dev1[k]=trunk((dev[k])**2)
