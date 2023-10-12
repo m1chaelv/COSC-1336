@@ -64,12 +64,14 @@ def loaddata(infile,x):
         x[k]=int(templist[k].strip('\n'))
 
 def deviation1(x,dev,xbar):
-    # dev, xbar
+    # x, dev, xbar
+    # calculate deviation
     for k in range(N):
         dev[k]=trunk(xbar-x[k])
 
 def deviation2(dev,dev1):
     # dev, dev1
+    # calculate 
     for k in range(N):
         dev1[k]=trunk((dev[k])**2)
 
@@ -118,6 +120,10 @@ def outdata(outfile,x,dev,dev1,dev2,sd1,sd2,xbar,sumx,std):
     outfile.write(header)
     outfile.write(body)
     outfile.write(footer)
+
+    #alternate 
+    #print (format(a[k],'.2f'),'\t',format(b[k],'.2f'),'\t',\
+    #       format(c[k],'.2f'),'\n')
 
 def trunk(number):
     # remove the extra zeros and decimal point
