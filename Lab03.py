@@ -141,8 +141,8 @@ def main():
         # close files
         # hold
         hold()
-        print(templist,ba)
-        k=k+1
+        # print(templist,ba)
+        k+=1
 
     infile.close()
     outfile.close()
