@@ -1,4 +1,4 @@
----------STATISTICAL ANALYSIS---------
+~~~~~~~~~STATISTICAL ANALYSIS~~~~~~~~~
 
 SCORES     DEV        DEV1         SD1
 75        2.15      4.6225     0.14997
@@ -21,8 +21,8 @@ SCORES     DEV        DEV1         SD1
 76        1.15      1.3225     0.08022
 94      -16.85    283.9225    -1.17534
 86       -8.85     78.3225    -0.61732
-Sum:------------------------------1543
-Average:-------------------------77.15
-Sum Standard Deviation:--------4110.55
-Sum of Standard Score:---------------0
-Standard Deviation:-----------14.33623
+Sum:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~1543
+Average:~~~~~~~~~~~~~~~~~~~~~~~~~77.15
+Sum Standard Deviation:~~~~~~~~4110.55
+Sum of Standard Score:~~~~~~~~~~~~~~~0
+Standard Deviation:~~~~~~~~~~~14.33623

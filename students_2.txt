@@ -1,0 +1,3 @@
+student, exam grade
+Alice Winters, 92
+Bob Thompson, 75

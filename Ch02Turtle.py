@@ -12,7 +12,7 @@ def main():
     turtle.penup()
     turtle.goto(0,-40)
     turtle.begin_fill()
-    turtle.color('red')
+    turtle.color('blue')
     turtle.penup()
     turtle.circle(40)
     turtle.end_fill()
@@ -35,9 +35,8 @@ def main():
         print('Three')
     else:
         print('Unknown')
-    
 
-
+    input('press enter when ready...')
 
 main()
 

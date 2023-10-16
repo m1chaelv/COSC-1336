@@ -1,0 +1,78 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab 4
+#  File Name:         Lab04.pdl
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          10-09-2023
+#  Instructor:        Onabajo
+#
+# Program to manipulate 1-dimensional list
+# it will compute the mean, standard deviation, and standard scores
+#***************************************************************
+
+start
+    # initialize.global
+    N=20    # number of records
+    
+    # initialize.lists
+    x=[0.0]*N       # scores
+    dev=[0.0]*N     # deviation
+    dev1=[0.0]*N    # deviation squared
+    sd1=[0.0]*N     # standard scores
+
+    # initialize.vars
+    sum_x=0     # sum of scores
+    xbar=0.0    # average/mean of scores
+    dev2=0.0    # sum of deviation squared
+    std=0.0     # standard deviation
+    sd2=0.0     # sum of standard scores
+
+    # retrieve test score records from file
+    loaddata
+        open file.txt
+        k=0
+        while k < N do:
+            x[k] = file.read 
+            sum_x += x[k]
+            k += 1
+        close file.txt
+        return sum_x
+
+    #calculate mean (average)
+    xbar = sum_x / N  # mean / number of records
+    
+    #calculate deviation & sqrt(deviation)
+    deviation
+        k = 0
+        while k < N do:
+            dev[k] = xbar - x[k]
+            dev1[k] = dev[k] ** 2
+            dev2 += dev1[k]
+            k+=1
+        return dev2
+    
+    # calculate standard deviation
+    std = (dev2/N) ** .5
+    
+    # calculate standard score
+    standard_score
+        k=0
+        while k < N do:
+            sd1[k] = dev[k] / std
+            sd2 += sd1[k]
+            k+=1
+        return sd2
+
+    # output to screen
+    out_data
+        k=0
+        open file.out
+        while k < N do:
+            # output to ...
+            print (x[k], dev[k], dev1[k], sd1[k])       # to screen
+            file.write (x[k], dev[k], dev1[k], sd1[k])  # to file
+            k+=1
+        print (sum_x, xbar, dev2, std, sd2)      # to screen
+        write file.out (sum_x, xbar, dev2, std, sd2) # to file
+        close file.out
+stop
