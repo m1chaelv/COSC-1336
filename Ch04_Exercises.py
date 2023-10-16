@@ -421,6 +421,8 @@ def repeating_squares():
 # shown in Figure 4-14
 def star_pattern():
     import turtle
+    turtle.reset()
+    turtle.speed(0)
     for x in range(8):
         turtle.forward(300)
         turtle.left(225)
@@ -433,6 +435,7 @@ def hypnotic_pattern():
     length=8
     squares=12
     import turtle
+    turtle.reset()
     turtle.speed(0)
     for x in range(squares*4+2):
         turtle.forward(length*x)
