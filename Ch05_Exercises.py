@@ -31,11 +31,11 @@ def main():
         print('[19]\t Future Value')
         print('[20]\t Random Number Guessing Game')
         print('[21]\t Rock, Paper, Scissors Game')
-        print('[22]\t xxx')
-        print('[23]\t xxx')
-        print('[24]\t xxx')
-        print('[25]\t xxx')
-        print('[26]\t xxx')
+        print('[22]\t Triangle Function')
+        print('[23]\t Turtle Graphics: Modular Snowman')
+        print('[24]\t Turtle Graphics: Rectangular Pattern')
+        print('[25]\t Checkerboard')
+        print('[26]\t City Skyline')
         print('...\tanything else to exit\n')
         MENU=get_int('Make a selection to continue')
         if MENU==1:
@@ -81,15 +81,15 @@ def main():
         elif MENU==21:
             rock_paper_scissors()
         elif MENU==22:
-            hold()
+            triangle()
         elif MENU==23:
-            hold()
+            modular_snowman()
         elif MENU==24:
-            hold()
+            rectangular_pattern()
         elif MENU==25:
-            hold()
+            checkerboard()
         elif MENU==26:
-            hold()
+            city_skyline()
         else:
             MENU=0
 
@@ -779,7 +779,471 @@ def rock_paper_scissors():
 
     hold()
 
-# 22) 
+# 22 Triangle Function
+# Write a function named triangle that uses the turtle graphics library to draw a triangle. The functions
+# should take arguments for the X and Y coordinates of the triangle's vertices, and the color with which the 
+# triangle should be filled. Demonstrate the function in a program.
+def draw_color():
+    # yellow, gold, orange, red, maroon, violet, magenta, purple, navy, blue, skyblue, cyan
+    # turquoise, lightgreen, green, darkgreen, chocolate, brown, black, gray, white
+    spaces(3)
+
+    color_opt=['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple',\
+               'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen',\
+                'chocolate', 'brown', 'black', 'gray', 'white']
+    k=1
+    for colors in (color_opt):
+        print(k, colors)
+        k+=1
+    
+    color_id=int(input('select a color: '))
+    return(color_opt[color_id-1])
+
+def draw_tri():
+    import turtle
+    turtle.left(360-360/3)
+    turtle.forward(50)
+    turtle.left(360/3)
+    turtle.forward(50)
+    turtle.left(360/3)
+    turtle.forward(50)
+    turtle.left(360/3)
+
+def triangle():
+    import turtle
+    x=int(input('Select a starting point [x-axis]: '))
+    y=int(input('Select a starting point [y-axis]: '))
+    color=draw_color()
+    reset_turtle()
+    drawnoink()
+    turtle.goto(x,y)
+    drawink('black')
+    drawfillon(color)
+    draw_tri()
+    drawfilloff()
+
+# 23) Turtle Graphics: Modular Snowman
+# Write a program that uses turtle graphics to display a snowman, similar to the one shown in Figure 5-
+# 30 I. In addition to a main function, the program should also have the following functions:
+# • drawbase. This function should draw the base of the snowman, which is the large snowball at the
+# bottom.
+# • drawMidsection. This function should draw the middle snowball.
+# • drawArms. This function should draw the snowman's arms.
+# • drawhead. This function should draw the snowman's head, with eyes, mouth, and other facial features
+# you desire.
+# • drawHat. This function should draw the snowman's hat.
+def drawfillon(color):
+    import turtle
+    turtle.begin_fill()
+    turtle.color(color)
+
+def drawfilloff():
+    import turtle
+    turtle.end_fill()
+
+def drawnoink():
+    import turtle
+    turtle.penup()
+
+def drawink(color):
+    import turtle
+    turtle.color(color)
+    turtle.pendown()
+
+def drawbase():
+    import turtle
+    drawnoink()
+    turtle.goto(0,-275)
+    drawink('black')
+    turtle.circle(100)
+    drawnoink()
+
+def drawMidsection():
+    import turtle
+    turtle.goto(0,-75)
+    # erase arm guides
+    drawfillon('white')
+    turtle.circle(75)
+    drawfilloff()
+    # draw midsection
+    drawink('black')
+    turtle.circle(75)
+    drawnoink()
+
+def drawArms():
+    import turtle
+    turtle.goto(0,0)
+    # right arm
+    drawink('black')
+    turtle.goto(100,50)
+    turtle.goto(110,45)
+    turtle.goto(100,50)
+    turtle.goto(105,60)
+    turtle.goto(100,50)
+    turtle.goto(0,0)
+    # left arm
+    turtle.goto(-95,30)
+    turtle.goto(-105,60)
+    turtle.goto(-100,70)
+    turtle.goto(-105,60)
+    turtle.goto(-115,65)
+    turtle.goto(-105,60)
+    turtle.goto(-95,30)
+    turtle.goto(0,0)
+    drawnoink()    
+
+def drawhead():
+    import turtle
+    # head
+    turtle.goto(0,75)
+    drawink('black')
+    turtle.circle(50)
+    drawnoink()
+    # mouth
+    turtle.goto(0,110)
+    drawink('black')
+    turtle.goto(-25,110)
+    turtle.goto(25,110)
+    drawnoink()
+    turtle.goto(0,110)
+    # eyes
+    turtle.goto(0,125)
+    turtle.goto(-18,125)
+    drawink('black')
+    turtle.circle(5)
+    drawnoink()
+    turtle.goto(18,125)
+    drawink('black')
+    turtle.circle(5)
+    drawnoink()
+    turtle.goto(0,125)
+    
+
+def drawHat():
+    import turtle
+    turtle.goto(0,155)
+    drawink('black')
+    drawfillon('black')
+    turtle.forward(65)
+    turtle.left(90)
+    turtle.forward(18)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.left(-90)
+    turtle.forward(65)
+    turtle.left(90)
+    turtle.forward(70)
+    turtle.left(90)
+    turtle.forward(65)
+    turtle.left(-90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.forward(18)
+    turtle.left(90)
+    turtle.forward(65)
+    drawfilloff()
+
+
+def modular_snowman():
+    import turtle
+    reset_turtle()
+    drawArms()
+    drawbase()
+    drawMidsection()
+    drawhead()
+    drawHat()
+
+# 24 Turtle Graphics: Rectangular Pattern
+# In a program, write a function named drawPattern that uses the turtle graphics library to draw the
+# rectangular pattern shown in Figure 5-31 I. The drawPattern function should accept two arguments: one 
+# that specifies the pattern's width, and another that specifies the pattern's height. (The example shown in
+# Figure 5-31 I shows how the pattern would appear when the width and the height are the same.) When
+# the program runs, the program should ask the user for the width and height of the pattern, then pass these
+# values as arguments to the drawPattern function.
+def reset_turtle():
+    import turtle
+    turtle.reset()
+    turtle.hideturtle()
+    turtle.speed(0)
+
+def square_turtle(width,height,percent,fill):
+    import turtle
+    x=width/2*percent
+    y=height/2*percent
+    if fill==True:
+        turtle.begin_fill()
+        turtle.color('black')
+        turtle.goto(-x,-y)
+        turtle.goto(x,-y)
+        turtle.goto(x,y)
+        turtle.goto(-x,y)
+        turtle.goto(-x,-y)
+        turtle.end_fill()
+        return
+    else:
+        turtle.goto(-x,-y)
+        turtle.goto(x,-y)
+        turtle.goto(x,y)
+        turtle.goto(-x,y)
+        turtle.goto(-x,-y)
+        
+        turtle.goto(x,y)
+        turtle.goto(-x,y)
+        turtle.goto(x,-y)
+
+        turtle.goto(x,0)
+        turtle.goto(-x,0)
+
+        turtle.goto(0,0)
+        turtle.goto(0,y)
+        turtle.goto(0,-y)
+        turtle.goto(0,0)
+    
+def drawPattern(width,height):
+    import turtle
+    x=width/2
+    y=height/2
+    reset_turtle()
+    square_turtle(x,y,1,False)
+    square_turtle(x,y,.75,False)
+    square_turtle(x,y,.5,True)
+
+def rectangular_pattern():
+    spaces(3)
+    width=float(input('Enter width of rectangle: '))
+    height=float(input('Enter height of rectangle: '))
+    drawPattern(width,height)
+
+# 25 Checkerboard
+# Write a turtle graphics program that uses the square function presented in this chapter, along with a loop
+# (or loops) to draw the checkerboard pattern shown in Figure 5-32
+def square(x, y, width, color):
+    import turtle
+    turtle.penup()              # Raise the pen
+    turtle.goto(x, y)           # Move to the specified location
+    turtle.pendown()            # Lower the pen
+    turtle.begin_fill()         # Start filling
+    turtle.fillcolor(color)     # Set the fill color
+    for count in range(4):      # Draw a square
+        turtle.forward (width)
+        turtle.left (90)
+    turtle.end_fill()           # End filling
+
+def checkerboard():
+    import turtle
+    size=40
+    cells=5
+    reset_turtle()
+    square(0,0,size*cells,'white')
+    for k in range(cells):
+        for j in range(cells):
+            l = (k+j)%2
+            if l==0:
+                square(k*size,j*size,size,'black')
+
+# 26 City Skyline
+# Write a turtle graphics program that draws a city skyline similar to the one shown in Figure 5-33. The
+# program's overall task is to draw an outline of some city buildings against a night sky. Modularize the
+# program by writing functions that perform the following tasks:
+# • Draw the outline of buildings.
+# • Draw some windows on the buildings.
+# • Use randomly placed dots as the stars (make sure the stars appear on the sky, not on the buildings).
+
+# fill the sky with black and white stars
+# randmonly placed in the upper half of image
+def draw_sky():
+    import random
+    import turtle
+    turtle.bgcolor ('black')
+    turtle.pencolor ('white')
+    for k in range(50):
+        turtle.penup()
+        # limit to top 3/4 of screen
+        turtle.goto(random.randrange(-500,500),random.randrange(-200,500))
+        turtle.dot()
+
+# shade in the ground
+def draw_ground():
+    import turtle
+    turtle.pencolor ('gray')
+    turtle.penup()
+    turtle.goto(-500,-500)
+    turtle.pendown()
+    drawfillon('gray')
+    turtle.goto(-500,-300)
+    turtle.goto(500,-300)
+    turtle.goto(500,-500)
+    turtle.goto(-500,-500)
+    drawfilloff()
+
+
+# draw the buildings designed in 
+# function design_buildings
+def buildings(a,b,c,count,color):
+    # a=bottom left corner (x)
+    # b=width
+    # c=top right corner (y)
+    # 
+    # count=windows
+    # color
+    import random
+    import turtle
+
+    # initialize variables
+    # using the offset to work with positive int
+    d=-300
+
+    #a = left most (x) axis
+    #b = right most (x) axis
+    a+=500  # left most of x
+    b+=a  # right most of x
+    a-=500
+    b-=500
+
+    # move turtle to starting point
+    # draw and fill in building
+    turtle.goto(a,d)
+    turtle.pendown()
+    drawfillon(color)
+    turtle.goto(a,c)
+    turtle.goto(b,c)
+    turtle.goto(b,d)
+    turtle.goto(a,d)
+    drawfilloff()
+
+    # identify limits for window placement
+    # to avoid windows outside building boundary
+    # prep numbers for window limits
+    # offset method to work with positive int
+    a+=500  # left most of x
+    b+=500  # right most of x
+    c+=100  # highest of y
+    d+=100     # lowest of y
+    # window dimension
+    w=20    
+    a+=w
+    b-=w
+    c-=w
+    d+=w
+    a-=500
+    b-=500
+    c-=100
+    d-=100
+
+    # test point
+    # print(a,b,d,c)
+
+    # Identify if building width will accomodate windows
+    # if too small then windows will not be placed
+    if a<b:
+        # print('good')
+
+        # once a window has been placed add the position to 
+        # exclude list to avoid windows collisions
+        exclude=[0]*count*51
+
+        # loop to randomly place a windows in the building
+        for k in range(count):
+            turtle.penup()
+            # random position based on building dimensions
+            x=random.randrange(a,b)
+            y=random.randrange(d,c)
+            # counter to eliminate loop trap
+            y1=5
+            while y in exclude:
+                # if loop trap identified reset random and counter
+                if y1==0:
+                    import random
+                    y1=5
+                # print(d,c,y,exclude)
+                y=random.randrange(d,c)
+                y1-=1
+            # k1 = starting position for list
+            # k2 = ending position for list
+            # k3 = value to store in exlude list
+            k1=51*k                         # starting point
+            k2=k1+51
+            k3=y-25
+            # loop to save values in exlude list
+            for k4 in range(k1,k2):            # sequence
+                exclude[k4]=k3
+                k3+=1
+            # move turtle to location for window
+            turtle.goto(x,y)
+            # draw window
+            make_window(20,'yellow')
+            turtle.penup()
+    else:
+        # test point
+        # print('bad')
+        print()
+
+    
+# draw window at the current position
+# given the dimenstions and color prescribed
+def make_window(size, color):
+    import turtle
+    drawfillon(color)
+    turtle.penup()
+    turtle.pencolor(color)
+    turtle.forward(size/2)
+    turtle.pendown()
+    turtle.right(90)
+    turtle.forward(size/2)
+    turtle.right(90)
+    turtle.forward(size)
+    turtle.right(90)
+    turtle.forward(size)
+    turtle.right(90)
+    turtle.forward(size)
+    turtle.right(90)
+    turtle.forward(size/2)
+    drawfilloff()
+
+# random building will be generated based on
+# available space by randomly providing dimensions
+# and details like window count
+def design_buildings():
+    # building dimensions
+    import random
+    # height limit
+    limit=400
+    # k = left margin limit
+    k=-400
+    # j = random width of building between number listed
+    j=random.randrange(75,125)
+    # loop to randomize the building dimenstions
+    while k < limit:
+        # identify if building width exceeds limits
+        # if so, then reduce to remain space
+        if k+j>limit:
+            j=limit-k
+            # print(f'{j} .. j')
+        # re-initalize random to avoid patterns
+        import random
+        # i = random height to buildings based on variables
+        i=random.randrange(0,300)
+        # re-initalize random to avoid patterns
+        import random
+        # h = random window count for the building
+        h=random.randrange(1,4)
+        # construct building to fit based on the parameters
+        # left most, right most, top, window count, color
+        buildings(k,j,i,h,'gray')
+        # increment left margin limit
+        k+=j
+        # re-initalize random to avoid patterns
+        import random
+        # j = random width of building between number listed
+        j=random.randrange(75,125)
+
+
+def city_skyline():
+    import random
+    reset_turtle()
+    draw_sky()
+    draw_ground()
+    design_buildings()
 
 # Execution of program
 main()

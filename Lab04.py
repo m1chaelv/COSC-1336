@@ -1,5 +1,4 @@
 #***************************************************************
-#
 #  Developer:         Michael Villarreal
 #  Program #:         Lab 4
 #  File Name:         Lab04.py
@@ -10,17 +9,16 @@
 #
 # Program to manipulate 1-dimensional list
 # it will compute the mean, standard deviation, and standard scores
+#***************************************************************
 
 # Global Variables
 N=20
 
 #***************************************************************
-#
 #  Function:     developerInfo
 #  Description:  Prints Programmer's information
 #  Parameters:   None
-#  Returns:      Output header
-#
+#  Returns:      Output signature
 #**************************************************************
 def developerInfo():
     print('Name:     Michael Villarreal')
@@ -30,13 +28,11 @@ def developerInfo():
     # End of the developerInfo function
 
 #***************************************************************
-#
 #  Function:     spaces
 #  Description:  Create a multi-line space to between input/output
 #                to keep screen uncluttered
 #  Parameters:   None
 #  Returns:      n blank lines
-#
 #**************************************************************
 def spaces(n):
     for x in range(n):
@@ -44,16 +40,20 @@ def spaces(n):
 
 
 #***************************************************************
-#
 #  Function:     hold
 #  Description:  Prompt to pause the screen until ready
 #  Parameters:   None
 #  Returns:      Nothing
-#
 #**************************************************************
 def hold():
     input('Please enter any key to continue...')    
 
+#***************************************************************
+#  Function:     loaddata
+#  Description:  Retrieve data from source file and calculate sum
+#  Parameters:   source file, score list 
+#  Returns:      sum of scores
+#**************************************************************
 def loaddata(infile,x):
     # fil-infile x=list s=sumx
     # load data from the data file in to the list x
@@ -66,6 +66,14 @@ def loaddata(infile,x):
     file.close()
     return(sum_of(x))
 
+#***************************************************************
+#  Function:     deviation1
+#  Description:  calculate both deviation from average/mean and
+#  it's square root
+#  Parameters:   x=score, dev[]=deviation, dev1[]=sqrt(deviation),
+# xbar=score average/mean 
+#  Returns:      sum of dev1
+#**************************************************************
 def deviation1(x,dev,dev1,xbar):
     # x, dev, dev1, xbar
     for k in range(N):
@@ -73,6 +81,13 @@ def deviation1(x,dev,dev1,xbar):
         dev1[k]=trunk((dev[k])**2)
     return(sum_of(dev1))
 
+#***************************************************************
+#  Function:     sum_of
+#  Description:  sum values in list and return value as int if 
+# divisible by 1 other wise return value as float
+#  Parameters:   list to be sum 
+#  Returns:      sum of list as int or float
+#**************************************************************
 def sum_of(list):
     # given an array, return sum of all numbers
     # s=summary for list both int and float
@@ -83,15 +98,28 @@ def sum_of(list):
     else:
         return(float(s))
 
+#***************************************************************
+#  Function:     standard
+#  Description:  calculate standard score value and return sum
+#  Parameters:   dev[]=deviation, std=standard deviation, 
+#  sd1[]=standard score 
+#  Returns:      sum of sd1
+#**************************************************************
 def standard(dev,std,sd1):
     # calculate standard score for a series of numbers
     # give dev=deviation std=standard deviation
-    y=0
-    for y in range(N):
-        sd1[y]=dev[y]/std
-        # print(sd1[y])
+    k=0
+    for k in range(N):
+        sd1[k]=dev[k]/std
     return(sum_of(sd1))
 
+#***************************************************************
+#  Function:     outdata
+#  Description:  generate final report for screen and output file
+#  Parameters:   outfile, x[], sumx, xbar, dev[], dev1[], dev2
+#  std, sd1[], sd2
+#  Returns:      
+#**************************************************************
 def outdata(outfile,x,dev,dev1,dev2,sd1,sd2,xbar,sumx,std):
     # set variables
     k=0
@@ -122,6 +150,13 @@ def outdata(outfile,x,dev,dev1,dev2,sd1,sd2,xbar,sumx,std):
     file.write(footer)
     file.close()
 
+#***************************************************************
+#  Function:     trunk
+#  Description:  evaluate a number and return as int if divisible 
+# by 1 or round the remainder to 5 places.
+#  Parameters:   number
+#  Returns:      number as int or float
+#**************************************************************
 def trunk(number):
     # remove the extra zeros and decimal point
     if number%1 == 0:
@@ -134,6 +169,12 @@ def trunk(number):
     else:
         return(float(test2))
 
+#***************************************************************
+#  Function:     main
+#  Description:  orchestrate file ingestion and procesing
+#  Parameters:   none
+#  Returns:      final report to screen and file
+#**************************************************************
 def main():
     # list declaration
     x=[0.0]*N
