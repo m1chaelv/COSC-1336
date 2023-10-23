@@ -14,11 +14,11 @@ def main():
         print('[4]\t Number Analysis Program')
         print('[5]\t Charge Account Validation')
         print('[6]\t Larger Than n')
-        print('[7]\t Driver's License Exam')
-        print('[8]\t xxx')
-        print('[9]\t xxx')
-        print('[10]\t xxx')
-        print('[11]\t xxx')
+        print('[7]\t Drivers License Exam')
+        print('[8]\t Name Search')
+        print('[9]\t Population Data')
+        print('[10]\t World Series Champions')
+        print('[11]\t Lo Shu Magic Square')
         print('[12]\t xxx')
         print('[13]\t xxx')
         print('[14]\t xxx')
@@ -38,15 +38,15 @@ def main():
         elif MENU==6:
             larger_than()
         elif MENU==7:
-            dr()
+            drivers_license_exam()
         elif MENU==8:
-            hold()
+            name_search()
         elif MENU==9:
-            hold()
+            population_data()
         elif MENU==10:
-            hold()
+            world_series()
         elif MENU==11:
-            hold()
+            lo_shu()
         elif MENU==12:
             hold()
         elif MENU==13:
@@ -285,7 +285,7 @@ def chrg_acct_val():
     accts_master=open('charge_accounts.txt','r')
     accts=[]
     accts_input=0
-    k=0
+    # k=0
     line_from_file = accts_master.readline().strip('\n')
     while line_from_file != '':
         # Append record to list as integer
@@ -329,6 +329,358 @@ def larger_than():
     print(master_list)
 
     hold()
+
+# 7 Driver's License Exam
+# The local driver's license office has asked you to create an application that grades the written portion of
+# the driver's license exam. The exam has 20 multiple-choice questions. Here are the correct answers:
+# 1.    А
+# 2.    C
+# 3.    А
+# 4.    A
+# 5.    D
+# 6.    В
+# 7.    C
+# 8.    А
+# 9.    C
+# 10.   B 
+# 11.   А
+# 12.   D
+# 13.   C
+# 14.   A
+# 15.   D
+# 16.   C
+# 17.   В
+# 18.   B
+# 19.   D
+# 20.   A
+# Your program should store these correct answers in a list. The program should read the student's answers
+# for each of the 20 questions from a text file and store the answers in another list. (Create your own text file
+# to test the application.) After the student's answers have been read from the file, the program should
+# display a message indicating whether the student passed or failed the exam. (A student must correctly
+# answer 15 of the 20 questions to pass the exam.) It should then display the total number of correctly
+# answered questions, the total number of incorrectly answered questions, and a list showing the question
+# numbers of the incorrectly answered questions.
+def drivers_license_exam():
+    dl_answers=[' ','A','C','А','A','D','В','C','A','C','B','A','D','C','A','D','С','B','B','D','A']
+    dl_resp_in=open('dl_test_responses.txt','r')
+    # dl_record=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    dl_record=[]
+    dl_graded_all=[]
+    dl_graded=[]
+
+
+
+    dl_record = dl_resp_in.readline().strip('\n').split(',')
+    while '' not in dl_record:
+        k1=0
+        k2=k3=0
+        k4=k5=k6=''
+        for k in dl_record:
+            if k1==0:
+                dl_graded.append(k)
+                k4=k
+            elif k==dl_answers[k1]:
+                dl_graded.append(True)
+                k6+=(f'  {k1:>2}\t[{k}]\n')
+                k2+=1
+            else:
+                dl_graded.append(False)
+                k6+=(f'x {k1:>2}\t[{k}]>[{dl_answers[k1]}]\n')
+                k3+=1
+            k1+=1
+        dl_graded_all.append(dl_graded)
+        dl_graded=[]
+        dl_record = dl_resp_in.readline().strip('\n').split(',')
+
+        if k2>=15:
+            k5='pass'
+        else:
+            k5='fail'
+        print(f'{k4}\t{k2}/{k2+k3} [{k5}]')
+        print(k6)
+        spaces(3)
+
+    print(dl_record)
+    hold()
+
+    dl_resp_in.close()
+
+# 8 Name Search
+# If you have downloaded the source code you will find the following files in the Chapter 07 " folder:
+# • GirlNames.txt This file contains a list of the 200 most popular names given to girls born in the United
+# States from the year 2000 through 2009.
+# • BoyNames.txt This file contains a list of the 200 most popular names given to boys born in the United
+# States from the year 2000 through 2009.
+# Write a program that reads the contents of the two files into two separate lists. The user should be able to
+# enter a boy's name, a girl's name, or both, and the application will display messages indicating whether the
+# names were among the most popular.
+# (You can access the Computer Science Portal at www.pearsonhighered.com/gaddis.)
+def ns_load_names(file_name):
+    ns_infile=open(file_name,'r')
+    ns_line=[]
+    ns_list=[]
+
+    ns_line=ns_infile.readline().strip('\n').split(',')
+    while '' not in ns_line:
+        ns_list.append(ns_line[0])
+        ns_line=ns_infile.readline().strip('\n').split(',')
+
+    ns_infile.close()
+    return(ns_list)
+
+def name_search():
+    ns_infiles=('BoyNames.txt','GirlNames.txt')
+    ns_boys=[]
+    ns_girls=[]
+    names=[]
+
+    for files in ns_infiles:
+        names=(ns_load_names(files))
+        for k in names:
+            if 'Boy' in files:
+                ns_boys.append(k)
+            else:
+                ns_girls.append(k)
+
+    spaces(3)
+    print('A list has been collected of the top 200 boys and 200 girls names\n',
+          'between 2000 and 2009. Enter a name and I will tell you if the name\n',
+          'is on these lists.')
+    print()
+    name=input('Enter a name: ')
+
+    if name in ns_boys:
+        ns_message="a boy's name"
+    elif name in ns_girls:
+        ns_message="a girl's name"
+    else:
+        ns_message='not'
+
+    print(f'{name} is {ns_message} on the list.')
+    hold()
+
+# 9 Population Data
+# If you have downloaded the source code you will find a file named uspopulation. txt in the Chapter 07
+# folder. The file contains the midyear population of the United States, in thousands, during the years 1950
+# through 1990. The first line in the file contains the population for 1950, the second line contains the
+# population for 1951, and so forth.
+# Write a program that reads the file's contents into a list. The program should display the following data:
+# • The average annual change in population during the time period
+# • The year with the greatest increase in population during the time period
+# • The year with the smallest increase in population during the time period
+def population_data():
+    pop_infile=open('USPopulation.txt','r')
+    pop_from=1950
+    pop_to=1950
+    pop_data=[]
+    pop_avg=0.0
+    pop_last_yr=[]
+
+    pop_line=pop_infile.readline().strip('\n')
+    while pop_line != '':
+        pop_data.append([pop_to, int(pop_line)])
+        pop_to+=1
+        pop_line=pop_infile.readline().strip('\n')
+        pop_inc=[]
+        pop_inc_list=[]
+        pop_inc_high=[]
+        pop_inc_low=[]
+
+    pop_last_yr=[pop_data[0][0],pop_data[0][1]]
+    for k in pop_data:
+        pop_avg+=k[1]/len(pop_data)
+        pop_diff=k[1]-pop_last_yr[1]
+
+        k1=[k[0],k[1],pop_diff]
+        pop_inc_list.append(k1)
+        pop_last_yr=k
+
+    for k in pop_inc_list:
+        if k[2]==0:
+            pop_inc_high=[k[0],k[1],k[2]]
+            pop_inc_low=[k[0],k[1],k[2]]
+        elif k[2] > pop_inc_high[2]:
+            pop_inc_high=[k[0],k[1],k[2]]
+        elif pop_inc_low[2]==0:
+            pop_inc_low=[k[0],k[1],k[2]]
+        elif k[2] < pop_inc_low[2]:
+            pop_inc_low=[k[0],k[1],k[2]]
+
+    spaces(3)
+    print(f'From:\t{pop_from}\nTo:\t{pop_to}')
+    print(f'max increase of {pop_inc_high[2]} was in {pop_inc_high[0]} to {pop_inc_high[1]}.')
+    print(f'min increase of {pop_inc_low[2]} was in {pop_inc_low[0]} to {pop_inc_low[1]}.')
+    print(f'average population of {pop_avg:,.0f}')
+    hold()
+
+    pop_infile.close()
+
+# 10 World Series Champions
+# If you have downloaded the source code you will find a file
+# named WorldSeriesWinners.txt in the Chapter 07 L
+# folder. This file contains a chronological list of the World
+# Series winning teams from 1903 through 2009. The first line
+# in the file is the name of the team that won in 1903, and the
+# last line is the name of the team that won in 2009. Note the
+# World Series was not played in 1904 or 1994.)
+# Write a program that lets the user enter the name of a team,
+# then displays the number of times that team has won the
+# World Series in the time period from 1903 through 2009.
+# Tip:
+# Read the contents of the WorldSeriesWinners.txt file
+# into a list. When the user enters the name of a team,
+# the program should step through the list, counting
+# the number of times the selected team appears.
+def world_series():
+    ws_infile=open('WorldSeriesWinners.txt','r')
+    ws_start=1903
+    ws_except=[1904,1994]
+    ws_list=[]
+
+    ws_winners=ws_infile.readline().strip('\n')
+    while ws_winners != '':
+        while ws_start in ws_except:
+            k2=[ws_start,'[NOT PLAYED]']
+            ws_start+=1
+        k2=[ws_start,ws_winners]
+        ws_winners=ws_infile.readline().strip('\n')
+        ws_start+=1
+        ws_list.append(k2)
+
+    ws_count=0
+    ws_years=''
+    while ws_years=='':
+
+        ws_temp=[]
+        for k in ws_list:
+            if k[1] not in ws_temp:
+                ws_temp.append(k[1])
+        ws_temp.sort()
+        for k in ws_temp:
+            print(f'{ws_count:>2}:{k}')
+            ws_count+=1
+        ws_count=0
+
+        spaces(3)
+        ws_team=ws_temp[get_int('enter a team to research')]
+
+        for k in ws_list:
+            if ws_team.lower() in k[1].lower():
+                ws_count+=1
+                ws_years+=str(f'{k[0]} ')
+        print(ws_team, ws_count, ws_years)
+
+    hold()
+
+# 11 Lo Shu Magic Square
+# The Lo Shu Magic Square is a grid with 3 rows and 3 columns, shown in Figure 7-21 P. The Lo Shu
+# Magic Square has the following properties:
+# • The grid contains the numbers 1 through 9 exactly.
+# • The sum of each row, each column, and each diagonal all add up to the same number.
+# This is shown in Figure 7-22
+# Figure 7-21 The Lo Shu Magic Square
+# +---+---+---+
+# | 4 | 9 | 2 |
+# +---+---+---+
+# | 3 | 5 | 7 |
+# +---+---+---+
+# | 8 | 1 | 6 |
+# +---+---+---+
+# Figure 7-22 The sum of the rows, columns, and diagonals
+# In a program you can simulate a magic square using a two-dimensional list. Write a function that accepts a
+# two-dimensional list as an argument and determines whether the list is a Lo Shu Magic Square. Test the
+# function in a program.
+def lo_shu_digits(ls_nums):
+    k0=str(ls_nums)
+    if len(k0)!=9:
+        return(False)
+    for k1 in range(1,10):
+        if str(k1) not in k0:
+            return(False)
+    return(True)
+    
+def lo_shu_2d(ls_nums):
+    # convert to 2d list
+    # k0=dimensions, r=row loop counter, c=column loop counters
+    k0=3
+    k1=list(str(ls_nums))
+    k2=0
+    k3=[[0,0,0],
+        [0,0,0],
+        [0,0,0]]
+    for r in range(k0):
+        for c in range(k0):
+            # print(r,c,k1[k2])
+            # hold()
+            k3[r][c]=int(k1[k2])
+            k2+=1
+    for r in range(k0):
+        for c in range(k0):
+            print(k3[r][c],end=' ')
+        print()
+    return(k3)
+    hold()
+
+def lo_shu_test(lo_shu_nums):
+    lo_answer=15
+    k0=3
+    k1=lo_shu_nums
+    k2=[]
+    r0=r1=r2=0
+    c0=c1=c2=0
+    d1=d2=0
+    for r in range(k0):
+        for c in range(k0):
+            if c==0:
+                c0+=k1[r][c]
+            elif c==1:
+                c1+=k1[r][c]
+            elif c==2:
+                c2+=k1[r][c]
+            if r==0:
+                r0+=k1[r][c]
+            elif r==1:
+                r1+=k1[r][c]
+            elif r==2:
+                r2+=k1[r][c]
+            if r==c:
+                d1+=k1[r][c]
+            if r+c==2:
+                d2+=k1[r][c]
+
+    cx=[c0,c1,c2]
+    print(f'\t\t\t/{d2}')
+    for r in range(k0):
+        rx=0
+        for c in range(k0):
+            print(k1[r][c],end='\t')
+            rx+=k1[r][c]
+        print(f'-{rx}')
+    print(f'|\t|\t|\t\\')
+    print(f'{c0}\t{c1}\t{c2}\t{d1}')
+
+    k2=[c0,c1,c2,r0,r1,r2,d1,d2]
+    for k3 in k2:
+        if k3!=lo_answer:
+            return(False)
+    else:
+        return(True)
+
+def lo_shu():
+    ls_valid_num=False
+    lo_shu_nums=[]
+
+    spaces(3)
+    while ls_valid_num==False:
+        spaces(1)
+        ls_nums=get_int('enter a squence of number for a Lo Shu Magic Square')
+        ls_valid_num=(lo_shu_digits(ls_nums))
+    
+    lo_shu_nums+=lo_shu_2d(ls_nums)
+    print(f'\nThis is {lo_shu_test(lo_shu_nums)}')
+    hold()
+
+
 
 if __name__=='__main__':
     main()
