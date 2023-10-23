@@ -57,8 +57,6 @@ def get_dimensions(matrix):
     x=0 
     y=0
     for r in matrix:
-        # for c in r[0]:
-        #     y+=1
         x+=1
         y=len(r)
     return(x,y)
@@ -67,67 +65,79 @@ def get_dimensions(matrix):
 
 def computez(x,y,z):
     dimensions=[]
-    print(x)
     dimensions+=[get_dimensions(x)]
-    print(y)
     dimensions+=[get_dimensions(y)]
-    print(z)
-    # dimensions+=[get_dimensions(z)]
-    for rz in z:
-        for cz in rz:
-            print(cz,end=' ')
-        print()
-    print()
-    print(dimensions)
+    # for rz in z:
+    #     for cz in rz:
+    #         print(cz,end=' ')
+    #     print()
+    # print()
     z_size=[]
     for k0 in range(2):
         for k1 in range(2):
             if k0==k1:
                 # print(k0,k1)
-                print(dimensions[k0][k1])
+                # print(dimensions[k0][k1])
                 z_size+=[dimensions[k0][k1]]
-    print(z_size)
-    # dimensions+=[z_size]
-    print(dimensions)
-    print()
-    hold()
-
-    print(z)
     test=[0]*z_size[1]
     test2=list(test)
     test=[]
-    print(test)
+    # print(test)
     for k in range(z_size[0]):
         test.append(test2)
-    # test=[test]*[z_size[0]]
-    print(test)
-    hold()
-
-    # for k in range(z_size[0]):
-    #     # xx=[]*z_size[1]
-    #     # x.append(xx)
-    #     x=([]*z_size[1])*z_size[0]
-    # print('using calculation')
-    # print(x)
+    # print(test)
     # hold()
 
-    
     for i in range(len(x)):
         for j in range(len(y[0])):
             for k in range(len(y)):
                 z[i][j] += x[i][k] * y[k][j]
-    for r in z:
-        print(r)
+    # for r in z:
+    #     print(r)
 
-    # while k0 in range(len(x)):
-    #     while k1 in range(len(y))
-    hold()
+    # hold()
 
-def summation(x,y):
-    pass
+def summation(matrix,rc,num):
+    # matrix=matrix to summarize
+    # rc = either 'r' for row or 'c' for column
+    # num = number from 0 to n
+    sum_r=0
+    sum_c=0
+    try:
+        if rc=='c':        
+            for k0 in matrix:
+                sum_c+=k0[num]
+            return(sum_c)
+        elif rc=='r':
+            for k0 in matrix[num]:
+                sum_r+=k0
+            return(sum_r)            
+    except Exception as err:
+        print(err)
+    
+def smallest(matrix,rc,num):
+    small=0
+    small_matrix=[]
+    try:
+        if rc=='c':        
+            for k0 in matrix:
+                small_matrix.append(k0[num])
+        elif rc=='r':
+            for k0 in matrix[num]:
+                small_matrix.append(k0)
 
-def smallest(y):
-    pass
+        k0=0
+        for k1 in small_matrix:
+            if k0==0:
+                small=k1
+            else:
+                if k1<small:
+                    small=k1
+            k0+=1
+        return(small)
+    except Exception as err:
+        print(err)
+
 
 def print_matrix(title,matrix,width):
     k=len(title)+6
@@ -138,7 +148,7 @@ def print_matrix(title,matrix,width):
         print()
 
 def outdata(outfile,x,y,z):
-    print(f'\nOUTDATA(OUTFILE,X,Y,Z)\n')
+    # print(f'\nOUTDATA(OUTFILE,X,Y,Z)\n')
     # x=[5][3]
     # y=[3][7]
     # local variable
@@ -207,21 +217,14 @@ def main():
         y_file='Lab05_y.txt'
 
         # call function
-        print('load any x')
         x=load_any(x_file,x,True)
-        print('load any y')
         y=load_any(y_file,y,False)
-
-        print('compute z')
         computez(x,y,z)
-        # summation(x,y)
-        # small=smallest(y)
-        print('outdata')
+        sumx=summation(x,'c',2)
+        sumy=summation(y,'r',2)
+        small=smallest(y,'r',1)
+
         outdata(outfile,x,y,z)
-        print('print x\n',x)
-        print('print y\n',y)
-        hold()
-        
 
         #write the rest of the output
         print(f'SUM X\t{sumx}')
