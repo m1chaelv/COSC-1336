@@ -18,39 +18,39 @@
 #  Parameters:   none
 #  Returns:      final report to screen and file
 #**************************************************************
-# Global Variables
-sumx=0
-sumy=0
+global variables
+set sumx=0
+set sumy=0
 
 begin main
-    # matrices declaration
-    # x[5][3], y[3][7], z[5][7]
-    x=[[0,0,0],
+    matrix declaration
+    set x[5][3], y[3][7], z[5][7]
+    set x=[[0,0,0],
        [0,0,0],
        [0,0,0],
        [0,0,0],
        [0,0,0]]
     
-    y=[[0,0,0,0,0,0,0],
+    set y=[[0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0]]
     
-    z=[[0,0,0,0,0,0,0],
+    set z=[[0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0],
        [0,0,0,0,0,0,0]]
     
-    # variable declaration
-    x_file='Lab05_x.txt'
-    y_file='Lab05_y.txt'
-    outfile='Lab05.out'
+    variable declaration
+    set x_file='Lab05_x.txt'
+    set y_file='Lab05_y.txt'
+    set outfile='Lab05.out'
 
-    # call function
-    x=load_any(x_file,x,True)
-    y=load_any(y_file,y,False)
-    computez(x,y,z)
-    outdata(outfile,x,y,z)
+    call function
+    set x load_any(x_file,x,True)
+    set y load_any(y_file,y,False)
+    compute z based on x and y by computez(x,y,z)
+    outpute to file and screen by outdata(outfile,x,y,z)
 
     hold screen wait for input
 end main
@@ -86,10 +86,11 @@ end get_dimensions
 function computez(x,y,z)
     accept 3 matrix
     
-    for i in range(len(x)):
-        for j in range(len(y[0])):
-            for k in range(len(y)):
-                z[i][j] += x[i][k] * y[k][j]
+    loop for each row in x
+        loop for each column in y
+            loop for each row in y
+                set z value based on product of x and y
+end computez
 
 #***************************************************************
 #  Function:     summation
@@ -99,26 +100,28 @@ function computez(x,y,z)
 #   and row/column identity to evaluate
 #  Returns:      return the calculated sum value
 #**************************************************************
-def summation(matrix,rc,num):
-    # reset counters
-    sum_r=0
-    sum_c=0
+function summation(matrix,rc,num):
+    set variables
+    accept matrix
+    accept identifier r=row and c=column (rc)
+    accept row/column number starting with 0 (num)
+    set counters
+    set sum_row=0
+    set sum_col=0
 
-    # error handling
-    try:
-        # sum of column
-        if rc=='c':        
-            for k0 in matrix:
-                sum_c+=k0[num]
-            return(sum_c)
-        # sum of row
-        elif rc=='r':
-            for k0 in matrix[num]:
-                sum_r+=k0
-            return(sum_r)            
-    except Exception as err:
-        print(err)
+    for column summary
+    if identifier is 'c'       
+        for each row in matrix:
+            add value from column (num) to sum_col
+        return sum_col
     
+    for row summary
+    if identifier is 'r'
+        for each value in row (num) of matrix
+            add value to sum_row
+        return sum_row            
+end summation
+
 #***************************************************************
 #  Function:     smallest
 #  Description:  given the associated row/column calculate the
@@ -127,37 +130,37 @@ def summation(matrix,rc,num):
 #   and row/column identity to evaluate
 #  Returns:      return the calculated smallest value
 #**************************************************************
-def smallest(matrix,rc,num):
-    # reset counter
-    small=0
-    small_matrix=[]
+function smallest(matrix,rc,num):
+    set variables
+    accept matrix
+    accept identifier r=row and c=column (rc)
+    accept row/column number starting with 0 (num)
+    set counters
+    set small=0
+    set small_matrix=[]
 
-    # error handling
-    try:
-        # generate subset of matrix column
-        if rc=='c':        
-            for k0 in matrix:
-                small_matrix.append(k0[num])
-        # generate subset of matrix row
-        elif rc=='r':
-            for k0 in matrix[num]:
-                small_matrix.append(k0)
+    generate subset of matrix column
+    if identifier is 'c'        
+        for each row in matrix:
+            pass value to small_matrix based on num value provided
+    
+    generate subset of matrix row
+    if identifier is 'r'
+        for each value in row (num) of matrix
+            append value to small_matrix)
 
-        # reset counter
-        k0=0
-        # evaluate list to identify smallest
-        for k1 in small_matrix:
-            if k0==0:
-                small=k1
-            else:
-                if k1<small:
-                    small=k1
-            k0+=1
-
-        # return smallest value
-        return(small)
-    except Exception as err:
-        print(err)
+    set counter
+    set k0=0
+    evaluate list to identify smallest
+    for each value in small_matrix
+        initialize value with 1st entry:
+            set small=first value in list
+        all others are compared to small 
+            compare new value from list to small:
+                set small to the smallest of the 2 compared
+        increment counter by 1 (k0)
+    return smallest value
+end smallest
 
 #***************************************************************
 #  Function:     print_matrix
@@ -167,22 +170,29 @@ def smallest(matrix,rc,num):
 #   variables. Allows for spacing adjustments for larger variables
 #  Returns:      populated matrix with header
 #**************************************************************
-def print_matrix(title,matrix,width):
-    # calculate width of matrix to build a header to match
-    how_wide=(get_dimensions(matrix)[1])*(width+1)
+function print_matrix(title,matrix,width):
+    accept title for table haeding
+    accept matrix
+    accept wide of values in characters 
+    
+    calculate width of matrix to build a header to match
+    identify the width of the matrix
 
-    # generate a string for output to screen and file
-    report=''
-    report+=(f'{title:=^{how_wide}}\n')
-    for r in matrix:
-        for c in r:
-            report+=(f'{c:>{width}}')
-        report+=('\n')
-    report+=(f'{"=":=^{how_wide}}\n')
-    report+=spaces(2)
+    set how_wide to product of columns by desired width plus 1
+    plus 1 accounts for spacing between values
 
-    # return completed report
-    return(report)
+    generate a string for output to screen and file
+    initialize report=''
+    add header to report
+    for each row in matrix
+        for each value
+            append value to report
+        new line for each row
+    add footer to report
+    add spaces to report
+
+    return completed report
+end print_matrix
 
 #***************************************************************
 #  Function:     outdata
@@ -191,39 +201,38 @@ def print_matrix(title,matrix,width):
 #  Parameters:   output file, x-y-z matrix tables
 #  Returns:      None
 #**************************************************************
-def outdata(outfile,x,y,z):
-    # calculate summary data
-    sumx=summation(x,'c',2)
-    sumy=summation(y,'r',2)
-    small=smallest(y,'r',1)
+function outdata(outfile,x,y,z)
+    accept filename of output file
+    accept completed x, y, and z matrix
+    
+    call functions to calculate summary data
+    set sumx to sum of column 2 of matrix x
+    set sumy to sum of row 2 of matrix y
+    set small to smallest value of row 1 from column y
 
-    # build report output
-    report=''
-    report+=print_matrix('x-matrix',x,3)
-    report+=print_matrix('y-matrix',y,3)
-    report+=print_matrix('z-matrix',z,5)
+    call functions to build report output
+    initialize report=''
+    append to report table with header ans matrix x allowing for 3 characters of spacing
+    append to report table with header ans matrix y allowing for 3 characters of spacing
+    append to report table with header ans matrix z allowing for 5 characters of spacing
 
-    # append summary to report
-    report+=(f'{"SUM X:":>20}\t{sumx}\n')
-    report+=(f'{"SUM Y:":>20}\t{sumy}\n')
-    report+=(f'{"SUMX + SUMY:":>20}\t{sumx+sumy}\n')
-    report+=(f'{"SMALLEST:":>20}\t{small}\n')
+    append summary information to report
+    SUM X with value from sumx
+    SUM Y with value from sumy
+    SUMX + SUMY with value from sumx+sumy
+    SMALLEST with value from small
 
-    # append signature
-    report+=spaces(3)
-    report+=developerInfo('Lab 5')
+    append signature to report
+    3 blank lines
+    append developerInfo
 
-    # output to file
-    output_file=open(outfile,'w')
-    output_file.write(report)
-    output_file.close()
+    output to file
+    open outfile for writing
+    write report to outfile
+    close outfile
 
-    # output report to screen
-    # spaces(3)
-    print(report)
-    # spaces(2)
-    # output developer info to screen
-    # developerInfo('Lab 5')
+    print report to screen
+end outdata
 
 #***************************************************************
 #  Function:     load_any
@@ -233,39 +242,43 @@ def outdata(outfile,x,y,z):
 #   for loading matrix
 #  Returns: fully populated matrix     
 #**************************************************************
-def load_any(file,matrix,rc_based):
-    # rc_based 'True' is row based column-wise
-    # rc_based 'False' is col based row-wise
-    # open input file
-    infile=open(file,'r')
+function load_any(file,matrix,rc_based)
+    accept file name
+    accept matrix to populate with data from file
+    accept how the marix will be populated (rc_based)
+    if rc_based 'True' is row based column-wise
+    if rc_based 'False' is col based row-wise
 
-    # retrieve matrix dimensions for use in loops
-    r=get_dimensions(matrix)[0]
-    c=get_dimensions(matrix)[1]
+    open input file
+    set infile=open(file,'r')
 
-    # retrieve data from input file
-    temp_list=infile.readline().strip('\n').split(',')
+    call function to retrieve matrix dimensions for use in loops
+    set r to row count of matrix
+    set c to column count of matrix
 
-    # populate matrix
-    # rest counter
-    k=0
-    # column-wise
-    if rc_based==True:
-        for rx in range(r):
-            for cx in range(c):
-                matrix[rx][cx]=int(temp_list[k])
-                k+=1
-    # row-wise
-    else:
-        for cx in range(c):
-            for rx in range(r):
-                matrix[rx][cx]=int(temp_list[k])
-                k+=1
-    # close input file
-    infile.close()
-    # return matrix
-    return(matrix)
+    retrieve data from input file
+    set temp_list from first row of file
+    remove new line characters and based on ',' delimeter
 
+    populate matrix with data from temp_list
+    reset counters
+    set k=0
+ 
+    for column-wise based matrix
+    if rc_based is True
+        loop for each row
+            loop for each column
+                set value in cell with value from temp_list
+    
+    for row-wise based matrix
+    if rc_based is False
+        loop for each column
+            loop for each row
+                set value in cell with value from temp_list
+
+    close input file
+    return matrix
+ nd load_any
 
 
 # Call the main function.
