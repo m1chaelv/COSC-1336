@@ -1,0 +1,21 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab 5
+#  File Name:         Lab05.pdl
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          10-24-2023
+#  Instructor:        Onabajo
+#
+# Program to build and manipulate matrices
+# It will use functions to load, multiply matrices
+# also compute summation, smallest, and print all matrices
+#***************************************************************
+
+
+#***************************************************************
+#  Function:     main
+#**************************************************************
+
+start
+stop
+

@@ -16,14 +16,24 @@
 #***************************************************************
 #  Function:     developerInfo
 #  Description:  Prints Programmer's information
-#  Parameters:   None
-#  Returns:      Output signature
+#  Parameters:   Assignment to include in signature
+#  Returns:      Signature w/ date and time
 #**************************************************************
-def developerInfo():
-    print('Name:     Michael Villarreal')
-    print('Course:   Programming Fundamentals I')
-    print('Lab: 5')
-    print()
+def developerInfo(assignment):
+    # Obtain current date and time
+    from datetime import datetime
+    current_datetime = datetime.now()
+    formatted_datetime = current_datetime.strftime('%Y-%m-%d %H:%M')
+
+    signature=''
+    signature+=(f'{"Name:":>12}\tMichael Villarreal\n')
+    signature+=(f'{"Course:":>12}\tProgramming Fundamentals I\n')
+    signature+=(f'{"Assignment:":>12}\t{assignment}\n')
+    signature+=(f'{"Generated:":>12}\t{formatted_datetime}\n')
+    signature+=spaces(2)
+
+    # return signature
+    return(signature)
     # End of the developerInfo function
 
 #***************************************************************
@@ -31,11 +41,12 @@ def developerInfo():
 #  Description:  Create a multi-line space to between input/output
 #                to keep screen uncluttered
 #  Parameters:   None
-#  Returns:      n blank lines
+#  Returns:      n blank lines for screen or n new lines for str
 #**************************************************************
 def spaces(n):
     for x in range(n):
         print()
+        return('\n'*n)
 
 #***************************************************************
 #  Function:     hold
@@ -170,6 +181,7 @@ def print_matrix(title,matrix,width):
             report+=(f'{c:>{width}}')
         report+=('\n')
     report+=(f'{"=":=^{how_wide}}\n')
+    report+=spaces(2)
 
     # return completed report
     return(report)
@@ -199,17 +211,21 @@ def outdata(outfile,x,y,z):
     report+=(f'{"SUMX + SUMY:":>20}\t{sumx+sumy}\n')
     report+=(f'{"SMALLEST:":>20}\t{small}\n')
 
+    # append signature
+    report+=spaces(3)
+    report+=developerInfo('Lab 5')
+
     # output to file
     output_file=open(outfile,'w')
     output_file.write(report)
     output_file.close()
 
     # output report to screen
-    spaces(3)
+    # spaces(3)
     print(report)
-    spaces(2)
+    # spaces(2)
     # output developer info to screen
-    developerInfo()
+    # developerInfo('Lab 5')
 
 #***************************************************************
 #  Function:     load_any
