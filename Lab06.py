@@ -5,7 +5,7 @@
 #  Course:            COSC 1336 Programming Fundamentals I
 #  Due Date:          [xx-xx-xxxx]
 #  Instructor:        Onabajo
-#  Chapter:           <Chapter x>
+#  Chapter:           <Chapter 9> Dictionaries and Sets
 #  Session:           ACC Fall 2023
 #
 # [xxx]
@@ -73,17 +73,37 @@ def get_int(text):
     # End of the get_int function
 
 #***************************************************************
+#  Function:     loadfile
+#  Description:  Load data file into list for processing.
+#  Parameters:   file name
+#  Returns:      populated list
+#**************************************************************
+def loadfile(file):
+    matrix=[]
+    infile=open(file,'r')
+    new_line=infile.readline().strip('\n').split(',')
+    while new_line[0]!='':
+        matrix.append(new_line)
+        new_line=infile.readline().strip('\n').split(',')
+    infile.close()
+    return(matrix)
+    # End of the loadfile function
+
+
+
+#***************************************************************
 #  Function:     main
 #  Description:  orchestrate file ingestion and procesing
 #  Parameters:   none
 #  Returns:      final report to screen and file
 #**************************************************************
 # Global Variables
-# [xxx]
+input_file='Lab06.txt'
 
 def main():
-    pass
-    # End of the developerInfo function
+    spaces(3)
+    matrix=loadfile(input_file)
+
 
 # Call the main function.
 if __name__ == '__main__':
