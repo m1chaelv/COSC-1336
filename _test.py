@@ -12,9 +12,16 @@ cnt_yr=0
 years=[]
 months=[]
 
-int(list1[0])
-print(list1)
-for k1 in seq1:
-    for k2 in list1:
-        if k1==k2[1]:
-            print(k1,k2)
+# int(list1[0])
+# print(list1)
+# for k1 in seq1:
+#     for k2 in list1:
+#         if k1==k2[1]:
+#             print(k1,k2)
+
+
+def test(x):
+    
+
+k=5
+
