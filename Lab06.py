@@ -81,15 +81,14 @@ def get_int(text):
 def loadfile(file):
     matrix=[]
     infile=open(file,'r')
-    new_line=infile.readline().strip('\n').split(',')
-    while new_line[0]!='':
+    
+    for k in infile:
+        new_line=k.strip('\n').split(',')
         matrix.append(new_line)
-        new_line=infile.readline().strip('\n').split(',')
+
     infile.close()
     return(matrix)
     # End of the loadfile function
-
-
 
 #***************************************************************
 #  Function:     main
@@ -103,6 +102,8 @@ input_file='Lab06.txt'
 def main():
     spaces(3)
     matrix=loadfile(input_file)
+    print(matrix)
+    hold()
 
 
 # Call the main function.
