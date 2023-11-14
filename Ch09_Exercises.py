@@ -134,10 +134,17 @@ def cap_quiz_key():
     cap_quiz.pop('name')
     return(cap_quiz)
         
+# def q_n_a():
+#     q,a = 
 
 def capital_quiz():
     quiz_key=cap_quiz_key()
-    print(quiz_key)
+
+    while True:
+        q,a=quiz_key.
+
+
+    # print(quiz_key)
     hold()
 
 #***************************************************************

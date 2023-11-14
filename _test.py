@@ -1,27 +1,20 @@
+x=([1,2,3],[4,5,6],[7,8,9])
+y=([1,1,1],[2,2,2],[3,3,3])
+out_x=out_y=''
 
-
-list1=[['04', '05', '1993', '1.068'], ['04', '19', '1993', '1.079'],['05', '19', '1993', '1.079'], ['05', '03', '1993', '1.086'], ['05', '17', '1993', '1.106']]
-list2=[9, 8]
-seq1=['05','19','03','17']
-seq2=['1993']
-mth=0
-yr=0
-cnt_mth=0
-cnt_yr=0
-
-years=[]
-months=[]
-
-# int(list1[0])
-# print(list1)
-# for k1 in seq1:
-#     for k2 in list1:
-#         if k1==k2[1]:
-#             print(k1,k2)
-
-
-def test(x):
-    
-
-k=5
-
+k1=0
+while k1 < 3:
+    k2=0
+    while k2 < 3:
+        # print(x[k1][k2])
+        # print(y[k1][k2])
+        out_x+=(f'{x[k1][k2]}\t')
+        out_y+=(f'{y[k1][k2]}\t')
+        k2+=1
+    out_x+='\n'
+    out_y+='\n'
+    k1+=1
+print()
+print(out_x)
+print()
+print(out_y)
