@@ -132,19 +132,118 @@ def cap_quiz_key():
         cap_quiz[record[0]]=record[1]
     in_file.close()
     cap_quiz.pop('name')
-    return(cap_quiz)
-        
-# def q_n_a():
-#     q,a = 
 
+    return(cap_quiz)
+    # end of cap_quiz_key function
+        
 def capital_quiz():
+    import random
+    response_correct=0
+    response_incorrect=0
+
     quiz_key=cap_quiz_key()
 
-    while True:
-        q,a=quiz_key.
+    is_testing=True
+    while is_testing:
+        question=random.choice(list(quiz_key.keys()))
+        response=get_str(f'What is the capital of {question}')
+        if response == 0:
+            is_testing=False
+            break
+        answer=quiz_key.pop(question)
+
+        # Evaluate response
+        if response.lower()==answer.lower():
+            response_correct+=1
+            print('\tCorrect: ',end='')
+        else:
+            response_incorrect+=1
+            print('\tIncorrect: ',end='')
+        print(f'The capital of {question} is {answer}.')
+        spaces(2)
+
+    print(f'Final grade: {int(response_correct/(response_correct+response_incorrect)*100)}% or {response_correct}/{response_correct+response_incorrect}')
+    spaces(2)
+
+    hold()
+    # end of capital_quiz function
+
+# 3
+# File Encryption and Decryption
+# Write a program that uses a dictionary to assign "codes" to each letter of the alphabet. For example:
+# codes = { 'A' : '8', 'a' : '9', 'B' : '@', 'b' : '#', etc. • •}
+# Using this example, the letter A would be assigned the symbol 8, the letter a would be assigned the number 9, the letter в would be
+# assigned the symbol & , and so forth.
+# The program should open a specified text file, read its contents, then use the dictionary to write an encrypted version of the file's
+# contents to a second file. Each character in the second file should contain the code for the corresponding character in the first file.
+# Write a second program that opens an encrypted file and displays its decrypted contents on the screen.
+def process_message(message,crypt_key):
+    processed=''
+    for k in message:
+        processed+=crypt_key[k]
+    return(processed)
+    # end of process_message function
+
+def encryption_decryption():
+    # To generate a simple key pair for encryption with a 1-to-1 mapping for all ASCII characters, 
+    # we will create a pair of dictionaries: one for encryption and one for decryption.
+    # ASCII characters range from 0 to 127.
+
+    # Creating the encryption and decryption key pairs
+    encryption_key = {chr(i): chr((i + 1) % 128) for i in range(128)}  # Shift each character by 1
+    decryption_key = {v:k for (k,v) in encryption_key.items()}
+
+    # local variables
+    input_file='secret_see.txt'
+    output_file='secret_hide.txt'
+    in_file=open(input_file,'r')
+    message=''
+
+    # open file and process the encryption    
+    for line in in_file:
+        scrambled=process_message(line,encryption_key)
+        unscrambled=process_message(scrambled,decryption_key)
+        message+=scrambled
+
+    # write output to file
+    out_file=open(output_file,'w')
+    out_file.write(message)
+
+    # close files
+    in_file.close()
+    out_file.close()
+
+    # open encrypted file
+    in_file=open(output_file,'r')
+    message=''
+    for line in in_file:
+        unscrambled=process_message(line,decryption_key)
+        message+=unscrambled
+    # close files
+    in_file.close()
+    # display unencrypted message
+    print(message)
+    spaces(3)
+    hold()
+    # end of encryption_decryption function
+
+# 4
+# Unique Words
+# Write a program that opens a specified text file then displays a list of all the unique words found in the file.
+# Hint: Store each word as an element of a set.
+def unique_words():
+    # local variables
+    input_file='secret_see.txt'
+    myset=set()
+    temp_data=''
 
 
-    # print(quiz_key)
+    # read file and build set
+    in_file=open(input_file,'r')
+    for line in in_file:
+        temp_data=line.lower().strip().replace('.','').replace(',','').split(' ')
+        myset=set([k for k in temp_data])
+        print(myset)
     hold()
 
 #***************************************************************
@@ -162,8 +261,8 @@ def main():
     while MENU > 0 and MENU <= 26:
         print('[1]\t Course information')
         print('[2]\t Capital Quiz')
-        print('[3]\t xx')
-        print('[4]\t xx')
+        print('[3]\t File Encryption and Decryption')
+        print('[4]\t Unique Words')
         print('[5]\t xx')
         print('[6]\t xx')
         print('[7]\t xx')
@@ -177,9 +276,9 @@ def main():
         elif MENU==2:
             capital_quiz()
         elif MENU==3:
-            developerInfo('Chapter 9')
+            encryption_decryption()
         elif MENU==4:
-            developerInfo('Chapter 9')
+            unique_words()
         elif MENU==5:
             developerInfo('Chapter 9')
         elif MENU==6:
