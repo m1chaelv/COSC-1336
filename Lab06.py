@@ -78,17 +78,39 @@ def get_int(text):
 #  Parameters:   file name
 #  Returns:      populated list
 #**************************************************************
-def loadfile(file):
+def loadfile(file,a,b,c,d):
+    # inbound parameters
+    # a=food_type
+    # b=reservation
+    # c=rating
+    # d=credit_card
+    # file=data source file
+    # 
+    # variables
     matrix=[]
-    infile=open(file,'r')
-    new_line=infile.readline().strip('\n').split(',')
-    while new_line[0]!='':
-        matrix.append(new_line)
-        new_line=infile.readline().strip('\n').split(',')
-    infile.close()
-    return(matrix)
-    # End of the loadfile function
 
+    # ingest data from file
+    infile=open(file,'r')
+    for k in infile:
+        new_line=k.strip('\n').split(',')
+        matrix.append(new_line)
+    infile.close()
+
+    # load data into dictionaries
+    for k in matrix:
+        a[k[0]]=k[1]
+        b[k[0]]=k[2]
+        c[k[0]]=int(k[3])
+        d[k[0]]=k[4]
+
+    # print(food_type)
+    # print(reservation)
+    # print(rating)
+    # print(credit_card)
+    # hold()
+
+    return(a,b,c,d)
+    # End of the loadfile function
 
 
 #***************************************************************
@@ -100,9 +122,22 @@ def loadfile(file):
 # Global Variables
 input_file='Lab06.txt'
 
+
+
 def main():
+    #initialize dictionaries
+    food_type={}
+    reservation={}
+    rating={}
+    credit_card={}
+
     spaces(3)
-    matrix=loadfile(input_file)
+    food_type,reservation,rating,credit_card=loadfile(input_file,food_type,reservation,rating,credit_card)
+    print(food_type)
+    print(reservation)
+    print(rating)
+    print(credit_card)
+    hold()
 
 
 # Call the main function.

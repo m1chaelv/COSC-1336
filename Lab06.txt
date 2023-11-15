@@ -1,4 +1,3 @@
-Restaurant Name,FoodType,Reservation,Rating,Credit Cards
 The Ivory House,Health,Yes,4,Yes
 Russo's,Pizza,Yes,2,Yes
 Hunan,Chinese,No,2,Yes
