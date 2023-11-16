@@ -235,16 +235,77 @@ def unique_words():
     # local variables
     input_file='secret_see.txt'
     myset=set()
-    temp_data=''
+    temp_data=[]
 
 
     # read file and build set
     in_file=open(input_file,'r')
     for line in in_file:
         temp_data=line.lower().strip().replace('.','').replace(',','').split(' ')
-        myset=set([k for k in temp_data])
-        print(myset)
+        myset.update(temp_data)
+    # print(sorted(myset))
+    for k in sorted(myset):
+        print(k)
     hold()
+
+# 5
+# Word Frequency
+# Write a program that reads the contents of a text file. The program should create a
+# dictionary in which the keys are the individual words found in the file and the values
+# are the number of times each word appears. For example, if the word "the" appears 128 times, 
+# the dictionary would contain an element with 'the' as the key and 128
+# as the value. The program should either display the frequency of each word or create
+# a second file containing a list of each word and its frequency.
+def word_frequency():
+    #local variables
+    input_file='secret_see.txt'
+    temp_set=set()
+    temp_list=[]
+    temp_dict={}
+
+    # method
+    # 1-create set of initial words
+    # 2-create dictionary with words and set counters to 0
+    # 3-process the file data and increment counts
+    # 4-generate output file
+
+    # 1-create set of initial words
+    source_file=open(input_file,'r')
+    for k1 in source_file:
+        k2=k1.strip().replace('.','').replace(',','').replace('?','').lower().split(' ')
+        temp_list+=k2
+        temp_set.update(k2)
+
+    # 2-create dictionary with words and set counters to 0
+    for k1 in temp_set:
+        temp_dict[k1]=0
+
+    # 3-process the file data and increment counts
+    for k1 in temp_list:
+        temp_dict[k1]+=1
+
+    # 4-generate output file
+    col=5
+    wid=15
+    count=0
+    for k1 in sorted(temp_dict):
+        print(f'{k1}:{temp_dict[k1]:<{wid-len(k1)}}',end='')
+        if count>=col:
+            print('\n')
+            count=0
+        count+=1
+    hold()
+
+# 6
+# File Analysis
+# Write a program that reads the contents of two text files and compares them in the
+# following ways:
+# • It should display a list of all the unique words contained in both files. • It should display a list of the words that appear in both files.
+# • It should display a list of the words that appear in the first file but not the second. • It should display a list of the words that appear in the second file but not the first.
+# • It should display a list of the words that appear in either the first or second file, but not both.
+# Hint: Use set operations to perform these analyses.
+def file_analysis():
+    pass
 
 #***************************************************************
 #  Function:     main
@@ -263,8 +324,8 @@ def main():
         print('[2]\t Capital Quiz')
         print('[3]\t File Encryption and Decryption')
         print('[4]\t Unique Words')
-        print('[5]\t xx')
-        print('[6]\t xx')
+        print('[5]\t Word Frequency')
+        print('[6]\t File Analysis')
         print('[7]\t xx')
         print('[8]\t xx')
         print('[9]\t xx')
@@ -280,9 +341,9 @@ def main():
         elif MENU==4:
             unique_words()
         elif MENU==5:
-            developerInfo('Chapter 9')
+            word_frequency()
         elif MENU==6:
-            developerInfo('Chapter 9')
+            file_analysis()
         elif MENU==7:
             developerInfo('Chapter 9')
         elif MENU==8:
