@@ -83,7 +83,7 @@ def get_int(text):
 def get_str(text):
     x=input(f'{text}: ')
     if x=='':
-        return 0
+        return '0'
     else:
         return(x)
     # End of the get_str function
@@ -300,13 +300,369 @@ def word_frequency():
 # File Analysis
 # Write a program that reads the contents of two text files and compares them in the
 # following ways:
-# • It should display a list of all the unique words contained in both files. • It should display a list of the words that appear in both files.
-# • It should display a list of the words that appear in the first file but not the second. • It should display a list of the words that appear in the second file but not the first.
+# • It should display a list of all the unique words contained in both files.
+# • It should display a list of the words that appear in both files.
+# • It should display a list of the words that appear in the first file but not the second.
+# • It should display a list of the words that appear in the second file but not the first.
 # • It should display a list of the words that appear in either the first or second file, but not both.
 # Hint: Use set operations to perform these analyses.
-def file_analysis():
-    pass
+def set2screen(the_set,title):
+    # the_set=set to be processed
+    # local variables
+    screen=75   # width of display screen
+    wid=0       # width of widest word
+    col=0       # number of columns
+    report=''   # report
+    k=1         # loop counter
+    
+    # loop to calculate widest word in set
+    for k1 in the_set:
+        k2=str(k1)
+        if len(k2)>wid:
+            wid=len(k2)
+    wid+=1
 
+    # calculate how many columns will be needed
+    col=screen//wid
+
+    # generate the report
+    screen=col * wid
+    report+=(f'{title:-^{screen}}\n')
+    for k1 in the_set:
+        report+=(f'{k1:^{wid}}')
+        if k<col:
+            k+=1
+        else:
+            k=1
+            report+=('\n')
+    spaces(2)
+    print(report)
+    spaces(3)
+    hold()
+    return(report)
+
+def from_file_to_set(file):
+    # file=input file to be ingested
+    # returns unique words from file
+    # local variables
+    temp_set=set()
+    # open file
+    infile=open(file,'r')
+
+    for k1 in infile:
+        k2=k1.replace('.','').replace(',','').replace('?','').lower().strip().split(' ')
+        if len(k2)>1:
+            temp_set.update(k2)
+    # close file
+    infile.close()
+    # return set
+    return(temp_set)
+
+def the_union(set1,set2):
+    # set1,set2 = sets to compare
+    temp_set=set()
+
+    # method 1
+    temp_set=set1.union(set2)
+    # method 2
+    temp_set=set1|set2
+    return(temp_set)
+
+def the_differences(set1,set2):
+    # set1,set2 = sets to compare
+    temp_set=set()
+
+    # method 1
+    temp_set=set1.difference(set2)
+    # method 2
+    temp_set=set1-set2
+    return(temp_set)
+
+def the_sym_diff(set1,set2):
+    # set1,set2 = sets to compare
+    temp_set=set()
+
+    # method 1
+    temp_set=set1.symmetric_difference(set2)
+    # method 2
+    temp_set=set1^set2
+    return(temp_set)
+
+def file_analysis():
+    # steps needed
+    #x0-function to diaplay a list words in columns
+    #x1-create 2 files
+    # 2-function file_2_set call to process each file and populate a set
+    # 3-function compare [union]
+    # 4-function compare [difference x2]
+    # 5-function compare [symmetric difference]
+
+    # local variables
+    file1='story_1.txt'
+    file2='story_2.txt'
+    file1_set=set()
+    file2_set=set()
+
+    # 2-function from_file_to_set call to process each file and populate a set
+    file1_set=from_file_to_set(file1)
+    file2_set=from_file_to_set(file2)
+
+    set2screen(file1_set,'Story 1')
+    set2screen(file2_set,'Story 2')
+
+    # 3-function compare [union]
+    union_set=the_union(file1_set,file2_set)
+    set2screen(union_set,'Words that appear in both stories')
+
+    # 4-function compare [difference x2]
+    diff_1to2_set=the_differences(file1_set,file2_set)
+    diff_2to1_set=the_differences(file2_set,file1_set)
+
+    set2screen(diff_1to2_set,'Words that appear in story 1 but not 2')
+    set2screen(diff_2to1_set,'Words that appear in story 2 but not 1')
+
+    # 5-function compare [symmetric difference]
+    sym_diff_set=the_sym_diff(file1_set,file2_set)
+
+    set2screen(sym_diff_set,'Words that appear in either story, but not both')
+    
+# 7
+# World Series Winners
+# In this chapter's source code folder (available on the Computer Science Portal at www.pearsonhighered.com/gaddis), you will find a
+# text file named WorldSeriesWinners. txt. This file contains a chronological list of the World Series' winning teams from 1903 through
+# 2009. The first line in the file is the name of the team that won in 1903, and the last line is the name of the team that won in 2009. (Note
+# the World Series was not played in 1904 or 1994. There are entries in the file indicating this.)
+# Write a program that reads this file and creates a dictionary in which the keys are the names of the teams, and each key's associated
+# value is the number of times the team has won the World Series. The program should also create a dictionary in which the keys are the
+# years, and each key's associated value is the name of the team that won that year.
+# The program should prompt the user for a year in the range of 1903 through 2009. It should then display the name of the team that won
+# the World Series that year, and the number of times that team has won the World Series.
+def from_file_to_list(file):
+    # return list contents of file
+    # local variables
+    temp_set=set()
+    temp_list=[]
+    infile=open(file,'r')
+
+    for k1 in infile:
+        k2=k1.strip()
+        temp_list.append(k2)
+    infile.close()
+    return(temp_list)
+
+def count_wins(the_list):
+    # return dictionary team:total wins
+    # local variables
+    temp_set=set(the_list)
+    temp_dict={}
+
+    for k1 in temp_set:
+        temp_dict[k1]=0
+    
+    for k1 in the_list:
+        temp_dict[k1]+=1
+    
+    return(temp_dict)
+
+def ws_winners(the_list):
+    # return dictionary year:team
+    # local variables
+    year=1903
+    temp_dict={}
+
+    for k1 in the_list:
+        temp_dict[year]=k1
+        year+=1
+    
+    return(temp_dict)
+
+def world_series_winners():
+    # 0-read file and create a temp list
+    # 1-dictionary team:total wins
+    # 2-dictionary year:team
+    # 3-prompt for year return year-team-total wins
+    # local variables
+    dict_team={}
+    dict_year={}
+    data_file='WorldSeriesWinners.txt'
+    list_winners=[]
+
+    # 0-read file and create a temp list
+    list_winners=from_file_to_list(data_file)
+
+    # 1-dictionary team:total wins
+    dict_team=count_wins(list_winners)
+
+    # 2-dictionary year:team
+    dict_year=ws_winners(list_winners)
+
+    # 3-prompt for year return year-team-total wins
+    while True:
+        spaces(3)
+        yr_selected=get_int('Enter a year between 1903 to 2008')
+        if yr_selected in dict_year:
+            tmp_winner=dict_year[yr_selected]
+            tmp_total=dict_team[tmp_winner]
+            if 'Not Played' not in tmp_winner:
+                print(f'For {yr_selected}, ', end='')
+
+            print(f'{tmp_winner}', end='')
+
+            if 'Not Played' not in tmp_winner:
+                print(f'{tmp_total}', end='')
+
+            print('\n')
+                
+        elif yr_selected==0:
+            break
+        else:
+            print('Check your input.\n')
+    hold()
+
+# 8
+# Name and Email Addresses
+# Write a program that keeps names and email addresses in a dictionary as key-value pairs. The program should display a menu that lets
+# the user look up a person's email address, add a new name and email address, change an existing email address, and delete an existing
+# name and email address. The program should pickle the dictionary and save it to a file when the user exits the program. Each time the
+# program starts, it should retrieve the dictionary from the file and unpickle it.
+def menu():
+    # display a menu of options
+    spaces(3)
+    menu_items=['(1) Display all names and email adresses',
+                '(2) Look up an email address',
+                '(3) Add a new name and email address',
+                '(4) Update an existing email address',
+                '(5) Delete a name and email address',
+                '(0) to Exit']
+    # display menu
+    for k1 in menu_items:
+        print(k1)
+    spaces(1)
+
+def display_contacts(dict_list):
+    # display content of dictionary in two columns
+    # print(f'display contact: {dict_list}')
+    # hold()
+    for k1 in sorted(dict_list):
+        print(f'{k1:.<25}.{dict_list[k1]:.>25}')
+    # end of display_contacs function
+
+def find_contact(dict_list):
+    # search and display contact
+    # local variables
+    temp_list={}
+    for k1 in dict_list:
+        temp_list[k1]=dict_list[k1].lower()
+    
+    while True:
+        spaces(2)
+        temp_name=get_str('Enter the name')
+        if temp_name.lower() in temp_list:
+            print(f'\t\t{temp_list[k1]}')
+        elif temp_name=='0':
+            break
+        else:
+            print('\t\tnot found')
+    # end of find_contact function
+
+def add_contact(temp_dict):
+    # temp dict to be merged in next step
+    # temp_dict={}
+    temp_name=''
+    temp_email=''
+
+    in_loop=True
+    while in_loop:
+        spaces(2)
+        print('Leave blank to cancel.')
+        temp_name=get_str('Enter the name')
+        temp_email=get_str('Enter the email address')
+        if temp_name=='0':
+            in_loop=False
+        elif temp_email=='0':
+            in_loop=False
+        else:
+            temp_dict[temp_name]=temp_email
+        temp_name=''
+        temp_email=''
+
+    return(temp_dict)
+    # end of add_contact function
+
+def save_binary(file,dict):
+    import pickle
+    # file=contacts_file
+    # dict=dictionary with contacts
+    outfile=open(file,'wb')
+    pickle.dump(dict,outfile)
+    outfile.close()
+
+def delete_contact(temp_dict):
+    # temp dict to be merged in next step
+    # temp_dict={}
+    temp_name=''
+
+    in_loop=True
+    while in_loop:
+        spaces(2)
+        print('Leave blank to cancel.')
+        temp_name=get_str('Enter the name')
+        if temp_name=='0':
+            in_loop=False
+        else:
+            temp_dict.pop(temp_name,'Name not found')
+        temp_name=''
+
+    return(temp_dict)
+    # end of delete_contact function
+
+def name_email():
+    # 0-generate a binary file
+    # import module
+    import pickle
+
+    # local variables
+    contacts={}
+    contacts_file='contacts.bin'
+
+    # load contacts from storage
+    try:
+        infile=open(contacts_file,'rb')
+        contacts=pickle.load(infile)
+        infile.close()
+    except FileNotFoundError as Err:
+        save_binary(contacts_file,contacts)
+        print(f'The file [{contacts_file}] does not exist.  A new one will be created.')
+
+    print('menu loop start')
+    menu()
+    while True:
+        menu()
+        selection=get_int('Make a selection')
+        if selection==0:
+            break
+        elif selection==1:
+            display_contacts(contacts)
+        elif selection==2:
+            find_contact(contacts)
+        elif selection==3:
+            contacts=add_contact(contacts)
+            save_binary(contacts_file,contacts)
+        elif selection==4:
+            display_contacts(contacts)
+            contacts=add_contact(contacts)
+            save_binary(contacts_file,contacts)
+        elif selection==5:
+            display_contacts(contacts)
+            contacts=delete_contact(contacts)
+            save_binary(contacts_file,contacts)
+        else:
+            print('Enter a valid selection.')
+
+    # display_contacts(contacts)
+
+    # hold()
+    
 #***************************************************************
 #  Function:     main
 #  Description:  orchestrate file ingestion and procesing
@@ -326,8 +682,8 @@ def main():
         print('[4]\t Unique Words')
         print('[5]\t Word Frequency')
         print('[6]\t File Analysis')
-        print('[7]\t xx')
-        print('[8]\t xx')
+        print('[7]\t World Series Winners')
+        print('[8]\t Name and Email Addresses')
         print('[9]\t xx')
         print('[10]\t xx')
         print('...\tanything else to exit\n')
@@ -345,9 +701,9 @@ def main():
         elif MENU==6:
             file_analysis()
         elif MENU==7:
-            developerInfo('Chapter 9')
+            world_series_winners()
         elif MENU==8:
-            developerInfo('Chapter 9')
+            name_email()
         elif MENU==9:
             developerInfo('Chapter 9')
         elif MENU==10:

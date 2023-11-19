@@ -1,0 +1,167 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab 6
+#  File Name:         Lab06.pdl
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          [11-20-2023]
+#  Instructor:        Onabajo
+#  Chapter:           <Chapter 9> Dictionaries and Sets
+#  Session:           ACC Fall 2023
+#
+# (a) Write a program segment that reads all the records into a file 
+#   and prints the name of the Restaurant that accept credit cards
+# (b) Write out the name of restaurants that are three stars and above
+# (c) Write out the name of restaurants that serve Chinese or Thai 
+#   food and are three stars or above
+# (d) Write out the name of restaurants that serve HEALTH food
+# (e) Write out the name of restaurants that have a one star rating, 
+#   two star rating, three star rating and four star rating.
+#***************************************************************
+#***************************************************************
+#  Function:     main
+#  Description:  orchestrate file ingestion and procesing
+#  Parameters:   none
+#  Returns:      final report to screen and file
+#**************************************************************
+Global Variables
+set input file
+
+begin main
+
+    read input file
+    set food_type by restaurant
+    set reservation by restaurant
+    set rating by restaurant
+    set credit_card by restaurant
+
+    generate credit_cards report
+    generate recommended report
+    generate recommended_asia report
+    generate health report
+    generate ratings report
+
+    output final output
+end main
+
+#***************************************************************
+#  Function:     loaddata
+#  Description:  Load data file into array for processing.
+#  Parameters:   file name of file to be ingested
+#  Returns:      array
+#***************************************************************
+begin loaddata
+    set temp_list
+
+    open input file
+
+    read each line in file
+    process each line as a string of values separted by commas
+
+    close input file
+    return populated array
+end loadrec
+
+#***************************************************************
+#  Function:     loadrec
+#  Description:  load dictionary values from array
+#  Parameters:   array, index, type ('int','str','boolean')
+#  Returns:      dictionary w/ key:value
+#**************************************************************
+begin loadrec
+    set temp_dict
+
+    loop thru all array entries
+    set key value
+    set value based on index parameter
+
+    edit value based on type parameter
+    string, integer, boolean
+    
+    return completed dictionary
+end loadrec
+
+#***************************************************************
+#  Function:     credit_cards
+#  Description:  generate report of restraurants accepting cc
+#  Parameters:   credit_card dictionary
+#  Returns:      string with completed report
+#**************************************************************
+begin credit_cards
+    set title to 'Accept Credit Cards'
+    start report
+
+    select restaurants Accept CC = True
+
+    Add restaurants to report
+
+    return report 
+end credit_cards
+
+#***************************************************************
+#  Function:     recommended
+#  Description:  generate report of restaurants with 3+ stars
+#  Parameters:   rating dictionary
+#  Returns:      string with completed report
+#**************************************************************
+begin recommended
+    set title to 'Restaurants with 3+ star ratings'
+    start report
+
+    select restaurants with 3+ stars
+
+    Add restaurants to report
+
+    return report 
+end recommended
+
+#***************************************************************
+#  Function:     recommended_asia
+#  Description:  generate report of asian restaurants with 3+ stars
+#  Parameters:   rating & food_type dictionaries
+#  Returns:      string with completed report
+#**************************************************************
+begin recommended_asia
+    set title to 'Chinese Restaurants with 3+ stars'
+    start report
+
+    select restaurants with 3+ stars
+    and select restaurant = 'Chinese'
+ 
+    Add restaurants to report
+
+    return report 
+end recommended_asia
+
+#***************************************************************
+#  Function:     health
+#  Description:  generate report of restaurants with healthy options
+#  Parameters:   food_type dictionary
+#  Returns:      string with completed report
+#**************************************************************
+begin health
+    set title to 'Restaurants with Healty Options'
+    start report
+
+    select restaurants with Healthy options
+
+    Add restaurants to report
+
+    return report 
+end health
+
+#***************************************************************
+#  Function:     ratings
+#  Description:  generate report of all the restaurants by ratings
+#  Parameters:   rating dictionary
+#  Returns:      string with completed report
+#**************************************************************
+begin ratings
+    set title to 'Restaurants by Ratings'
+    start report
+
+    sort list by rating
+    select restaurants based on rating
+    Add restaurants to report
+
+    return report 
+end health

@@ -1,0 +1,48 @@
+
+       Name:    Michael Villarreal
+     Course:    Programming Fundamentals I
+ Assignment:    Lab06-Dictionary Activities
+  Generated:    2023-11-19 16:59
+
+
+
+ACCEPT CREDIT CARDS
+-------------------
+Beijing
+Fisherman
+Hunan
+Russo's
+Seafood
+Stringate
+The Ivory House
+
+RESTAURANTS WITH 3+ STAR RATINGS
+--------------------------------
+Dragon Inn
+The Ivory House
+
+CHINESE RESTAURANTS WITH 3+ STARS
+---------------------------------
+Dragon Inn
+
+RESTAURANTS WITH HEALTY OPTIONS
+-------------------------------
+Stringate
+The Ivory House
+
+RESTAURANTS BY RATINGS
+----------------------
+1 Star Rating
+        Banana Cabana
+        Beijing
+        El Rancho
+        Seafood
+2 Star Rating
+        Fisherman
+        Hunan
+        Russo's
+        Stringate
+3 Star Rating
+        Dragon Inn
+4 Star Rating
+        The Ivory House
