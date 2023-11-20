@@ -116,7 +116,34 @@ def searchdata():
 
 # bubble
 def bubble(a,b):
-    pass
+    # a=x/ID b=score
+    # local variable
+    flag=1  # replace k=0
+    i=n-1
+    j=0
+    while (i >= 1) and (flag==1):
+        flag=0
+        j=0
+        while (j <= i-1) :
+            if a[j] > a[j+1]:
+                # swapping id
+                temp=a[j]
+                a[j]=a[j+1]
+                a[j+1]=temp
+                # swapping scores
+                temp1=b[j]
+                b[j]=b[j+1]
+                b[j+1]=temp1
+                # reset flag
+                flag=1
+                j+=1
+            else:
+                j+=1
+            # j+=1
+        i-=1
+    return(a,b)
+
+
     # End of bubble function
 
 # loadrec
@@ -131,6 +158,39 @@ def loadrec(file,a,b):
         k+=1
     # End of loadrec function
 
+# binary
+def binary(file,a,b):
+    # file=infiley a=x b=score
+    k=0
+    idn=0
+    scn=0
+    mid=0
+    high=n
+
+    # load data to be modified
+    while k<5:
+        templist=file.readline().strip('\n').split(',')
+        idn=int(templist[0])
+        scn=int(templist[1])
+        # using the data
+        low=0
+        high=n
+        flag=0  # i=0
+        while (low<=high)and(flag==0):
+            mid=int((low+high)/2)
+            if (a[mid] == idn):
+                # reset flag
+                flag=1
+                # replace the score
+                b[mid]=scn
+                print('Search modify successful')
+            elif (a[mid] < idn):
+                low=mid+1
+            else:
+                high=mid-1
+        k+=1
+
+
 #***************************************************************
 #  Function:     main
 #  Description:  orchestrate file ingestion and procesing
@@ -143,19 +203,31 @@ n=20
 def main():
     # file declaration
     infile=open('Lab07.txt','r')
+    infiley=open('Lab07.upd','r')
     outfile=open('Lab07.out','w')
     # local variables
     x=[0]*n
     score=[0]*n
     #call functions
     loadrec(infile,x,score)
+
     print('Unsorted data')
     outdata(outfile,x,score)
+
+    # x,score=bubble(x,score)
     bubble(x,score)
     print('Sorted data')
+    outdata(outfile,x,score)
+
+    binary(infiley,x,score)
+    print('Modified Data')
+    outdata(outfile,x,score)
+
     # close file
     infile.close()
+    infiley.close()
     outfile.close()
+
     #hold screen
     hold()
 
