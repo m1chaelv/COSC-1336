@@ -3,9 +3,9 @@
 #  Program #:         Lab07
 #  File Name:         Lab07.py
 #  Course:            COSC 1336 Programming Fundamentals I
-#  Due Date:          [xx-xx-xxxx]
+#  Due Date:          [11-27-2023]
 #  Instructor:        Onabajo
-#  Chapter:           <Chapter x>
+#  Chapter:           <Chapter ?>
 #  Session:           ACC Fall 2023
 #
 # Perform the following operations on a set of records
@@ -46,6 +46,7 @@ def developerInfo(assignment):
     signature+=(f'{"Generated:":>12}\t{formatted_datetime}\n')
     signature+=spaces(2)
 
+    print(signature)
     return(signature)
     # End of the developerInfo function
 
@@ -72,124 +73,182 @@ def hold():
     input('Please enter any key to continue...')    
     # End of the hold function
 
-#***************************************************************
-#  Function:     get_int
-#  Description:  Request numeric input from user. Any number not
-#   an integer will be returned as a 0. Useful for menu prompts
-#   to cancel loop verses exception error.
-#  Parameters:   Text string will be used as user prompt + ": "
-#  Returns:      integer or 0 if not an integer
-#**************************************************************
-def get_int(text):
-    x=input(f'{text} :')
-    if x=='':
-        return 0
-    else:
-        return(int(x))
-    # End of the get_int function
-
 # LOADDATA
-def loaddata():
-    pass
+#***************************************************************
+#  Function:     loaddata
+#  Description:  open input file and parse ID & Grade array
+#  Parameters:   input file name
+#  Returns:      ID array as integer & Grade array as integer
+#**************************************************************
+def loaddata(file):
+    # file=file_in
+    # local variables
+    temp_id=[]                  # ID array
+    temp_grade=[]               # Grade array
+    temp_in_file=open(file)     # open input file
+
+    # loop through each line
+    for k1 in temp_in_file:
+        if k1=='\n':            # skip blank lines
+            print('blank')
+        else:
+            temp_load=k1.strip().split(',')         # parsing each line to ID, Grade
+            temp_id.append(int(temp_load[0]))       # appending ID to temp array
+            temp_grade.append(int(temp_load[1]))    # appending Grade to temp array
+    
+    temp_in_file.close()        # close input file
+    return(temp_id,temp_grade)  # return 2 arrays ID, Grade
     # End of loaddata function
 
-# OUTDATA
-def outdata(file,a,b):
-    # file=outfile a=x b=score
-    # local variable
-    k=0
-    while (k<n):
-        print (a[k],' ',b[k])
-        file.write(str(a[k])+' '+str(b[k])+'\n')
-        k+=1
-    # End of outdata function
-
-# SORTDATA
-def sortdata():
-    pass
+# SORTDATA (insertion sort)
+#***************************************************************
+#  Function:     sortdata
+#  Description:  sort 2 arrays using the first as key
+#  Parameters:   2 arrays (ID & Grade)
+#  Returns:      sorted ID array and matching Grade array
+#**************************************************************
+def sortdata(a,b):
+    # a=ID b=grades
+    # local variables
+    k1=1
+    # outer loop from k1[1] to end of array
+    while k1<=len(a)-1:
+        j1=k1
+        # inner loop from current location to k1[1] 
+        while (j1>=1) and (a[j1-1]>a[j1]):  # will continue repeating until item is sorted
+            # swap ID records
+            temp_a=a[j1-1]
+            a[j1-1]=a[j1]
+            a[j1]=temp_a
+            # swap grade records
+            temp_b=b[j1-1]
+            b[j1-1]=b[j1]
+            b[j1]=temp_b
+            j1-=1                           # increment counter down
+        k1+=1                               # increment counter up
+    return(a,b)
     # End of sortdata function
 
-# SEARCHDATA
-def searchdata():
-    pass
-    # End of searchdata function
-
-# bubble
-def bubble(a,b):
-    # a=x/ID b=score
-    # local variable
-    flag=1  # replace k=0
-    i=n-1
-    j=0
-    while (i >= 1) and (flag==1):
-        flag=0
-        j=0
-        while (j <= i-1) :
-            if a[j] > a[j+1]:
-                # swapping id
-                temp=a[j]
-                a[j]=a[j+1]
-                a[j+1]=temp
-                # swapping scores
-                temp1=b[j]
-                b[j]=b[j+1]
-                b[j+1]=temp1
-                # reset flag
-                flag=1
-                j+=1
-            else:
-                j+=1
-            # j+=1
-        i-=1
-    return(a,b)
-
-
-    # End of bubble function
-
-# loadrec
-def loadrec(file,a,b):
-    # file=infile a=x b=score
+# SEARCHDATA (binary search)
+#***************************************************************
+#  Function:     searchdata
+#  Description:  retreives update file and updates array
+#  Parameters:   file name of file containing corrections 
+#                   and 2 arrays (ID & Grade)
+#  Returns:      updated ID array and matching Grade array
+#**************************************************************
+def searchdata(file,a,b):
+    # file=file_updates a=ID b=score
     # local variables
-    k=0
-    while (k < n):
-        templist=file.readline().strip('\n').split(',')
-        a[k]=int(templist[0])
-        b[k]=int(templist[1])
-        k+=1
-    # End of loadrec function
-
-# binary
-def binary(file,a,b):
-    # file=infiley a=x b=score
-    k=0
-    idn=0
-    scn=0
+    temp_infile=open(file,'r')
     mid=0
-    high=n
 
-    # load data to be modified
-    while k<5:
-        templist=file.readline().strip('\n').split(',')
-        idn=int(templist[0])
-        scn=int(templist[1])
-        # using the data
-        low=0
-        high=n
-        flag=0  # i=0
-        while (low<=high)and(flag==0):
-            mid=int((low+high)/2)
-            if (a[mid] == idn):
-                # reset flag
-                flag=1
-                # replace the score
-                b[mid]=scn
-                print('Search modify successful')
-            elif (a[mid] < idn):
-                low=mid+1
-            else:
-                high=mid-1
-        k+=1
+    # loop once per entry in update file
+    for k1 in temp_infile:
+        temp_data=k1.strip().split(',')     # parsing each line to ID, Grade
+        if k1!='\n':                        # processes only lines that are not empty
+            temp_a=int(temp_data[0])        # convert ID to integer
+            temp_b=int(temp_data[1])        # convert Grade to integer
+            high=len(a)                     # set high variable to length of ID array
+            low=mid=0                       # initialize mid and low values to 0
+            flag=True                       # flag to indicate when to exit loop (False)
+            while flag:
+                mid=(low+high)//2           # set mid to halfway point
+                if a[mid]==temp_a:          # if current location [mid] matches the ID then process update
+                    b[mid]=temp_b           # update matching Grade
+                    flag=False              # exit loop
+                else:                       # if no match determine if we eliminate upper or lower half of remainder
+                    if a[mid]<temp_a:       # if current location [mid] < ID (eliminate lower half)
+                        low=mid+1           # move low mark to current location
+                    else:                   # if current location [mid] < ID (eliminate upper half)
+                        high=mid-1          # move high mark to current location
+    
+    temp_infile.close()                     # close file
+    return(a,b)                             # return ID array and updated Grade array
+    # end of searchdata function
 
+#***************************************************************
+#  Function:     column_width
+#  Description:  calculate the width of a column by inspecting 
+#                   each entry in an array and associated header
+#  Parameters:   array to inspect, desired buffer, and related header
+#  Returns:      integer with calculated column width
+#**************************************************************
+def column_width(a,b,c):
+    # a=array, b=buffer, c=header
+    # local variables
+    column0=0
+
+    if c=='#':                          # if header is # indicates this is row counter
+        for k1 in a:                    # inspect each entry in the array
+            column0+=1                  # increment by 1
+        column0=len(str(column0))+b     # convert counter to str and calculate width plus buffer
+    else:
+        for k1 in a:                    # inspect each entry in the array
+            if len(str(k1))>column0:    # inspect each entry in the array
+                column0=len(str(k1))    # counter updated if entry has a larger width value
+        column0+=b                      # update counter with buffer
+    if (len(c)+b)>column0:              # test if header width exceeds data+buffer width
+        column0=len(c)+b                # update if true
+    return(column0)                     # return column width calclation with buffer
+    # end of column_width function
+
+#***************************************************************
+#  Function:     report_out
+#  Description:  generate a structred report
+#  Parameters:   ID and Grade array, plus title for report
+#  Returns:      formatted report as string
+#**************************************************************
+def report_out(a,b,c):
+    # a=id, b=grade, c=header
+    # initialize column variables
+    column_0=column_width(a,0,'#')
+    column_a=column_width(a,1,'')
+    column_b=column_width(b,3,'')
+    column_ab=column_a+column_b
+    # initialize report
+    report=spaces(1)
+    
+    # generate report header
+    report+=(f'{"#":>{column_0}} {c:>{column_ab}}\n')
+    report+=(f'{"":->{column_0}} {"":->{column_ab}}\n')
+
+    # generate report with [row number, ID, Grade]
+    for k1 in range (0,len(b)):
+        report+=(f'{k1+1:>{column_0}} {a[k1]:>{column_a}}{b[k1]:.>{column_b}}\n')
+    
+    # finalize report
+    report+=spaces(1)
+
+    # print report to screen
+    print(report)
+
+    # return completed report as string
+    return(report)
+    # end of report_out function
+
+# OUTDATA
+#***************************************************************
+#  Function:     outdata
+#  Description:  output report to file
+#  Parameters:   file name of output file and report
+#  Returns:      output file
+#**************************************************************
+def outdata(file,a):
+    # file=file_out a=report
+    # local variable
+    
+    # if report is empty then initialize an empty file
+    if a=='':
+        outfile=open(file,'w')
+    # if report is not empty then it appends the report to file
+    else:
+        outfile=open(file,'a')
+        outfile.write(a)
+    
+    # close file
+    outfile.close()
+    # End of outdata function
 
 #***************************************************************
 #  Function:     main
@@ -198,42 +257,44 @@ def binary(file,a,b):
 #  Returns:      final report to screen and file
 #**************************************************************
 # Global Variables
-n=20
+# n=20
+assignment='Lab 07'
 
 def main():
-    # file declaration
-    infile=open('Lab07.txt','r')
-    infiley=open('Lab07.upd','r')
-    outfile=open('Lab07.out','w')
     # local variables
-    x=[0]*n
-    score=[0]*n
+    file_in='Lab07.txt'
+    file_updates='Lab07.upd'
+    file_out='Lab07.out'
+    id=[0]
+    grades=[0]
+    report=''
+    outdata(file_out,report)
+
+    # title
+    report+=developerInfo(assignment)
+
     #call functions
-    loadrec(infile,x,score)
+    # LOADDATA
+    id,grades=loaddata(file_in)
+    report+=report_out(id,grades,'unsorted')
+    hold()
 
-    print('Unsorted data')
-    outdata(outfile,x,score)
+    # SORTDATA
+    id,grades=sortdata(id,grades)
+    report+=report_out(id,grades,'sorted')
+    hold()
 
-    # x,score=bubble(x,score)
-    bubble(x,score)
-    print('Sorted data')
-    outdata(outfile,x,score)
+    # SEARCHDATA
+    id,grades=searchdata(file_updates,id,grades)
+    report+=report_out(id,grades,'updated')
+    hold()
 
-    binary(infiley,x,score)
-    print('Modified Data')
-    outdata(outfile,x,score)
-
-    # close file
-    infile.close()
-    infiley.close()
-    outfile.close()
+    #OUTDATA
+    outdata(file_out,report)
 
     #hold screen
     hold()
-
-
-
-    # End of the developerInfo function
+    # End of the main function
 
 # Call the main function.
 if __name__ == '__main__':

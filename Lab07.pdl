@@ -1,0 +1,171 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab07
+#  File Name:         Lab07.pld
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          [11-27-2023]
+#  Instructor:        Onabajo
+#  Chapter:           <Chapter ?>
+#  Session:           ACC Fall 2023
+#
+# Perform the following operations on a set of records
+# 1. Pick a sort method (Insertion Sort)
+# 2. Sort the records using the ID as the Key
+# 3. Pick a Search Method (Binary Search)
+# 4. Search the records and make appropriate modifications
+#
+# Restrictions:
+# Must be user friendly
+# Lots of comments
+# Must be structured
+# Must use array
+# Must use function LOADDATA, OUTDATA, SORTDATA, SEARCHDATA
+# 
+# 
+# Program to code bubble sort to sort a set of data to develop
+# Binary Search to modify the data. It will call functions to
+# load, sort, and modify
+#***************************************************************
+
+#***************************************************************
+#  Function:     main
+#  Description:  orchestrate file ingestion and procesing
+#  Parameters:   none
+#  Returns:      final report to screen and file
+#**************************************************************
+
+begin main
+    set local variables
+    set file_in
+    set file_updates
+    set file_out
+
+    initialize id array
+    initialize grades array
+    initialize report
+    initialize file_out
+
+    call functions
+
+    LOADDATA with file_in
+        return id,grades
+    report_out with id,grades,title
+        return report
+
+    SORTDATA with id,grades
+        return id,grades
+    report_out with id,grades,title
+        return report
+
+    SEARCHDATA with file_updates,id,grades
+        return id,grades
+    report_out with id,grades,title
+        return report
+
+    OUTDATA with file_out,report
+
+end main
+
+#***************************************************************
+#  Function:     loaddata
+#  Description:  open input file and parse ID & Grade array
+#  Parameters:   input file name
+#  Returns:      ID array as integer & Grade array as integer
+#**************************************************************
+begin loaddata with file_in
+    initialize temp_id
+    initialize temp_grade
+    
+    open file_in
+
+    for each line
+        parse (temp_id,temp_grade)
+    
+    close file_in
+    
+    return(temp_id,temp_grade
+end loaddata
+
+#***************************************************************
+#  Function:     sortdata (insertion sort method)
+#  Description:  sort 2 arrays using the first as key
+#  Parameters:   2 arrays (ID & Grade)
+#  Returns:      sorted ID array and matching Grade array
+#**************************************************************
+begin sortdata with ID,grades
+    set local variables
+    set k1=1
+
+    for each index starting from the second location (ascending order)
+        compare value with previous value (descending order)
+        if previous is larger
+            swap records in ID array
+            swap records in grades array
+    return(ID, grades)
+# End sortdata
+
+#***************************************************************
+#  Function:     searchdata (binary search method)
+#  Description:  retreives update file and updates array
+#  Parameters:   file name of file containing corrections 
+#                   and 2 arrays (ID & Grade)
+#  Returns:      updated ID array and matching Grade array
+#**************************************************************
+begin searchdata with file_updates, ID, grades
+    set local variables
+    set mid=0
+
+    open file_updates
+
+    for each record in file_updates
+        parse (ID,grades)
+
+    for each record in ID
+        repeat until match is found
+            compare middle record to ID
+            if match
+                update grade
+                next record
+            if not match 
+                eliminate search to above middle if ID is greater
+                eliminate search to lower middle if ID is lower
+    
+    close file_updates
+
+    return(ID,grades)
+end searchdata
+
+#***************************************************************
+#  Function:     report_out
+#  Description:  generate a structred report
+#  Parameters:   ID and Grade array, plus title for report
+#  Returns:      formatted report as string
+#**************************************************************
+begin report_out with ID,grades,header
+    initialize report
+    
+    for each ID record
+        append [record no.] [ID] [grade]
+
+    output report to screen
+
+    return(report)
+end report_out
+
+#***************************************************************
+#  Function:     outdata
+#  Description:  output report to file
+#  Parameters:   file name of output file and report
+#  Returns:      output file
+#**************************************************************
+begin outdata file_out,report
+    local variable
+    
+    if report is empty
+        initialize file_out open to write
+    if report not empty
+        initialize outfile open to append
+        write(report)
+
+    close outfile
+end outdata
