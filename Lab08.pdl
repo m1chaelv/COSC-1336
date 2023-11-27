@@ -1,0 +1,90 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab 8
+#  File Name:         Lab08.pdl
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          11-27-2023
+#  Instructor:        Onabajo
+#
+# Baseball program for Texas Rangers
+# I will load from a data file and compute
+# Batting Average and Slugging Average for
+# all players..
+#***************************************************************
+
+start
+    # global variables
+    N = 9   # number of players
+
+    # initialize variables
+    p=0         # player number
+    s=0         # single
+    d=0         # double
+    t=0         # triple
+    hr=0        # homerun
+    atbat=0     # times at bat
+    s1=0        # calculated single value
+    d1=0        # calculated double value
+    t1=0        # calculated triple value
+    hr1=0       # calculated homerun value
+
+    # open source and output files
+    open infile lab03.txt
+    open outfile lab03.out
+
+    # loop N times
+    k = 0
+    while k < N do:
+        # read record from source file
+        # source file sample
+        # 1,5,3,1,2,70
+        # 2,3,0,2,1,15
+        get_list infile.readline
+
+        # set values
+        p=get_list[0]
+        s=get_list[1]
+        d=get_list[2]
+        t=get_list[3]
+        hr=get_list[4]
+        atbat=get_list[5]
+
+        # calculate batting average
+        ba=(s+d+t+hr)/atbat
+
+        # calculate weighted values
+        # build as functions
+        s1=single(s)
+        d1=double(d)
+        t1=triple(t)
+        hr1=homerun(hr)
+
+        # calculate slugging average
+        sa=(s1+d1+t1+hr1)/atbat
+
+        # output to screen
+        print(p, ba, sa)
+
+        # output to file
+        write outfile lab03.out
+
+    # close files
+    close infile
+    close outfile
+stop
+
+start # single(x)
+    return (x * 2)
+stop
+
+start # double(x)
+    return (x * 2)
+stop
+
+start # triple(x)
+    return (x * 3)
+stop
+
+start # homerun(x)
+    return (x * 4)
+stop
