@@ -1,3 +1,29 @@
+#***************************************************************
+#  Developer:         Michael Villarreal
+#  Program #:         Lab 8
+#  File Name:         baseball.py
+#  Course:            COSC 1336 Programming Fundamentals I
+#  Due Date:          11-27-2023
+#  Instructor:        Onabajo
+#
+#***************************************************************
+# In baseball, a batting average is computer by
+# 
+# Dividing the total number of hits by the total number of times
+# at bat. The slugging average is computed dividing the total number 
+# of bases by the total number of times at bat. For this computation, 
+# a single is counted as a base, a double as two bases etc.
+# 
+# Write a class that will compute and print the batting average 
+# and the slugging average
+# 
+# Use the following functions:
+# single (to compute single)
+# double (to compute doubles)
+# triple (to compute triples)
+# homerun (to compute the home runs)
+#***************************************************************
+
 class baseball():
     #***************************************************************
     #  Function:     single
