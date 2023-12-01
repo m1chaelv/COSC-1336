@@ -675,7 +675,7 @@ def name_email():
 def main():
     print('')
     MENU=1
-    while MENU > 0 and MENU <= 26:
+    while MENU > 0 and MENU <= 10:
         print('[1]\t Course information')
         print('[2]\t Capital Quiz')
         print('[3]\t File Encryption and Decryption')
