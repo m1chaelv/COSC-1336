@@ -19,9 +19,19 @@ class Pet:
     #  Parameters:      ???
     #  Returns:         ???
     #**************************************************************
-    def __init__(self, name):
+    def __init__(self, name, animal_type, age):
         self.__name=name
+        self.__animal_type=animal_type
+        self.__age=age
 
+    #***************************************************************
+    #  Method:      set_name
+    #  Description: ???
+    #  Parameters:  ???
+    #  Returns:     ???
+    #**************************************************************
+    def set_name(self, name):
+        self.__name=name
 
     #***************************************************************
     #  Data Attribute:  set_animal_type
@@ -29,9 +39,8 @@ class Pet:
     #  Parameters:      ???
     #  Returns:         ???
     #**************************************************************
-    def set_animal_type(self):
-        __animal_type=''
-
+    def set_animal_type(self, animal_type):
+        self.__animal_type=animal_type
 
     #***************************************************************
     #  Method:      set_age
@@ -39,8 +48,8 @@ class Pet:
     #  Parameters:  ???
     #  Returns:     ???
     #**************************************************************
-    def set_age(self):
-        __age=''
+    def set_age(self, age):
+        self.__age=age
 
     #***************************************************************
     #  Method:      get_name
@@ -49,7 +58,7 @@ class Pet:
     #  Returns:     ???
     #**************************************************************
     def get_name(self):
-        __name=''
+        return self.__name
 
 
     #***************************************************************
@@ -59,8 +68,7 @@ class Pet:
     #  Returns:     ???
     #**************************************************************
     def get_animal_type(self):
-        __animal_type=''
-
+        return self.__animal_type
 
     #***************************************************************
     #  Method:      ???
@@ -69,8 +77,7 @@ class Pet:
     #  Returns:     ???
     #**************************************************************
     def get_age(self):
-        __age=''
-
+        return self.__age
 
     #***************************************************************
     #  Method:      ???
@@ -78,5 +85,7 @@ class Pet:
     #  Parameters:  ???
     #  Returns:     ???
     #**************************************************************
+    def __str__(self):
+        return(f'{self.__name} ({self.__animal_type}): age {self.__age}')
 
 

@@ -1,0 +1,19 @@
+In the DHCPv6 address lease process, the first and last message names are:
+
+
+...... Request ...... Reply ......
+
+
+...... Advertise ...... Reply ......
+
+
+...... Discover ...... Request ......
+
+
+...... Discover ...... Advertise ......
+
+
+...... Solicit ...... Acknowledgement ......
+
+
+A different answer
