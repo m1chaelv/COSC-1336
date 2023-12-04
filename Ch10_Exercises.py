@@ -172,7 +172,24 @@ def pet_class():
 #***************************************************************
 
 def car_class():
-    pass
+    tmp_make=tmp_year=''
+    count=0
+    tmp_car=[]
+
+    spaces(3)
+    count=get_int('How many cars do you have logs on? ')
+
+    if count>0:
+        spaces(2)
+        for k1 in range(count):
+            spaces(1)
+            k2=input('Enter the make: ')
+            k3=get_int(f'Enter the year for the {k2}: ')
+            tmp_car+=[[k2,k3]]
+    
+    print(tmp_car)
+    hold()
+
 
 #***************************************************************
 #  Function:     main
@@ -186,7 +203,7 @@ def car_class():
 def main():
     menu=(
         [1,'Pet class'],
-        [2,'Car class],
+        [2,'Car class'],
         [0,'exit']
         )
     
