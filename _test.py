@@ -1,13 +1,12 @@
 def main():
-    infile=open('_test.txt','r')
-    outfile=open('_test.out','w')
+    test={}
 
-    print()
-    for k1 in infile:
-        k2=k1.strip()
-        if k2!='':
-            print(k2)
-    print()
-    infile.close()
-    outfile.close()
+    for k1 in range(5):
+        test[k1]=k1*5
+
+    if 5 in test:
+        print(test[3])
+
+    print(test)
+
 main()

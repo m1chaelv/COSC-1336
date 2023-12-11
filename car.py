@@ -53,5 +53,54 @@ class Car:
     def __init__(self,year_model,make):
         self.__year_model=year_model
         self.__make=make
+        self.__speed=0
         
-        pass
+    #***************************************************************
+    #  Method:          ???
+    #  Description:     ???
+    #  Parameters:      ???
+    #  Returns:         ???
+    #**************************************************************
+    def accelorate(self):
+        self.__speed+=5
+        # print(f'{self.__year_model} {self.__make}\t:{self.__speed}')
+
+    #***************************************************************
+    #  Method:          ???
+    #  Description:     ???
+    #  Parameters:      ???
+    #  Returns:         ???
+    #**************************************************************
+    def brake(self):
+        self.__speed-=5
+        # print(f'{self.__year_model} {self.__make}\t:{self.__speed}')
+
+    #***************************************************************
+    #  Method:          ???
+    #  Description:     ???
+    #  Parameters:      ???
+    #  Returns:         ???
+    #**************************************************************
+    def get_speed(self):
+        # print(self.__speed)
+        return(self.__speed)
+
+    #***************************************************************
+    #  Method:          ???
+    #  Description:     ???
+    #  Parameters:      ???
+    #  Returns:         ???
+    #**************************************************************
+    def get_make(self):
+        # print(self.__make)
+        return(self.__make)
+
+    #***************************************************************
+    #  Method:          ???
+    #  Description:     ???
+    #  Parameters:      ???
+    #  Returns:         ???
+    #**************************************************************
+    def get_year_model(self):
+        # print(self.__year_model)
+        return(self.__year_model)
