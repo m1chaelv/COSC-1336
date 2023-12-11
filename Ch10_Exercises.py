@@ -601,18 +601,18 @@ def emp_mgmt_sys():
 # can be used with the RetailItem class. The CashRegister class 
 # should be able to internally keep a list of RetailItem objects. 
 # The class should have the following methods:
-
-# • A method named purchase _item that accepts a RetailItem object
+# 
+# • A method named *purchase_item* that accepts a RetailItem object
 #   as an argument. Each time the purchase_item method is called, 
 #   the RetailItem object that is passed as an argument should be 
 #   added to the list.
-# • A method named get_total that returns the total price of all 
+# • A method named *get_total* that returns the total price of all 
 #   the RetailItem objects stored in the CashRegister object's 
 #   internal list
-# • A method named show items that displays data about the 
+# • A method named *show_items* that displays data about the 
 #   RetailItem objects stored in the CashRegister object's internal 
 #   list.
-# • A method named clear that should clear the Cashregister object's 
+# • A method named *clear* that should clear the Cashregister object's 
 #   internal list.
 #
 # Demonstrate the CashRegister class in a program that allows the 
@@ -624,6 +624,43 @@ def emp_mgmt_sys():
 def cash_register():
     import retailitem
     import cashregister
+    pass
+
+# 9
+# Trivia Game
+#***************************************************************
+# In this programming exercise, you will create a simple trivia 
+# game for two players. The program will work like this:
+# 
+# • Starting with player 1, each player gets a turn at answering 
+#   5 trivia questions. (There should be a total of 10 questions.) 
+#   When a question is displayed, 4 possible answers are also 
+#   displayed. Only one of the answers is correct, and if the 
+#   player selects the correct answer, he or she earns a point.
+# • After answers have been selected for all the questions, the 
+#   program displays the number of points earned by each player 
+#   and declares the player with the highest number of points 
+#   the winner.
+# 
+# To create this program, write a question class to hold the 
+# data for a trivia question. The Question class should have 
+# attributes for the following data:
+#
+# • A trivia question
+# • Possible answer 1
+# • Possible answer 2
+# • Possible answer 3
+# • Possible answer 4
+# • The number of the correct answer (1, 2, 3, or 4)
+# 
+# The Question class also should have an appropriate _ _init_ _ 
+# method, accessors, and mutators. The program should have a list 
+# or a dictionary containing 10 question objects, one for each 
+# trivia question. Make up your own trivia questions on the 
+# subject or subjects of your choice for the objects.
+#***************************************************************
+
+def trivia_game():
     pass
 
 #***************************************************************
@@ -644,6 +681,8 @@ def main():
         [5,'RetailItem class'],
         [6,'Patient Charges class'],
         [7,'Employee Management System'],
+        [8,'Cash Register'],
+        [9,'Trivia Game']
         [0,'exit']
         )
     
@@ -671,6 +710,10 @@ def main():
             patient_charges()
         elif selection==7:
             emp_mgmt_sys()
+        elif selection==8:
+            cash_register()
+        elif selection==9:
+            trivia_game()
     # End of the developerInfo function
 
 # Call the main function.
