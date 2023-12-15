@@ -332,11 +332,12 @@ def emp_class():
 # Item #2   Designer Jeans  40                  34.95
 # Item #3   Shirt           20                  24.95
 #***************************************************************
-def retailitem_class():
+def retailitem_class(temp_items):
     import retailitem
 
     items=[0]
     count=0
+    # temp_items={}
 
     print('Enter inventory\n'
           '----------------')
@@ -355,8 +356,10 @@ def retailitem_class():
 
     for k1 in range(count):
         print(f'{items[k1].get_item()}\t{items[k1].get_desc()}\t{items[k1].get_units()}\t{float(items[k1].get_price()):>10,.2f}')
+        temp_items[items[k1].get_item()]=items[k1]
 
     hold()
+    return(temp_items)
 
 # 6
 # Patient Charges
@@ -620,11 +623,124 @@ def emp_mgmt_sys():
 # to check out, the program should display a list of all the items 
 # he or she has selected for purchase, as well as the total price.
 #***************************************************************
+def restock(receipt):
+    import pickle
+
+    file = 'inventory.pickle'
+    inventory={}
+
+    while True:
+        try:
+            infile=open(file,'rb')
+            inventory=pickle.load(infile)
+            infile.close()
+            for k1 in inventory:
+                print(k1)
+            print('FILE OPEN')
+            break
+        except FileNotFoundError as Err:
+            outfile=open(file,'wb')
+            pickle.dump(inventory,outfile)
+            outfile.close()
+            print('NEW FILE')
+        
+    spaces(3)
+    menu=(
+    [1,'Print List'],
+    [2,'Change Item'],
+    [3,'Delete Item'],
+    [4,'Clear All'],
+    [0,'quit']
+    )
+
+    in_menu=True
+    while in_menu:
+        spaces(2)
+        for k1 in menu:
+            print(f'{k1[0]}...{k1[1]}')
+        spaces(1)
+        selection=get_int('Make a selection')
+
+        if selection==0:
+            in_menu=False
+        elif selection==1:
+            spaces(1)
+            for k1 in inventory:
+                print(k1)
+        elif selection==2:
+            inventory=retailitem_class(inventory)
+            print(inventory)
+            # print(temp_inventory)
+            # inventory.extend(temp_inventory)
+
+
+
+
+
+        elif selection==3:
+            spaces(1)
+            print(inventory)
+            hold()
+            for k1 in inventory:
+                print(k1)
+                print(inventory[k1].__get)
+            while True:
+                k1=input('Enter ID of item to delete: ')
+                if k1 in inventory:
+                    print('found')
+                    inventory.pop(k1)
+                    
+
+                else:
+                    print('not found')
+                    break
+        elif selection==4:
+            inventory={}
+    
+    outfile=open(file,'wb')
+    pickle.dump(inventory,outfile)
+    outfile.close()
+    print('SAVE FILE')
+
 
 def cash_register():
     import retailitem
     import cashregister
-    pass
+    
+    receipt={}
+
+
+    spaces(3)
+    menu=(
+    [1,'Purchases'],
+    [2,'Total'],
+    [3,'Restock'],
+    [4,'Clear'],
+    [0,'quit']
+    )
+    
+    in_menu=True
+    while in_menu:
+        spaces(2)
+        for k1 in menu:
+            print(f'{k1[0]}...{k1[1]}')
+        spaces(1)
+        selection=get_int('Make a selection')
+
+        if selection==0:
+            in_menu=False
+        elif selection==1:
+            print('Purchases')
+        elif selection==2:
+            print('Total')
+            for k1 in receipt:
+                print(k1)
+        elif selection==3:
+            print('Restock')
+            restock(receipt)
+        elif selection==4:
+            print('Clear')
+
 
 # 9
 # Trivia Game
@@ -682,7 +798,7 @@ def main():
         [6,'Patient Charges class'],
         [7,'Employee Management System'],
         [8,'Cash Register'],
-        [9,'Trivia Game']
+        [9,'Trivia Game'],
         [0,'exit']
         )
     
@@ -705,7 +821,7 @@ def main():
         elif selection==4:
             emp_class()
         elif selection==5:
-            retailitem_class()
+            retailitem_class({})
         elif selection==6:
             patient_charges()
         elif selection==7:

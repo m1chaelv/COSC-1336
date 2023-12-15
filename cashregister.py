@@ -11,18 +11,18 @@
 # can be used with the RetailItem class. The CashRegister class 
 # should be able to internally keep a list of RetailItem objects. 
 # The class should have the following methods:
-#
-# • A method named purchase_item that accepts a RetailItem object
+# 
+# • A method named *purchase_item* that accepts a RetailItem object
 #   as an argument. Each time the purchase_item method is called, 
 #   the RetailItem object that is passed as an argument should be 
 #   added to the list.
-# • A method named get_total that returns the total price of all 
+# • A method named *get_total* that returns the total price of all 
 #   the RetailItem objects stored in the CashRegister object's 
 #   internal list
-# • A method named show items that displays data about the 
+# • A method named *show_items* that displays data about the 
 #   RetailItem objects stored in the CashRegister object's internal 
 #   list.
-# • A method named clear that should clear the Cashregister object's 
+# • A method named *clear* that should clear the Cashregister object's 
 #   internal list.
 #
 # Demonstrate the CashRegister class in a program that allows the 
@@ -34,3 +34,16 @@
 class CashRegister:
     def __init__(self):
         pass
+
+    def purchase_item(self):
+        pass
+
+    def get_total(self):
+        pass
+
+    def show_items(self):
+        pass
+
+    def clear(self):
+        pass
+    
