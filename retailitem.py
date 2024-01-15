@@ -56,4 +56,4 @@ class RetailItem:
         return(self.__item)
 
     def __str__(self):
-        pass
+        output=f''

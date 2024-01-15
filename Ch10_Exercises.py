@@ -664,37 +664,36 @@ def restock(receipt):
         if selection==0:
             in_menu=False
         elif selection==1:
+            # Print List
             spaces(1)
             for k1 in inventory:
-                print(k1)
+                print(k1,inventory[k1])
         elif selection==2:
+            # Change Item
             inventory=retailitem_class(inventory)
-            print(inventory)
+            # print(inventory)
+            # hold()
             # print(temp_inventory)
             # inventory.extend(temp_inventory)
-
-
-
-
-
         elif selection==3:
+            # Delete Item
             spaces(1)
-            print(inventory)
-            hold()
+            # print(inventory)
+            # hold()
             for k1 in inventory:
                 print(k1)
-                print(inventory[k1].__get)
+                # print(inventory[k1].__get)
+            spaces(1)
             while True:
                 k1=input('Enter ID of item to delete: ')
                 if k1 in inventory:
                     print('found')
                     inventory.pop(k1)
-                    
-
                 else:
                     print('not found')
                     break
         elif selection==4:
+            # Clear All
             inventory={}
     
     outfile=open(file,'wb')
@@ -728,17 +727,22 @@ def cash_register():
         selection=get_int('Make a selection')
 
         if selection==0:
+            # quit
             in_menu=False
         elif selection==1:
+            # purchases
             print('Purchases')
         elif selection==2:
+            # total
             print('Total')
             for k1 in receipt:
                 print(k1)
         elif selection==3:
+            # restock
             print('Restock')
             restock(receipt)
         elif selection==4:
+            # clear
             print('Clear')
 
 

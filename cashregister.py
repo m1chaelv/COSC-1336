@@ -30,16 +30,20 @@
 # to check out, the program should display a list of all the items 
 # he or she has selected for purchase, as well as the total price.
 #***************************************************************
+import retailitem
 
 class CashRegister:
-    def __init__(self):
-        pass
-
-    def purchase_item(self):
+    def __init__(self,inventory,receipt):
+        self.__inventory=inventory
+        
+    def purchase_item(self,item):
         pass
 
     def get_total(self):
-        pass
+        print(self,self.__inventory)
+        for k1 in self.__inventory:
+            print(k1)
+        input()
 
     def show_items(self):
         pass
